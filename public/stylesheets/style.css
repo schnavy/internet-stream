@@ -3,24 +3,43 @@
   margin: 0;
 }
 body{
-  background-color: red;
-  text-align: left;
+background-color: red;  
+  text-align: center;
+  font-family:  'Times New Roman', Times, serif;
+  font-weight: 300;
   color: white;
+  height: 10000vh;
+  font-size: 100%;
+}
+
+#clickInfo{
+  width: 100%;
+  position: fixed;
+  bottom: 10px;
 }
 
 #curr-img{
   display: none;
 
-  z-index: -10;
-  position: absolute;
+  z-index: 10;
+  position: fixed;
   margin: auto;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   text-align: center;
-  
-  /* width: 100vw;
+}
+
+.fullscreen{
+  width: 100vw;
   height: 100vh;
-  object-fit: contain; */
+  object-fit: cover; 
+}
+
+.fliess{
+  font-size: 2em;
+  line-height: 1;
+  display: none;
+
 }
