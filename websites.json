@@ -1,0 +1,246 @@
+[
+  {
+    "domain": "www.youtube.com",
+    "owner": "Google LLC",
+    "decription": "Videoportal",
+    "imageSelector": "#thumbnail img",
+    "range": [0, 6]
+  },
+  {
+    "domain": "www.amazon.de",
+    "owner": "Amazon.com, Inc.",
+    "decription": "Onlinehändler",
+    "imageSelector": ".ameyal-product-shoveler img",
+    "range": [10, 12]
+  },
+  {
+    "domain": "www.ebay.de",
+    "owner": "eBay Inc.",
+    "decription": "Online-Marktplatz",
+    "imageSelector": ".carousel--peek .hl-image img",
+    "range": [0, 2]
+  },
+  {
+    "domain": "de.wikipedia.org",
+    "owner": "Wikimedia Foundation Inc.",
+    "decription": "Online-Enzyklopädie",
+    "imageSelector": ".hauptseite-box-content .image img",
+    "range": [0, 6]
+  },
+  {
+    "domain": "www.ebay-kleinanzeigen.de",
+    "owner": "eBay Inc.",
+    "decription": "Online-Marktplatz",
+    "imageSelector": ".tilesbox-featured img",
+    "range": [0, 2]
+  },
+  {
+    "domain": "www.reddit.com",
+    "owner": "Advance Publications Inc.",
+    "decription": "Online-Community",
+    "imageSelector": "img.ImageBox-image",
+    "range": [0, 6]
+  },
+  {
+    "domain": "www.livejasmin.com",
+    "owner": "Duodecad IT Services Luxembourg S.à.r.l.",
+    "decription": "Pornografie im Internet",
+    "imageSelector": "img.cover.performer-image.loaded",
+    "range": [0, 2]
+  },
+  {
+    "domain": "www.twitch.tv",
+    "owner": "Amazon.com, Inc.",
+    "decription": "Videoportal",
+    "imageSelector": ".tw-hover-accent-effect__children img",
+    "range": [0, 4]
+  },
+  {
+    "domain": "www.xhamster.com",
+    "owner": "Hammy Media Ltd",
+    "decription": "Pornografie im Internet",
+    "imageSelector": ".thumb-image-container__image",
+    "range": [0, 2]
+  },
+  {
+    "domain": "www.9gag.com",
+    "owner": "9gag",
+    "decription": "Online-Community",
+    "imageSelector": ".post-container img",
+    "range": [0, 4]
+  },
+  {
+    "domain": "www.spiegel.de",
+    "owner": "SPIEGELnet GmbH",
+    "decription": "Internet-Zeitung",
+    "belector": "#Inhalt img"
+  },
+  {
+    "domain": "www.gmx.net",
+    "owner": "1&1 Internet SE",
+    "decription": "E-Mail-Anbieter",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.pornhub.com",
+    "owner": "MindGeek Holding SARL",
+    "decription": "Pornografie im Internet",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.t-online.de",
+    "owner": "Ströer SE & Co. KGaA",
+    "decription": "Infotainment-Portal",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.yahoo.com",
+    "owner": "Yahoo! Inc.",
+    "decription": "Infotainment-Portal",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.ok.ru",
+    "owner": "Mail.Ru Group",
+    "decription": "Soziales Netzwerk",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.mail.ru",
+    "owner": "Mail.Ru Group",
+    "decription": "E-Mail-Anbieter",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.live.com",
+    "owner": "Microsoft Corporation",
+    "decription": "Infotainment-Portal",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.bing.com",
+    "owner": "Microsoft Corporation",
+    "decription": "Suchmaschine",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.chip.de",
+    "owner": "Hubert Burda Media",
+    "decription": "Infotainment-Portal",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.bild.de",
+    "owner": "Axel Springer SE",
+    "decription": "Internet-Zeitung",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.aliexpress.com",
+    "owner": "Alibaba Group",
+    "decription": "Onlinehändler",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.shop-apotheke.com",
+    "owner": "Shop Apotheke Europe N.V.",
+    "decription": "Online-Apotheke",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.amazon.com",
+    "owner": "Amazon.com, Inc.",
+    "decription": "Onlinehändler",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.yandex.ru",
+    "owner": "Yandex N.V.",
+    "decription": "Suchmaschine",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.xvideos.com",
+    "owner": "WGCZ Holding, a.s.",
+    "decription": "Pornografie im Internet",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.mobile.de",
+    "owner": "mobile.de GmbH",
+    "decription": "Onlinehändler",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.idealo.de",
+    "owner": "Idealo Internet GmbH",
+    "decription": "Metasuchmaschine",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.otto.de",
+    "owner": "Otto (GmbH & Co KG)",
+    "decription": "Onlinehändler",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.immobilienscout24.de",
+    "owner": "Scout24 AG",
+    "decription": "Immobilienwirtschaft",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.booking.com",
+    "owner": "Booking Holdings",
+    "decription": "Metasuchmaschine",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.fandom.com",
+    "owner": "Wikia",
+    "decription": "Online-Enzyklopädie",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.telekom.com",
+    "owner": "Ströer SE & Co. KGaA",
+    "decription": "Infotainment-Portal",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.blogspot.com",
+    "owner": "Google LLC",
+    "decription": "Blog",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.welt.de",
+    "owner": "Axel Springer SE",
+    "decription": "Internet-Zeitung",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.zdf.de",
+    "owner": "ZDF",
+    "decription": "Videoportal",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.imgur.com",
+    "owner": "Imgur LLC",
+    "decription": "Fotografie-Webseite",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.chaturbate.com",
+    "owner": "Chaturbate",
+    "decription": "Pornografie im Internet",
+    "imageSelector": ""
+  },
+  {
+    "domain": "www.bongacams.com",
+    "owner": "BongaCams",
+    "decription": "Pornografie im Internet",
+    "imageSelector": ""
+  }
+]
