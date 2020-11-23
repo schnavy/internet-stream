@@ -20,6 +20,7 @@ background-color: red;
 
 #curr-img{
   display: none;
+  min-width: 400px;
 
   z-index: 10;
   position: fixed;

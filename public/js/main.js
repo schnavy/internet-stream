@@ -1,9 +1,9 @@
 //Preloader
 
 let imgArray = [];
-for (i = 0; i < data["image-urls"].length; i++) {
+for (i = 0; i < data["imageurls"].length; i++) {
   imgArray[i] = new Image();
-  imgArray[i] = data["image-urls"][i];
+  imgArray[i] = data["imageurls"][i];
 }
 
 const body = document.querySelector("body");
