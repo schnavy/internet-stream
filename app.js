@@ -2,23 +2,23 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var Twit = require("twit");
-
-var indexRouter = require("./routes/index");
-
-var app = express();
-
+const bodyParser = require("body-parser");
 const fs = require("fs");
 const puppeteer = require("puppeteer");
+var Twit = require("twit");
 
-// const client = new Twit({
-//   consumer_key: "a5HcMnCzVyz2EWaeRQ88DFOi9",
-//   consumer_secret: "wkUweUgD0mH27JhKbIBxKG2VlexYoQaMhUWbLC1IFaTeNpRsXb",
-//   bearer_token:
-//     "AAAAAAAAAAAAAAAAAAAAAOewJgEAAAAAhHerz%2BZHico6%2B6Kp%2B%2BdnCaUjIY8%3DILgzNlAdW11yjH9hhmPjZk7m6SEzS8zko0vesLFcT9hQDTQtAA",
-// });
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://david:cameraraw@dw.afb8c.mongodb.net/Internet-stream?retryWrites=true&w=majority";
 
+const monk = require("monk");
+const db = monk(uri);
+
+db.then(() => {
+  console.log("Connected correctly to server");
+});
+
+//TWITTER
 var client = new Twit({
   consumer_key: "a5HcMnCzVyz2EWaeRQ88DFOi9",
   consumer_secret: "wkUweUgD0mH27JhKbIBxKG2VlexYoQaMhUWbLC1IFaTeNpRsXb",
@@ -28,128 +28,33 @@ var client = new Twit({
   strictSSL: true, // optional - requires SSL certificates to be valid.
 });
 
+let websiteList = fs.readFileSync("websites.json");
+let websites = JSON.parse(websiteList);
+
+var indexRouter = require("./routes/index");
+
 let rawdata = fs.readFileSync("data.json");
 let data = JSON.parse(rawdata);
 
-let websiteList = fs.readFileSync("websites.json");
-let websites = JSON.parse(websiteList);
-let urls = [];
-let trends = [];
-let twitterurls = [];
-let withImageSelector = [];
-
-websites.forEach((e) => {
-  urls.push(e.domain);
-  if (e.imageSelector != "") {
-    withImageSelector.push(e.domain);
-  }
-});
-
-//TWITTER
-
-var params = {
-  id: "23424829"
-};
-client.get("trends/place", params, getTwitterData);
-
-function getTwitterData(err, data, response) {
-  if (err) {
-    console.log(err);
-  } else {
-    trends = data[0].trends;
-    trends = trends.map((x) => x.name);
-    console.log(trends);
-    
-    for (let i = 0; i < 5; i++) {
-      client.get("search/tweets", { q: trends[i], count: 100 }, gotTweets);
-    setTimeout(() => {
-      client.get("search/tweets", { q: trends[i], count: 100 }, gotTweets);
-    }, 15000000);
-    }
-  }
-}
-
-
-
-function gotTweets(err, tweets, response) {
-  console.log(tweets);
-  tweets.statuses.forEach((elem) => {
-    if (elem.entities.hasOwnProperty("media")) {
-      twitterurls.push(elem.entities.media[0].media_url);
-    }
-  });
-  console.log(twitterurls);
-  data.imageurls = data.imageurls.concat(twitterurls);
-  addToDb(data);
-  console.log("added");
-
-}
-
-// SCRAPER
-async function scraper() {
-  (async () => {
-    for (let i = 0; i < withImageSelector.length; i++) {
-      let curr = websites[i];
-      let url = "http://" + curr.domain;
-
-      const browser = await puppeteer.launch();
-      // const browser = await puppeteer.launch({headless:false});
-      const page = await browser.newPage();
-      await page.goto(url);
-      try {
-        await page.waitForSelector(curr.imageSelector);
-      } catch (e) {
-        console.log("DISSSSS" + url + i);
-      }
-      try {
-        const imgsources = await page.evaluate((variableInBROWSER) => {
-          return Array.from(
-            document.querySelectorAll(variableInBROWSER.imageSelector)
-          )
-            .map((imgsrc) => imgsrc.src)
-            .slice(variableInBROWSER.range[0], variableInBROWSER.range[1]);
-        }, curr);
-        data.imageurls = data.imageurls.concat(imgsources);
-        console.log(imgsources);
-        if (imgsources[0] == undefined || imgsources == undefined) {
-          console.log("DISSSSS" + url + i);
-        }
-      } catch (e) {
-        console.log("DISSSSS" + url + i);
-      }
-
-      await browser.close();
-    }
-  })().then(() => {
-    addToDb(data);
-  });
-}
-scraper();
-setInterval(scraper, 18000000);
-
-function addToDb(d) {
-  console.log(d.imageurls.length);
-  d.imageurls = uniq(d.imageurls);
-  console.log(d.imageurls.length);
-
-  let dataToJson = JSON.stringify(d);
-  fs.writeFileSync("data.json", dataToJson);
-}
-
-function uniq(a) {
-  console.log("Doppelte gelöscht");
-  return Array.from(new Set(a));
-}
+//APP
+var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(logger("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(function (req, res, next) {
+  req.db = db;
+  next();
+});
 
 app.use("/", indexRouter);
 
@@ -172,5 +77,23 @@ app.use(function (err, req, res, next) {
 app.locals.data = data;
 app.locals.websites = websites;
 
+
+// const { exec } = require("child_process");
+
+// let process = exec("npm run scrape", (error, stdout, stderr) => {
+//   if (error) {
+//     console.error("exec error:" + error);
+//     return;
+//   }
+//   console.log(`stdout: ${stdout}`);
+//   console.error(`stderr: ${stderr}`);
+// });
+
+// process.stdout.on("data", function (data) {
+//   console.log(data);
+// });
+
+
+
 module.exports = app;
-console.log("app js fertig");
+console.log("app js is listening");
