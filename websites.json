@@ -1,246 +1,317 @@
 [
-  {
-    "domain": "www.youtube.com",
-    "owner": "Google LLC",
-    "decription": "Videoportal",
-    "imageSelector": "#thumbnail img",
-    "range": [0, 6]
-  },
-  {
-    "domain": "www.amazon.de",
-    "owner": "Amazon.com, Inc.",
-    "decription": "Onlinehändler",
-    "imageSelector": ".ameyal-product-shoveler img",
-    "range": [10, 12]
-  },
-  {
-    "domain": "www.ebay.de",
-    "owner": "eBay Inc.",
-    "decription": "Online-Marktplatz",
-    "imageSelector": ".carousel--peek .hl-image img",
-    "range": [0, 2]
-  },
-  {
-    "domain": "de.wikipedia.org",
-    "owner": "Wikimedia Foundation Inc.",
-    "decription": "Online-Enzyklopädie",
-    "imageSelector": ".hauptseite-box-content .image img",
-    "range": [0, 6]
-  },
-  {
-    "domain": "www.ebay-kleinanzeigen.de",
-    "owner": "eBay Inc.",
-    "decription": "Online-Marktplatz",
-    "imageSelector": ".tilesbox-featured img",
-    "range": [0, 2]
-  },
-  {
-    "domain": "www.reddit.com",
-    "owner": "Advance Publications Inc.",
-    "decription": "Online-Community",
-    "imageSelector": "img.ImageBox-image",
-    "range": [0, 6]
-  },
-  {
-    "domain": "www.livejasmin.com",
-    "owner": "Duodecad IT Services Luxembourg S.à.r.l.",
-    "decription": "Pornografie im Internet",
-    "imageSelector": "img.cover.performer-image.loaded",
-    "range": [0, 2]
-  },
-  {
-    "domain": "www.twitch.tv",
-    "owner": "Amazon.com, Inc.",
-    "decription": "Videoportal",
-    "imageSelector": ".tw-hover-accent-effect__children img",
-    "range": [0, 4]
-  },
-  {
-    "domain": "www.xhamster.com",
-    "owner": "Hammy Media Ltd",
-    "decription": "Pornografie im Internet",
-    "imageSelector": ".thumb-image-container__image",
-    "range": [0, 2]
-  },
-  {
-    "domain": "www.9gag.com",
-    "owner": "9gag",
-    "decription": "Online-Community",
-    "imageSelector": ".post-container img",
-    "range": [0, 4]
-  },
-  {
-    "domain": "www.spiegel.de",
-    "owner": "SPIEGELnet GmbH",
-    "decription": "Internet-Zeitung",
-    "belector": "#Inhalt img"
-  },
-  {
-    "domain": "www.gmx.net",
-    "owner": "1&1 Internet SE",
-    "decription": "E-Mail-Anbieter",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.pornhub.com",
-    "owner": "MindGeek Holding SARL",
-    "decription": "Pornografie im Internet",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.t-online.de",
-    "owner": "Ströer SE & Co. KGaA",
-    "decription": "Infotainment-Portal",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.yahoo.com",
-    "owner": "Yahoo! Inc.",
-    "decription": "Infotainment-Portal",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.ok.ru",
-    "owner": "Mail.Ru Group",
-    "decription": "Soziales Netzwerk",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.mail.ru",
-    "owner": "Mail.Ru Group",
-    "decription": "E-Mail-Anbieter",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.live.com",
-    "owner": "Microsoft Corporation",
-    "decription": "Infotainment-Portal",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.bing.com",
-    "owner": "Microsoft Corporation",
-    "decription": "Suchmaschine",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.chip.de",
-    "owner": "Hubert Burda Media",
-    "decription": "Infotainment-Portal",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.bild.de",
-    "owner": "Axel Springer SE",
-    "decription": "Internet-Zeitung",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.aliexpress.com",
-    "owner": "Alibaba Group",
-    "decription": "Onlinehändler",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.shop-apotheke.com",
-    "owner": "Shop Apotheke Europe N.V.",
-    "decription": "Online-Apotheke",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.amazon.com",
-    "owner": "Amazon.com, Inc.",
-    "decription": "Onlinehändler",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.yandex.ru",
-    "owner": "Yandex N.V.",
-    "decription": "Suchmaschine",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.xvideos.com",
-    "owner": "WGCZ Holding, a.s.",
-    "decription": "Pornografie im Internet",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.mobile.de",
-    "owner": "mobile.de GmbH",
-    "decription": "Onlinehändler",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.idealo.de",
-    "owner": "Idealo Internet GmbH",
-    "decription": "Metasuchmaschine",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.otto.de",
-    "owner": "Otto (GmbH & Co KG)",
-    "decription": "Onlinehändler",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.immobilienscout24.de",
-    "owner": "Scout24 AG",
-    "decription": "Immobilienwirtschaft",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.booking.com",
-    "owner": "Booking Holdings",
-    "decription": "Metasuchmaschine",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.fandom.com",
-    "owner": "Wikia",
-    "decription": "Online-Enzyklopädie",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.telekom.com",
-    "owner": "Ströer SE & Co. KGaA",
-    "decription": "Infotainment-Portal",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.blogspot.com",
-    "owner": "Google LLC",
-    "decription": "Blog",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.welt.de",
-    "owner": "Axel Springer SE",
-    "decription": "Internet-Zeitung",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.zdf.de",
-    "owner": "ZDF",
-    "decription": "Videoportal",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.imgur.com",
-    "owner": "Imgur LLC",
-    "decription": "Fotografie-Webseite",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.chaturbate.com",
-    "owner": "Chaturbate",
-    "decription": "Pornografie im Internet",
-    "imageSelector": ""
-  },
-  {
-    "domain": "www.bongacams.com",
-    "owner": "BongaCams",
-    "decription": "Pornografie im Internet",
-    "imageSelector": ""
-  }
-]
+    {
+      "Site": "YouTube",
+      "Domain": "youtube.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "2 ()",
+      "Type": "Video sharing",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Tmall",
+      "Domain": "tmall.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "3 ()",
+      "Type": "Internet-related services",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Tencent QQ",
+      "Domain": "qq.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "5 ()",
+      "Type": "Portal",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Sohu",
+      "Domain": "sohu.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "7 ()",
+      "Type": "Portal",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Taobao",
+      "Domain": "taobao.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "8 ()",
+      "Type": "Online shopping",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Haosou",
+      "Domain": "360.cn",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "9 ()",
+      "Type": "Internet security and web search engine",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Jingdong Mall",
+      "Domain": "jd.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "10 ()",
+      "Type": "Portal and media",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Amazon",
+      "Domain": "amazon.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "11 ()",
+      "Type": "E-commerce and cloud computing",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Yahoo!",
+      "Domain": "yahoo.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "12 ()",
+      "Type": "Portal and Media",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Wikipedia",
+      "Domain": "wikipedia.org",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "13 ()",
+      "Type": "Encyclopedia",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Zoom Video Communications",
+      "Domain": "zoom.us",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "14 ()",
+      "Type": "Videotelephony",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Sina Weibo",
+      "Domain": "weibo.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "15 ()",
+      "Type": "Social networking",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Sina Corp",
+      "Domain": "sina.com.cn",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "16 ()",
+      "Type": "Portal and instant messaging",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Windows Live",
+      "Domain": "live.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "17 ()",
+      "Type": "Software plus services",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Reddit",
+      "Domain": "reddit.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "18 ()",
+      "Type": "Social news and entertainment",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Xinhua News Agency",
+      "Domain": "xinhuanet.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "19 ()",
+      "Type": "News",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Netflix",
+      "Domain": "netflix.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "20 ()",
+      "Type": "Streaming TV and movies",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Microsoft",
+      "Domain": "microsoft.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "21 ()",
+      "Type": "Software and technology",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Okezone",
+      "Domain": "okezone.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "22 ()",
+      "Type": "Portal",
+      "Principal country/territory": "Indonesia"
+    },
+    {
+      "Site": "Microsoft Office",
+      "Domain": "office.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "23 ()",
+      "Type": "Online office suite",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "CSDN",
+      "Domain": "csdn.net",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "26 ()",
+      "Type": "Technology news and Internet forum",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Alipay",
+      "Domain": "alipay.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "27 ()",
+      "Type": "Payment system",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Microsoft Online",
+      "Domain": "microsoftonline.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "28 ()",
+      "Type": "Software",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Shopify",
+      "Domain": "myshopify.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "29 ()",
+      "Type": "E-commerce",
+      "Principal country/territory": "Canada"
+    },
+    {
+      "Site": "Yahoo! Japan",
+      "Domain": "yahoo.co.jp",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "30 ()",
+      "Type": "Portal",
+      "Principal country/territory": "Japan"
+    },
+    {
+      "Site": "Zhanqi TV",
+      "Domain": "zhanqi.tv",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "31 ()",
+      "Type": "Streaming primarily on video games",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Panda TV",
+      "Domain": "panda.tv",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "32 ()",
+      "Type": "Streaming primarily on video games",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Google Hong Kong",
+      "Domain": "google.com.hk",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "33 (2)",
+      "Type": "Internet services and products",
+      "Principal country/territory": "Hong Kong"
+    },
+    {
+      "Site": "BongaCams",
+      "Domain": "bongacams.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "34 (1)",
+      "Type": "Pornography",
+      "Principal country/territory": "Netherlands"
+    },
+    {
+      "Site": "Twitch",
+      "Domain": "twitch.tv",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "35 (1)",
+      "Type": "Streaming primarily on video games",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Amazon India",
+      "Domain": "amazon.in",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "36 (1)",
+      "Type": "E-commerce",
+      "Principal country/territory": "India"
+    },
+    {
+      "Site": "Naver",
+      "Domain": "naver.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "37 (1)",
+      "Type": "Portal",
+      "Principal country/territory": "South Korea"
+    },
+    {
+      "Site": "Bing",
+      "Domain": "bing.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "38 ()",
+      "Type": "Web search engine",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Apple Inc",
+      "Domain": "apple.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "39 ()",
+      "Type": "Phone maker",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "eBay",
+      "Domain": "ebay.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "40 ()",
+      "Type": "Online auctions and shopping",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "AliExpress",
+      "Domain": "aliexpress.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "41 ()",
+      "Type": "Online shopping",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Tianya Club",
+      "Domain": "tianya.cn",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "42 ()",
+      "Type": "Internet forum",
+      "Principal country/territory": "China"
+    },
+    {
+      "Site": "Stack Overflow",
+      "Domain": "stackoverflow.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "43 (5)",
+      "Type": "Question and answer",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Amazon Japan",
+      "Domain": "amazon.co.jp",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "44 (1)",
+      "Type": "E-commerce",
+      "Principal country/territory": "Japan"
+    },
+    {
+      "Site": "Adobe",
+      "Domain": "adobe.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "45 ()",
+      "Type": "Media software",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Google India",
+      "Domain": "google.co.in",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "46 (2)",
+      "Type": "Internet services and products",
+      "Principal country/territory": "India"
+    },
+    {
+      "Site": "LiveJasmin",
+      "Domain": "livejasmin.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "47 ()",
+      "Type": "Pornography",
+      "Principal country/territory": "Luxembourg"
+    },
+    {
+      "Site": "Twitter",
+      "Domain": "twitter.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "48 ()",
+      "Type": "Social networking",
+      "Principal country/territory": "United States"
+    },
+    {
+      "Site": "Yandex Search",
+      "Domain": "yandex.ru",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "49 ()",
+      "Type": "Web search engine",
+      "Principal country/territory": "Russia"
+    },
+    {
+      "Site": "Tribun News",
+      "Domain": "tribunnews.com",
+      "Alexa top 50 global sites\n(As of November 18, 2020[update])[1]": "50 ()",
+      "Type": "News",
+      "Principal country/territory": "Indonesia"
+    }
+   ]

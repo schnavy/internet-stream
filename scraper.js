@@ -20,7 +20,7 @@ const imageCol = db.get("imagedata");
 const textCol = db.get("imagedata");
 
 
-let websiteList = fs.readFileSync("websitesN.json");
+let websiteList = fs.readFileSync("websites.json");
 let websites = JSON.parse(websiteList);
 let urls = [];
 let items = [];
