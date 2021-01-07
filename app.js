@@ -78,20 +78,20 @@ app.locals.data = data;
 app.locals.websites = websites;
 
 
-// const { exec } = require("child_process");
+const { exec } = require("child_process");
 
-// let process = exec("npm run scrape", (error, stdout, stderr) => {
-//   if (error) {
-//     console.error("exec error:" + error);
-//     return;
-//   }
-//   console.log(`stdout: ${stdout}`);
-//   console.error(`stderr: ${stderr}`);
-// });
+let process = exec("npm run scrape", (error, stdout, stderr) => {
+  if (error) {
+    console.error("exec error:" + error);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.error(`stderr: ${stderr}`);
+});
 
-// process.stdout.on("data", function (data) {
-//   console.log(data);
-// });
+process.stdout.on("data", function (data) {
+  console.log(data);
+});
 
 
 

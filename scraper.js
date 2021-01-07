@@ -1,25 +1,6 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer");
 var Twit = require("twit");
-const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://david:cameraraw@dw.afb8c.mongodb.net/Internet-stream?retryWrites=true&w=majority";
-
-const monk = require("monk");
-const db = monk(uri);
-
-db.then(() => {
-  console.log("Connected correctly to server");
-});
-
-const imageCol = db.get("imagedata");
-const textCol = db.get("imagedata");
-
-
-
-let rawdata = fs.readFileSync("data.json");
-let data = JSON.parse(rawdata);
-
 var client = new Twit({
   consumer_key: "a5HcMnCzVyz2EWaeRQ88DFOi9",
   consumer_secret: "wkUweUgD0mH27JhKbIBxKG2VlexYoQaMhUWbLC1IFaTeNpRsXb",
@@ -29,24 +10,25 @@ var client = new Twit({
   strictSSL: true, // optional - requires SSL certificates to be valid.
 });
 
-let websiteList = fs.readFileSync("websites.json");
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://david:cameraraw@dw.afb8c.mongodb.net/Internet-stream?retryWrites=true&w=majority";
+const monk = require("monk");
+const db = monk(uri);
+
+const imageCol = db.get("imagedata");
+const textCol = db.get("imagedata");
+
+
+let websiteList = fs.readFileSync("websitesN.json");
 let websites = JSON.parse(websiteList);
 let urls = [];
-let trends = [];
-let twitterurls = [];
-let withImageSelector = [];
-
-let imgsources;
-
-websites.forEach((e) => {
-  urls.push(e.domain);
-  if (e.imageSelector != "") {
-    withImageSelector.push(e.domain);
-  }
-});
-
 let items = [];
 let newItem;
+
+let trends = [];
+let twitterurls = [];
+
 
 //TWITTER
 
@@ -56,76 +38,115 @@ var params = {
 // client.get("trends/place", params, getTwitterData);
 // client.get("trends/place", params,getKeywordImages);
 
-scraper();
+(async () => {
+
+  for (let i = 0; i < 2; i++) {
+    try {
+      await scrapeImages(websites[i]);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+})().then(()=>{
+  addToDb(items);
+  process.exit();
+
+
+})
+
+// for (let i = 0; i < 20; i++) {
+//     scrapeImages(websites[i])
+//     //.then(addToJSON(items))
+// }
+
+// scraper(websites[1]);
 
 // SCRAPER
-async function scraper() {
-  (async () => {
-    for (let i = 0; i < withImageSelector.length-10; i++) {
-      let curr = websites[i];
-      let url = "http://" + curr.domain;
+async function scrapeImages(website) {
+  let curr = website;
+  let url = "http://" + curr.Domain;
+  let selector = "img";
 
-      const browser = await puppeteer.launch();
-      // const browser = await puppeteer.launch({headless:false});
-      const page = await browser.newPage();
-      await page.goto(url);
-      try {
-        await page.waitForSelector(curr.imageSelector);
-      } catch (e) {
-        console.log("DISSSSS " + url + " " + e);
-      }
-      try {
-        imgsources = await page.evaluate((variableInBROWSER) => {
-          return Array.from(
-            document.querySelectorAll(variableInBROWSER.imageSelector)
-          )
-            .map((imgsrc) => imgsrc.src)
-            .slice(variableInBROWSER.range[0], variableInBROWSER.range[1]);
-        }, curr);
-
-        // ALT
-        data.imageurls = data.imageurls.concat(imgsources);
-
-        //NEU
-        for (const elem of imgsources) {
-          newItem = {
-            url: elem,
-            timecode: new Date(),
-            origin: curr.domain,
-            type: "",
-          };
-          items.push(newItem);
-        }
-
-        console.log(
-          url + " fertig —— " + imgsources.length + " Bilder hinzugefügt"
-        );
-      } catch (e) {
-        console.log(url + " Fehler: " + e);
-      }
-
-      await browser.close();
-      // console.log(imgsources);
-    }
-    console.log("sssssssssss" + items);
-  })().then(() => {
-    addToJSON(data);
-    addToDb(items);
+  const browser = await puppeteer.launch({
+    headless: true,
   });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1280, height: 1400 });
+  await page.goto(url);
+  try {
+    await page.waitForSelector(selector);
+  } catch (e) {
+    console.log("DISSSSS " + url + " " + e);
+  }
+  try {
+    scrapedElements = await page.evaluate(() => {
+      let elems = Array.from(document.querySelectorAll("img"));
+
+      let newArr = [];
+
+      elems.forEach((x) => {
+        if (
+          x.clientWidth > 150 &&
+          x.clientWidth < 800 &&
+          x.clientHeight > 100 &&
+          x.clientHeight < 800
+        ) {
+          newArr.push(x.src);
+        }
+      });
+      newArr.map((imgsrc) => imgsrc.src);
+      return newArr;
+    });
+
+    // imgsources =  sortForSize(scrapedElemenets);
+
+    for (const elem of scrapedElements) {
+      newItem = {
+        url: elem,
+        timecode: new Date(),
+        origin: curr.Domain,
+        type: "",
+      };
+      if (newItem.url != "") {
+        items.push(newItem);
+      }
+    }
+  } catch (e) {
+    console.log(url + " Fehler: " + e);
+  }
+
+  console.log(
+    url + " fertig —— " + scrapedElements.length + " Bilder hinzugefügt"
+  );
+  await browser.close();
+
+  // return items;
+  // console.log(imgsources);
+  //   console.log(items);
 }
 
 function addToJSON(d) {
   d.imageurls = uniq(d.imageurls);
-  console.log(d.imageurls.length);
+  console.log(d.length + " Neue Elemente in der JSON Datei");
 
   let dataToJson = JSON.stringify(d);
   fs.writeFileSync("data.json", dataToJson);
 }
 
 function addToDb(d) {
-    imageCol.insert(d).then(() => db.close());
-    console.log(d + "wurde hinzugefügt");
+  imageCol.insert(d).then(() => db.close());
+  console.log(d.length + " Neue Elemente in der Datenbank");
+}
 
+function sortForSize(imgArray) {
+  let newArr = [];
+
+  imgArray.forEach((x) => {
+    if (x.clientWidth > 250 && x.clientWidth < 800) {
+      newArr.push(x.src);
+    }
+  });
+  return newArr;
 }
 
 function uniq(a) {

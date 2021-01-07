@@ -2,9 +2,13 @@
 
 let imgArray = [];
 let anzahl = 200;
-for (i = 0; i < anzahl; i++) {
+
+data = data.map(x => x.url)
+console.log(data);
+
+for (i = 0; i < data.length; i++) {
   imgArray[i] = new Image();
-  imgArray[i] = data["imageurls"][data["imageurls"].length - anzahl + i];
+  imgArray[i] = data[i];
 }
 
 const body = document.querySelector("body");
