@@ -3,14 +3,15 @@
   margin: 0;
 }
 body{
-background-color: red;  
+background-color: #666;  
   text-align: center;
   font-family:  'Times New Roman', Times, serif;
   font-weight: 300;
-  color: white;
+  color: blue;
   /* height: 10000vh; */
-  font-size: 100%;
+  font-size: 120%;
 }
+
 
 #clickInfo{
   width: 100%;
@@ -19,7 +20,7 @@ background-color: red;
 }
 
 #curr-img{
-  display: none;
+  display: block;
   min-width: 400px;
 
   z-index: 10;
@@ -33,14 +34,80 @@ background-color: red;
 }
 
 .fullscreen{
-  width: 100vw;
-  height: 100vh;
+  width: 75vw;
+  height: 88vh;
   object-fit: cover; 
+  background-color: black;
 }
+
+
 
 .fliess{
   font-size: 2em;
   line-height: 1;
   display: none;
 
+}
+
+.textWrapper{
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+}
+
+
+#pMain{
+  font-size: 4em;
+  max-width: 400px;
+  z-index: 100;
+  
+}
+
+.hStyle1{
+  font-size: 2.5em;
+
+  font-family: Cooper Black;
+  font-weight: bold;
+  line-height: .9em;
+  color: red;
+}
+.hStyle2{
+  font-size: 2.5em;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  line-height: .9em;
+  /* font-style: italic; */
+  letter-spacing: -2px;
+  color:indigo;
+}
+.hStyle3{
+  font-size: 2em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: normal;
+  line-height: .9em;
+  color: red;
+}
+
+.pStyle1{
+  font-size: 1.7em !important;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  line-height: .9em;
+  color: white;
+  letter-spacing: -1px;
+
+}
+.pStyle2{
+  font-size: 1.7em !important;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  line-height: .95em;
+  letter-spacing: -1px;
+  color: yellow;
 }

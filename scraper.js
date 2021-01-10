@@ -17,18 +17,22 @@ const monk = require("monk");
 const db = monk(uri);
 
 const imageCol = db.get("imagedata");
-const textCol = db.get("imagedata");
+const textCol = db.get("textdata");
+// let imageItems;
+// let textItems;
 
+// imageCol.remove();
+// textCol.remove();
 
-let websiteList = fs.readFileSync("websites.json");
-let websites = JSON.parse(websiteList);
+// let websiteList = fs.readFileSync("websites.json");
+// let websites = JSON.parse(websiteList).map((x) => x.Domain);
+let websiteList = fs.readFileSync("websitesDE50.json");
+let websites = JSON.parse(websiteList).domains;
 let urls = [];
-let items = [];
 let newItem;
 
 let trends = [];
 let twitterurls = [];
-
 
 //TWITTER
 
@@ -39,33 +43,25 @@ var params = {
 // client.get("trends/place", params,getKeywordImages);
 
 (async () => {
-
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < websites.length; i++) {
     try {
-      await scrapeImages(websites[i]);
+      await scrapeText(websites[i], "h3");
+      await scrapeText(websites[i], "p");
+      await scrapeImages(websites[i], "img");
     } catch (e) {
       console.log(e);
     }
   }
-})().then(()=>{
-  addToDb(items);
-  process.exit();
-
-
-})
-
-// for (let i = 0; i < 20; i++) {
-//     scrapeImages(websites[i])
-//     //.then(addToJSON(items))
-// }
+  console.log("fertig");
+})();
 
 // scraper(websites[1]);
 
-// SCRAPER
-async function scrapeImages(website) {
-  let curr = website;
-  let url = "http://" + curr.Domain;
-  let selector = "img";
+// SCRAPER IMAGES
+async function scrapeImages(curr, selector) {
+  let imageItems = [];
+
+  let url = "http://" + curr;
 
   const browser = await puppeteer.launch({
     headless: true,
@@ -79,50 +75,107 @@ async function scrapeImages(website) {
     console.log("DISSSSS " + url + " " + e);
   }
   try {
-    scrapedElements = await page.evaluate(() => {
-      let elems = Array.from(document.querySelectorAll("img"));
+    scrapedElements = await page.evaluate((selector) => {
+      let elems = Array.from(document.querySelectorAll(selector));
 
       let newArr = [];
 
       elems.forEach((x) => {
         if (
-          x.clientWidth > 150 &&
-          x.clientWidth < 800 &&
-          x.clientHeight > 100 &&
-          x.clientHeight < 800
+          x.clientWidth > 200 &&
+          x.clientWidth < 1000 &&
+          x.clientHeight > 150 &&
+          x.clientHeight < 1000
+          // x.getBoundingClientRect().top >= 0 &&
+          // x.getBoundingClientRect().left >= 0 &&
+          // x.getBoundingClientRect().bottom <= 1400 &&
+          // x.getBoundingClientRect().right <= 1280
         ) {
           newArr.push(x.src);
         }
       });
       newArr.map((imgsrc) => imgsrc.src);
       return newArr;
-    });
-
-    // imgsources =  sortForSize(scrapedElemenets);
+    }, selector);
 
     for (const elem of scrapedElements) {
       newItem = {
         url: elem,
         timecode: new Date(),
-        origin: curr.Domain,
-        type: "",
+        origin: curr,
+        type: selector,
       };
-      if (newItem.url != "") {
-        items.push(newItem);
+      if (newItem.url != "" && newItem.url[0] == "h") {
+        imageItems.push(newItem);
       }
     }
   } catch (e) {
     console.log(url + " Fehler: " + e);
   }
 
-  console.log(
-    url + " fertig —— " + scrapedElements.length + " Bilder hinzugefügt"
-  );
+  console.log(url + " fertig —— " + imageItems.length + " Bilder hinzugefügt");
   await browser.close();
 
-  // return items;
-  // console.log(imgsources);
-  //   console.log(items);
+  await addToDb(imageItems, imageCol);
+}
+
+// SCRAPER TEXT
+async function scrapeText(curr, selector) {
+  let textItems = [];
+  let nurLangeTexte = false;
+  if (selector == "p") {
+    nurLangeTexte = true;
+  }
+
+  let url = "http://" + curr;
+
+  const browser = await puppeteer.launch({
+    headless: true,
+  });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1280, height: 1400 });
+  await page.goto(url);
+  try {
+    await page.waitForSelector(selector);
+  } catch (e) {
+    console.log("DISSSSS " + url + " " + e);
+  }
+  try {
+    scrapedElements = await page.evaluate((selector) => {
+      let newArr = Array.from(document.querySelectorAll(selector))
+        .map((x) => x.textContent)
+        .slice(0, 20);
+
+      // newArr.map(x => x.textContent);
+
+      return newArr;
+    }, selector);
+
+    for (const elem of scrapedElements) {
+      newItem = {
+        text: elem,
+        timecode: new Date(),
+        origin: curr,
+        type: selector,
+      };
+      if (elem != "" && nurLangeTexte) {
+        if (newItem.type == "p") {
+          textItems.push(newItem);
+        }
+      } else {
+        if (elem != "") {
+          textItems.push(newItem);
+        }
+      }
+    }
+  } catch (e) {
+    console.log(url + " Fehler: " + e);
+  }
+
+  console.log(url + " fertig —— " + textItems.length + " Texte hinzugefügt");
+  await browser.close();
+
+  await addToDb(textItems, textCol);
 }
 
 function addToJSON(d) {
@@ -133,9 +186,9 @@ function addToJSON(d) {
   fs.writeFileSync("data.json", dataToJson);
 }
 
-function addToDb(d) {
-  imageCol.insert(d).then(() => db.close());
-  console.log(d.length + " Neue Elemente in der Datenbank");
+function addToDb(d, zielDB) {
+  zielDB.insert(d).then(() => db.close());
+  console.log(d.length + " -> DB");
 }
 
 function sortForSize(imgArray) {
