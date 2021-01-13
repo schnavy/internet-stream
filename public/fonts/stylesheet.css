@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Apple Garamond';
+    src: url('AppleGaramond.woff2') format('woff2'),
+        url('AppleGaramond.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cooper';
+    src: url('CooperBlack.woff2') format('woff2'),
+        url('CooperBlack.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+

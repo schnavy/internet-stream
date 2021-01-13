@@ -18,6 +18,7 @@ const db = monk(uri);
 
 const imageCol = db.get("imagedata");
 const textCol = db.get("textdata");
+
 // let imageItems;
 // let textItems;
 
@@ -26,10 +27,11 @@ const textCol = db.get("textdata");
 
 // let websiteList = fs.readFileSync("websites.json");
 // let websites = JSON.parse(websiteList).map((x) => x.Domain);
-let websiteList = fs.readFileSync("websitesDE50.json");
+let websiteList = fs.readFileSync("NewsWebsites.json");
 let websites = JSON.parse(websiteList).domains;
 let urls = [];
 let newItem;
+let elemscount = 0;
 
 let trends = [];
 let twitterurls = [];
@@ -43,16 +45,18 @@ var params = {
 // client.get("trends/place", params,getKeywordImages);
 
 (async () => {
+  console.log("scraper startet");
+
   for (let i = 0; i < websites.length; i++) {
     try {
+      await scrapeImages(websites[i], "img");
       await scrapeText(websites[i], "h3");
       await scrapeText(websites[i], "p");
-      await scrapeImages(websites[i], "img");
     } catch (e) {
       console.log(e);
     }
   }
-  console.log("fertig");
+  console.log("Fertig — " + elemscount + " Elemente zur Datenbank hinzugefügt");
 })();
 
 // scraper(websites[1]);
@@ -64,6 +68,16 @@ async function scrapeImages(curr, selector) {
   let url = "http://" + curr;
 
   const browser = await puppeteer.launch({
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-accelerated-2d-canvas",
+      "--no-first-run",
+      "--no-zygote",
+      "--single-process", // <- this one doesn't works in Windows
+      "--disable-gpu",
+    ],
     headless: true,
   });
   const page = await browser.newPage();
@@ -94,6 +108,7 @@ async function scrapeImages(curr, selector) {
           newArr.push(x.src);
         }
       });
+
       newArr.map((imgsrc) => imgsrc.src);
       return newArr;
     }, selector);
@@ -105,7 +120,7 @@ async function scrapeImages(curr, selector) {
         origin: curr,
         type: selector,
       };
-      if (newItem.url != "" && newItem.url[0] == "h") {
+      if (newItem.url != "" && newItem.url[4] == "s") {
         imageItems.push(newItem);
       }
     }
@@ -115,7 +130,6 @@ async function scrapeImages(curr, selector) {
 
   console.log(url + " fertig —— " + imageItems.length + " Bilder hinzugefügt");
   await browser.close();
-
   await addToDb(imageItems, imageCol);
 }
 
@@ -130,6 +144,16 @@ async function scrapeText(curr, selector) {
   let url = "http://" + curr;
 
   const browser = await puppeteer.launch({
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-accelerated-2d-canvas",
+      "--no-first-run",
+      "--no-zygote",
+      "--single-process", // <- this one doesn't works in Windows
+      "--disable-gpu",
+    ],
     headless: true,
   });
   const page = await browser.newPage();
@@ -144,14 +168,15 @@ async function scrapeText(curr, selector) {
     scrapedElements = await page.evaluate((selector) => {
       let newArr = Array.from(document.querySelectorAll(selector))
         .map((x) => x.textContent)
-        .slice(0, 20);
+        .slice(0, 10);
 
       // newArr.map(x => x.textContent);
 
       return newArr;
     }, selector);
 
-    for (const elem of scrapedElements) {
+    for (let elem of scrapedElements) {
+      elem = "" + elem.replace(/ +(?= )/g, "");
       newItem = {
         text: elem,
         timecode: new Date(),
@@ -187,19 +212,39 @@ function addToJSON(d) {
 }
 
 function addToDb(d, zielDB) {
-  zielDB.insert(d).then(() => db.close());
-  console.log(d.length + " -> DB");
-}
-
-function sortForSize(imgArray) {
-  let newArr = [];
-
-  imgArray.forEach((x) => {
-    if (x.clientWidth > 250 && x.clientWidth < 800) {
-      newArr.push(x.src);
+  try {
+    if (d[0].hasOwnProperty("text")) {
+      for (const elem of d) {
+        //check if doppelt
+        zielDB
+          .count({ text: elem.text }, { limit: 1 })
+          .then((www) => {
+            if (www == 0) {
+              zielDB.insert(elem);
+            }
+          })
+          .then(() => db.close());
+      }
+    } else {
+      for (const elem of d) {
+        //check if doppelt
+        zielDB
+          .count({ url: elem.url }, { limit: 1 })
+          .then((www) => {
+            if (www == 0) {
+              zielDB.insert(elem);
+            }
+          })
+          .then(() => db.close());
+      }
     }
-  });
-  return newArr;
+  } catch (error) {
+    console.log(error);
+  }
+
+  // zielDB.insert(d).then(() => db.close());
+  elemscount += d.length;
+  // console.log(d.length + " -> DB");
 }
 
 function uniq(a) {

@@ -1,8 +1,10 @@
 //Preloader
-
+const map = (value, x1, y1, x2, y2) =>
+  ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 let imgArray = [];
 let anzahl = 200;
-let mouseX;
+let mouseX = 0;
+let mouseY = 0;
 let pdatda = [];
 let h3datda = [];
 
@@ -29,6 +31,8 @@ const body = document.querySelector("body");
 let currImg = document.querySelector("#curr-img");
 let currText = document.querySelector("#pMain");
 let clickInfo = document.querySelector("#clickInfo");
+let title = document.querySelector(".innerTitle");
+let wrapper = document.querySelector(".wrapper");
 let n = 0;
 let scrollCounter = 0;
 let streamIsActive = false;
@@ -38,7 +42,7 @@ let num = imgArray.length - 1;
 function changeImg() {
   let r = Math.floor(Math.random() * imgArray.length);
   currImg.src = imgArray[r];
-
+  console.log(r);
   if (n == imgArray.length - 1) {
     n = 0;
   } else {
@@ -47,32 +51,20 @@ function changeImg() {
   if (num > 1) {
     num--;
   }
-  console.log(mouseX);
+  currImg.style.transform = "scale(" + map(mouseY, 0, document.documentElement.clientHeight, 10, 1) + ")";
 }
 
 function changeText() {
-  let r = Math.floor(Math.random() * imgArray.length);
+  let r = Math.floor(Math.random() * txtdata.length);
   currText.textContent = txtdata[r].text;
-  if (txtdata[r].type == "p" || txtdata[r].text.length > 80) {
-    if (Math.random() > 0.5) {
-      currText.className = ''
-      currText.classList.add("pStyle1");
-    } else {
-      currText.className = ''
-      currText.classList.add("pStyle2");
-    }
+  if (txtdata[r].type == "p" || txtdata[r].text.length > 60) {
+    let r = Math.floor(Math.random()*2)
+      currText.className = "";
+      currText.classList.add("pStyle" + r);
   } else {
-    if (Math.random() > 0.33) {
-      currText.className = ''
-      currText.classList.add("hStyle1");
-    } else if (Math.random() > 0.66){
-      currText.className = ''
-      currText.classList.add("hStyle2");
-    } else {
-      currText.className = ''
-      currText.classList.add("hStyle3");
-    }
- 
+    let r = Math.floor(Math.random()*4)
+      currText.className = "";
+      currText.classList.add("hStyle" + r);
   }
 
   if (n == imgArray.length - 1) {
@@ -91,21 +83,54 @@ function changeBoth() {
 }
 changeImg();
 changeText();
-window.addEventListener("click", (e) => {
+
+function toggleStream(e) {
   // currImg.style.display = "block";
-  console.log(e.x);
   if (streamIsActive) {
-    clearInterval(stream);
-    clearInterval(streamT);
+    // clearInterval(stream);
+    // clearInterval(streamT);
     currImg.classList.remove("fullscreen");
+    title.style.display = "block";
     clickInfo.style.display = "block";
+    wrapper.style.display = "none";
   } else {
     currImg.classList.add("fullscreen");
-    stream = setInterval(changeImg, 800);
-    streamT = setInterval(changeText, 200);
+    wrapper.style.display = "flex";
+    
+    // stream = setInterval(changeImg, 600);
+    // streamT = setInterval(changeText, 100);
     clickInfo.style.display = "none";
+    title.style.display = "none";
   }
   streamIsActive = !streamIsActive;
+}
+imageStream();
+textStream();
+
+function imageStream() {
+  if (streamIsActive) {
+    changeImg();
+  }
+  setTimeout(
+    imageStream,
+    map(mouseY, 0, document.documentElement.clientHeight, 200, 2000)
+  );
+}
+function textStream() {
+  if (streamIsActive) {
+    changeText();
+  }
+  setTimeout(
+    textStream,
+    map(mouseY, 0, document.documentElement.clientHeight , 100, 1000)
+  );
+}
+
+window.addEventListener("click", (e) => {
+  toggleStream(e);
+});
+window.addEventListener("touchend", (e) => {
+  toggleStream(e);
 });
 
 window.addEventListener("wheel", (e) => {
@@ -115,4 +140,14 @@ window.addEventListener("wheel", (e) => {
     changeText();
   }
   scrollCounter++;
+});
+
+function getMouseX(params) {}
+
+window.addEventListener("mousemove", (e) => {
+  mouseX = e.x;
+  mouseY = e.y;
+  if (streamIsActive) {
+    // currImg.style.transform = "scale(" + map(mouseY, 0, document.documentElement.clientHeight, 1, 5) + ")";
+  }
 });

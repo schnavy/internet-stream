@@ -80,8 +80,13 @@ app.locals.websites = websites;
 let instantScraping = true;
 
 if (instantScraping) {
-  const { exec } = require("child_process");
+  startScraping()
+}
+setInterval(startScraping, 18000000);
 
+
+function startScraping() {
+  const { exec } = require("child_process");
   let process = exec("npm run scrape", (error, stdout, stderr) => {
     if (error) {
       console.error("exec error:" + error);
@@ -99,3 +104,4 @@ if (instantScraping) {
 module.exports = app;
 
 console.log("app js is listening");
+
