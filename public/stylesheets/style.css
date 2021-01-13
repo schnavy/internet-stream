@@ -34,7 +34,7 @@ body {
 }
 
 h2{
-  font-family: "Cooper Black";
+  font-family: 'Cooper';
   font-size: 2em;
 }
 
@@ -125,7 +125,7 @@ background-color: black
 
 .hStyle0 {
   font-size: 2.5em;
-  font-family: "Apple Garamond";
+  font-family: 'Apple Garamond';
   font-weight: normal;
   line-height: .8em;
   letter-spacing: -2px;
@@ -136,7 +136,7 @@ background-color: black
 .hStyle1 {
   font-size: 2.5em;
 
-  font-family: Cooper Black;
+  font-family: 'Cooper';
   font-weight: bold;
   line-height: .8em;
   color: red;
