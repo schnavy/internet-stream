@@ -17,14 +17,14 @@ txtdata.forEach((e) => {
 });
 
 // txtdata = txtdata.map((x) => x.text);
-imgdata = imgdata.map((x) => x.url);
+// imgdata = imgdata.map((x) => x.url);
 
 console.log(imgdata);
 console.log(txtdata);
 
 for (i = 0; i < imgdata.length; i++) {
   imgArray[i] = new Image();
-  imgArray[i] = imgdata[i];
+  imgArray[i] = imgdata[i].url;
 }
 
 const body = document.querySelector("body");
@@ -33,6 +33,11 @@ let currText = document.querySelector("#pMain");
 let clickInfo = document.querySelector("#clickInfo");
 let title = document.querySelector(".innerTitle");
 let wrapper = document.querySelector(".wrapper");
+let speed;
+let speedLog = document.querySelector("#speed-log");
+let imgR;
+let textR;
+let scale;
 let n = 0;
 let scrollCounter = 0;
 let streamIsActive = false;
@@ -40,9 +45,8 @@ let stream = null;
 let num = imgArray.length - 1;
 
 function changeImg() {
-  let r = Math.floor(Math.random() * imgArray.length);
-  currImg.src = imgArray[r];
-  console.log(r);
+  imgR = Math.floor(Math.random() * imgArray.length);
+  currImg.src = imgArray[imgR];
   if (n == imgArray.length - 1) {
     n = 0;
   } else {
@@ -51,20 +55,24 @@ function changeImg() {
   if (num > 1) {
     num--;
   }
-  currImg.style.transform = "scale(" + map(mouseY, 0, document.documentElement.clientHeight, 10, 1) + ")";
+  scale = Math.max(
+    map(mouseY, 0, document.documentElement.clientHeight - 300, 5, 1),
+    1
+  );
+  currImg.style.transform = "scale(" + scale + ")";
 }
 
 function changeText() {
-  let r = Math.floor(Math.random() * txtdata.length);
-  currText.textContent = txtdata[r].text;
-  if (txtdata[r].type == "p" || txtdata[r].text.length > 60) {
-    let r = Math.floor(Math.random()*2)
-      currText.className = "";
-      currText.classList.add("pStyle" + r);
+  textR = Math.floor(Math.random() * txtdata.length);
+  currText.textContent = txtdata[textR].text;
+  if (txtdata[textR].type == "p" || txtdata[textR].text.length > 100) {
+    let tempR = Math.floor(Math.random() * 3);
+    currText.className = "";
+    currText.classList.add("pStyle" + tempR);
   } else {
-    let r = Math.floor(Math.random()*4)
-      currText.className = "";
-      currText.classList.add("hStyle" + r);
+    let tempR = Math.floor(Math.random() * 4);
+    currText.className = "";
+    currText.classList.add("hStyle" + tempR);
   }
 
   if (n == imgArray.length - 1) {
@@ -87,18 +95,16 @@ changeText();
 function toggleStream(e) {
   // currImg.style.display = "block";
   if (streamIsActive) {
-    // clearInterval(stream);
-    // clearInterval(streamT);
+    clearInterval(logStream);
     currImg.classList.remove("fullscreen");
     title.style.display = "block";
     clickInfo.style.display = "block";
-    wrapper.style.display = "none";
+    // wrapper.style.display = "none";
   } else {
     currImg.classList.add("fullscreen");
     wrapper.style.display = "flex";
-    
-    // stream = setInterval(changeImg, 600);
-    // streamT = setInterval(changeText, 100);
+
+    logStream = setInterval(logParameters, 10);
     clickInfo.style.display = "none";
     title.style.display = "none";
   }
@@ -113,17 +119,16 @@ function imageStream() {
   }
   setTimeout(
     imageStream,
-    map(mouseY, 0, document.documentElement.clientHeight, 200, 2000)
+    speed
   );
 }
 function textStream() {
+  speed = map(mouseY, 100, document.documentElement.clientHeight, 200, 3000);
+
   if (streamIsActive) {
     changeText();
   }
-  setTimeout(
-    textStream,
-    map(mouseY, 0, document.documentElement.clientHeight , 100, 1000)
-  );
+  setTimeout(textStream, speed);
 }
 
 window.addEventListener("click", (e) => {
@@ -142,12 +147,18 @@ window.addEventListener("wheel", (e) => {
   scrollCounter++;
 });
 
-function getMouseX(params) {}
-
 window.addEventListener("mousemove", (e) => {
   mouseX = e.x;
   mouseY = e.y;
-  if (streamIsActive) {
-    // currImg.style.transform = "scale(" + map(mouseY, 0, document.documentElement.clientHeight, 1, 5) + ")";
-  }
 });
+
+function logParameters() {
+  speedLog.innerHTML =
+    "Speed: " +
+    Math.floor(speed) +
+    " ms </br> Image Origin: " +
+    imgdata[imgR].origin +
+    "</br> Text Origin: " +
+    txtdata[textR].origin +
+    "</br> Skalierung: " + scale + "x"
+}

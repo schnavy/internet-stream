@@ -47,16 +47,19 @@ var params = {
 (async () => {
   console.log("scraper startet");
 
-  for (let i = 0; i < websites.length; i++) {
+  for (const item of websites) {
     try {
-      await scrapeImages(websites[i], "img");
-      await scrapeText(websites[i], "h3");
-      await scrapeText(websites[i], "p");
+      await scrapeImages(item, "img");
+      await scrapeText(item, "h3");
+      await scrapeText(item, "p");
+      console.log(item);
     } catch (e) {
       console.log(e);
     }
   }
+
   console.log("Fertig — " + elemscount + " Elemente zur Datenbank hinzugefügt");
+  db.close();
 })();
 
 // scraper(websites[1]);
@@ -131,6 +134,7 @@ async function scrapeImages(curr, selector) {
   console.log(url + " fertig —— " + imageItems.length + " Bilder hinzugefügt");
   await browser.close();
   await addToDb(imageItems, imageCol);
+  await db.close();
 }
 
 // SCRAPER TEXT
@@ -201,6 +205,7 @@ async function scrapeText(curr, selector) {
   await browser.close();
 
   await addToDb(textItems, textCol);
+  await db.close();
 }
 
 function addToJSON(d) {
@@ -212,39 +217,35 @@ function addToJSON(d) {
 }
 
 function addToDb(d, zielDB) {
-  try {
-    if (d[0].hasOwnProperty("text")) {
-      for (const elem of d) {
-        //check if doppelt
-        zielDB
-          .count({ text: elem.text }, { limit: 1 })
-          .then((www) => {
-            if (www == 0) {
-              zielDB.insert(elem);
-            }
-          })
-          .then(() => db.close());
-      }
-    } else {
-      for (const elem of d) {
-        //check if doppelt
-        zielDB
-          .count({ url: elem.url }, { limit: 1 })
-          .then((www) => {
-            if (www == 0) {
-              zielDB.insert(elem);
-            }
-          })
-          .then(() => db.close());
-      }
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  // try {
+  //   if (d[0].hasOwnProperty("text")) {
+  //     for (const elem of d) {
+  //       //check if doppelt
+  //       zielDB.count({ text: elem.text }, { limit: 1 }).then((www) => {
+  //         if (www == 0) {
+  //           zielDB.insert(elem);
+  //           console.log("Text hinzugefügt");
+  //         }
+  //       });
+  //     }
+  //   } else {
+  //     for (const elem of d) {
+  //       //check if doppelt
+  //       zielDB.count({ url: elem.url }, { limit: 1 }).then((www) => {
+  //         if (www == 0) {
+  //           zielDB.insert(elem);
+  //           console.log("Bild hinzugefügt");
+  //         }
+  //       });
+  //     }
+  //   }
+  // } catch (error) {
+  //   console.log(error);
+  // }
 
-  // zielDB.insert(d).then(() => db.close());
+  zielDB.insert(d).then(() => db.close());
   elemscount += d.length;
-  // console.log(d.length + " -> DB");
+  console.log(d.length + " -> DB");
 }
 
 function uniq(a) {

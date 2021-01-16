@@ -1,4 +1,78 @@
 @font-face {
+  font-family: 'GT Alpina';
+  src: url('../fonts/GTA/GTAlpina-LightItalic.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina';
+  src: url('../fonts/GTA/GTAlpina-Medium.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina';
+  src: url('../fonts/GTA/GTAlpina-Light.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina';
+  src: url('../fonts/GTA/GTAlpina-Regular.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina';
+  src: url('../fonts/GTA/GTAlpina-MediumItalic.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina';
+  src: url('../fonts/GTA/GTAlpina-Bold.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina';
+  src: url('../fonts/GTA/GTAlpina-BoldItalic.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina';
+  src: url('GTAlpina-RegularItalic.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-RegularItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+
+@font-face {
   font-family: 'Apple Garamond';
   src: url('../fonts/AppleGaramond.woff2') format('woff2'),
       url('../fonts/AppleGaramond.woff') format('woff');
@@ -55,6 +129,11 @@ h2{
   width: 100%;
   position: fixed;
   bottom: 50vh;
+
+}
+
+.innerTitle{
+  z-index: 120 !important;
 }
 
 .wrapper {
@@ -62,8 +141,8 @@ h2{
   display: none;
   justify-content: center;
   align-items: center;
-  width: 95vw;
-  height: 95vh;
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
   /* width: 85vw;
   height: 90vh; */
   overflow: hidden !important;
@@ -81,9 +160,28 @@ background-color: black
   text-align: center;
   opacity: 1;
   /* mix-blend-mode: difference; */
-  object-fit: contain;
+  /* object-fit: contain; */
 
 }
+#glitch{
+  position: absolute;
+  
+  width: 20%;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  mix-blend-mode: difference;
+  display: none;
+}
+#speed-log{
+  position: absolute;
+  text-align: left;
+  z-index: 100;
+  left: 5px;
+  bottom: 5px;
+  color: black;
+  font-size: .8em;
+  }
 
 .fullscreen {
 
@@ -117,14 +215,14 @@ background-color: black
 
 #pMain {
   position: absolute;
-  font-size: 4em;
-  max-width: 500px;
+  width: 700px;
+  max-width: 70vw;
   z-index: 100;
 
 }
 
 .hStyle0 {
-  font-size: 2.5em;
+  font-size: 5em;
   font-family: 'Apple Garamond';
   font-weight: normal;
   line-height: .8em;
@@ -134,7 +232,7 @@ background-color: black
 }
 
 .hStyle1 {
-  font-size: 2.5em;
+  font-size: 5em;
 
   font-family: 'Cooper';
   font-weight: bold;
@@ -143,7 +241,7 @@ background-color: black
 }
 
 .hStyle2 {
-  font-size: 2.5em;
+  font-size: 4.5em;
   font-family: 'Times New Roman', Times, serif;
   font-weight: light;
   line-height: .8em;
@@ -153,16 +251,26 @@ background-color: black
 }
 
 .hStyle3 {
-  font-size: 2em;
+  font-size: 4.5em;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: normal;
   line-height: .9em;
   color: red;
+  
+}
+.hStyle3 {
+  font-size: 6em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: normal;
+  line-height: .9em;
+  color: yellow;
+  transform: scaleY(2);
+  
 }
 
 
 .pStyle0 {
-  font-size: 1.2em !important;
+  font-size: 1.5em !important;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
   line-height: .95em;
@@ -174,8 +282,18 @@ background-color: black
   font-size: 1.5em !important;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: normal;
-  line-height: .9em;
+  line-height: .85em;
+  letter-spacing: -1px;
+
   color: white;
+}
 
+.pStyle2{
+  font-family:'GT Alpina';
+  font-size: 1.5em !important;
+  font-weight: normal;
+  line-height: .9em;
+  letter-spacing: -1px;
 
+  color: yellow;
 }
