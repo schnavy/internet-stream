@@ -122,18 +122,25 @@ h2{
   left: 0;
   right: 0;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
 }
 
 #clickInfo {
   width: 100%;
   position: fixed;
-  bottom: 50vh;
+  bottom:20vh;
+  z-index: 100;
 
 }
 
 .innerTitle{
   z-index: 120 !important;
+}
+
+.innerTitle p{
+  position: relative;
+  z-index: 120 !important;
+
 }
 
 .wrapper {
@@ -160,7 +167,7 @@ background-color: black
   text-align: center;
   opacity: 1;
   /* mix-blend-mode: difference; */
-  /* object-fit: contain; */
+  object-fit: cover !important;
 
 }
 #glitch{
@@ -186,7 +193,7 @@ background-color: black
 .fullscreen {
 
   background-color: black;
-  object-fit: cover !important;
+  /* object-fit: cover !important; */
   /* transform: scale(1); */
 }
 

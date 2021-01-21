@@ -32,7 +32,7 @@ let websites = JSON.parse(websiteList).domains;
 let urls = [];
 let newItem;
 let elemscount = 0;
-
+let noContent = [];
 let trends = [];
 let twitterurls = [];
 
@@ -59,6 +59,7 @@ var params = {
   }
 
   console.log("Fertig — " + elemscount + " Elemente zur Datenbank hinzugefügt");
+  console.log(noContent);
   db.close();
 })();
 
@@ -90,6 +91,7 @@ async function scrapeImages(curr, selector) {
     await page.waitForSelector(selector);
   } catch (e) {
     console.log("DISSSSS " + url + " " + e);
+    noContent.push(url)
   }
   try {
     scrapedElements = await page.evaluate((selector) => {

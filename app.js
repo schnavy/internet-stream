@@ -77,7 +77,7 @@ app.use(function (err, req, res, next) {
 app.locals.data = data;
 app.locals.websites = websites;
 
-let instantScraping = true;
+let instantScraping = false;
 
 if (instantScraping) {
   startScraping()

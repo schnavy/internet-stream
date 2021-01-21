@@ -2,11 +2,14 @@
 const map = (value, x1, y1, x2, y2) =>
   ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 let imgArray = [];
-let anzahl = 200;
+let anzahl = 1000;
 let mouseX = 0;
 let mouseY = 0;
 let pdatda = [];
 let h3datda = [];
+
+imgdata.splice(0, imgdata.length - anzahl);
+txtdata.splice(0, txtdata.length - anzahl);
 
 txtdata.forEach((e) => {
   if (e.type == "p") {
@@ -56,7 +59,7 @@ function changeImg() {
     num--;
   }
   scale = Math.max(
-    map(mouseY, 0, document.documentElement.clientHeight - 300, 5, 1),
+    map(mouseY, 0, document.documentElement.clientHeight - 500, 5, 1),
     1
   );
   currImg.style.transform = "scale(" + scale + ")";
@@ -117,10 +120,7 @@ function imageStream() {
   if (streamIsActive) {
     changeImg();
   }
-  setTimeout(
-    imageStream,
-    speed
-  );
+  setTimeout(imageStream, speed);
 }
 function textStream() {
   speed = map(mouseY, 100, document.documentElement.clientHeight, 200, 3000);
@@ -150,6 +150,9 @@ window.addEventListener("wheel", (e) => {
 window.addEventListener("mousemove", (e) => {
   mouseX = e.x;
   mouseY = e.y;
+  let c = map(mouseY, 100, document.documentElement.clientHeight, 80, 170);
+
+  body.style.backgroundColor = "rgb(" +c + "," + c+ ","+c+")" 
 });
 
 function logParameters() {
@@ -160,5 +163,7 @@ function logParameters() {
     imgdata[imgR].origin +
     "</br> Text Origin: " +
     txtdata[textR].origin +
-    "</br> Skalierung: " + scale + "x"
+    "</br> Skalierung: " +
+    scale +
+    "x";
 }
