@@ -1,23 +1,21 @@
-//Preloader
-const map = (value, x1, y1, x2, y2) =>
-  ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 let imgArray = [];
 let anzahl = 1000;
 let mouseX = 0;
 let mouseY = 0;
-let pdatda = [];
-let h3datda = [];
+
 
 imgdata.splice(0, imgdata.length - anzahl);
 txtdata.splice(0, txtdata.length - anzahl);
 
-txtdata.forEach((e) => {
-  if (e.type == "p") {
-    pdatda.push(e.text);
-  } else if (e.type == "h3") {
-    h3datda.push(e.text);
-  }
-});
+// let pdatda = [];
+// let h3data = [];
+// txtdata.forEach((e) => {
+//   if (e.type == "p") {
+//     pdatda.push(e.text);
+//   } else if (e.type == "h3") {
+//     h3data.push(e.text);
+//   }
+// });
 
 // txtdata = txtdata.map((x) => x.text);
 // imgdata = imgdata.map((x) => x.url);
@@ -25,6 +23,7 @@ txtdata.forEach((e) => {
 console.log(imgdata);
 console.log(txtdata);
 
+//Preloader
 for (i = 0; i < imgdata.length; i++) {
   imgArray[i] = new Image();
   imgArray[i] = imgdata[i].url;
@@ -44,7 +43,7 @@ let scale;
 let n = 0;
 let scrollCounter = 0;
 let streamIsActive = false;
-let stream = null;
+let streamIsPaused = false;
 let num = imgArray.length - 1;
 
 function changeImg() {
@@ -59,7 +58,7 @@ function changeImg() {
     num--;
   }
   scale = Math.max(
-    map(mouseY, 0, document.documentElement.clientHeight - 500, 5, 1),
+    map(mouseY, 0, document.documentElement.clientHeight - 300, 8, 1),
     1
   );
   currImg.style.transform = "scale(" + scale + ")";
@@ -68,12 +67,12 @@ function changeImg() {
 function changeText() {
   textR = Math.floor(Math.random() * txtdata.length);
   currText.textContent = txtdata[textR].text;
-  if (txtdata[textR].type == "p" || txtdata[textR].text.length > 100) {
-    let tempR = Math.floor(Math.random() * 3);
+  if (txtdata[textR].type == "p" || txtdata[textR].text.length > 300) {
+    let tempR = Math.floor(Math.random() * 5);
     currText.className = "";
     currText.classList.add("pStyle" + tempR);
   } else {
-    let tempR = Math.floor(Math.random() * 4);
+    let tempR = Math.floor(Math.random() * 7);
     currText.className = "";
     currText.classList.add("hStyle" + tempR);
   }
@@ -90,10 +89,9 @@ function changeText() {
 
 function changeBoth() {
   changeImg();
-  changeImg();
+  changeText();
 }
-changeImg();
-changeText();
+changeBoth();
 
 function toggleStream(e) {
   // currImg.style.display = "block";
@@ -102,7 +100,7 @@ function toggleStream(e) {
     currImg.classList.remove("fullscreen");
     title.style.display = "block";
     clickInfo.style.display = "block";
-    // wrapper.style.display = "none";
+    wrapper.style.display = "none";
   } else {
     currImg.classList.add("fullscreen");
     wrapper.style.display = "flex";
@@ -113,30 +111,56 @@ function toggleStream(e) {
   }
   streamIsActive = !streamIsActive;
 }
-imageStream();
-textStream();
 
-function imageStream() {
-  if (streamIsActive) {
-    changeImg();
+document.addEventListener(
+  "keydown",
+  (e) => {
+    if (e.code === "Space") {
+      streamIsPaused = !streamIsPaused;
+    }
+  },
+  false
+);
+
+//SEPERATE STREAMS
+// function imageStream() {
+//   if (streamIsActive && !streamIsPaused) {
+//     changeImg();
+//   }
+//   setTimeout(imageStream, speed);
+// }
+// function textStream() {
+//   speed = map(mouseY, 100, document.documentElement.clientHeight, 200, 2000);
+
+//   if (streamIsActive && !streamIsPaused) {
+//     changeText();
+//   }
+//   setTimeout(textStream, speed);
+// }
+// imageStream();
+// textStream();
+
+stream();
+
+function stream() {
+  speed = map(mouseY, 100, document.documentElement.clientHeight, 200, 2000);
+
+  if (streamIsActive && !streamIsPaused) {
+    changeBoth();
   }
-  setTimeout(imageStream, speed);
-}
-function textStream() {
-  speed = map(mouseY, 100, document.documentElement.clientHeight, 200, 3000);
-
-  if (streamIsActive) {
-    changeText();
-  }
-  setTimeout(textStream, speed);
+  setTimeout(stream, speed);
 }
 
-window.addEventListener("click", (e) => {
-  toggleStream(e);
-});
-window.addEventListener("touchend", (e) => {
-  toggleStream(e);
-});
+if (isMobileDevice) {
+  window.addEventListener("click", (e) => {
+    toggleStream(e);
+    streamIsPaused = false;
+  });
+} else {
+  window.addEventListener("touchend", (e) => {
+    toggleStream(e);
+  });
+}
 
 window.addEventListener("wheel", (e) => {
   // currImg.style.display = "block";
@@ -150,9 +174,16 @@ window.addEventListener("wheel", (e) => {
 window.addEventListener("mousemove", (e) => {
   mouseX = e.x;
   mouseY = e.y;
-  let c = map(mouseY, 100, document.documentElement.clientHeight, 80, 170);
-
-  body.style.backgroundColor = "rgb(" +c + "," + c+ ","+c+")" 
+  let cY = Math.floor(
+    map(mouseY, 100, document.documentElement.clientHeight, 80, 170)
+  );
+  let cX = Math.floor(
+    map(mouseX, 0, document.documentElement.clientWidth, -5, 5)
+  );
+  let r = cY - cX;
+  let g = cY;
+  let b = cY + cX;
+  body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
 });
 
 function logParameters() {
@@ -166,4 +197,16 @@ function logParameters() {
     "</br> Skalierung: " +
     scale +
     "x";
+}
+
+function isMobileDevice() {
+  return (
+    typeof window.orientation !== "undefined" ||
+    navigator.userAgent.indexOf("IEMobile") !== -1
+  );
+}
+
+function map(value, x1, y1, x2, y2) {
+  return ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
+
 }

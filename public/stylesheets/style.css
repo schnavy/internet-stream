@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'GT Alpina';
   src: url('../fonts/GTA/GTAlpina-LightItalic.woff2') format('woff2'),
-      url('../fonts/GTA/GTAlpina-LightItalic.woff') format('woff');
+    url('../fonts/GTA/GTAlpina-LightItalic.woff') format('woff');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -10,7 +10,7 @@
 @font-face {
   font-family: 'GT Alpina';
   src: url('../fonts/GTA/GTAlpina-Medium.woff2') format('woff2'),
-      url('../fonts/GTA/GTAlpina-Medium.woff') format('woff');
+    url('../fonts/GTA/GTAlpina-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -19,7 +19,7 @@
 @font-face {
   font-family: 'GT Alpina';
   src: url('../fonts/GTA/GTAlpina-Light.woff2') format('woff2'),
-      url('../fonts/GTA/GTAlpina-Light.woff') format('woff');
+    url('../fonts/GTA/GTAlpina-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -28,7 +28,7 @@
 @font-face {
   font-family: 'GT Alpina';
   src: url('../fonts/GTA/GTAlpina-Regular.woff2') format('woff2'),
-      url('../fonts/GTA/GTAlpina-Regular.woff') format('woff');
+    url('../fonts/GTA/GTAlpina-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -37,7 +37,7 @@
 @font-face {
   font-family: 'GT Alpina';
   src: url('../fonts/GTA/GTAlpina-MediumItalic.woff2') format('woff2'),
-      url('../fonts/GTA/GTAlpina-MediumItalic.woff') format('woff');
+    url('../fonts/GTA/GTAlpina-MediumItalic.woff') format('woff');
   font-weight: 500;
   font-style: italic;
   font-display: swap;
@@ -46,7 +46,7 @@
 @font-face {
   font-family: 'GT Alpina';
   src: url('../fonts/GTA/GTAlpina-Bold.woff2') format('woff2'),
-      url('../fonts/GTA/GTAlpina-Bold.woff') format('woff');
+    url('../fonts/GTA/GTAlpina-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -55,7 +55,7 @@
 @font-face {
   font-family: 'GT Alpina';
   src: url('../fonts/GTA/GTAlpina-BoldItalic.woff2') format('woff2'),
-      url('../fonts/GTA/GTAlpina-BoldItalic.woff') format('woff');
+    url('../fonts/GTA/GTAlpina-BoldItalic.woff') format('woff');
   font-weight: bold;
   font-style: italic;
   font-display: swap;
@@ -64,7 +64,7 @@
 @font-face {
   font-family: 'GT Alpina';
   src: url('GTAlpina-RegularItalic.woff2') format('woff2'),
-      url('../fonts/GTA/GTAlpina-RegularItalic.woff') format('woff');
+    url('../fonts/GTA/GTAlpina-RegularItalic.woff') format('woff');
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -75,7 +75,7 @@
 @font-face {
   font-family: 'Apple Garamond';
   src: url('../fonts/AppleGaramond.woff2') format('woff2'),
-      url('../fonts/AppleGaramond.woff') format('woff');
+    url('../fonts/AppleGaramond.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -84,11 +84,85 @@
 @font-face {
   font-family: 'Cooper';
   src: url('../fonts/CooperBlack.woff2') format('woff2'),
-      url('../fonts/CooperBlack.woff') format('woff');
+    url('../fonts/CooperBlack.woff') format('woff');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Impact';
+  src: url('../fonts/Impact.woff2') format('woff2'),
+    url('../fonts/Impact.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../fonts/NeueMontreal/NeueMontreal-Regular.woff2') format('woff2'),
+    url('../fonts/NeueMontreal/NeueMontreal-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../fonts/NeueMontreal/NeueMontreal-Bold.woff2') format('woff2'),
+    url('../fonts/NeueMontreal/NeueMontreal-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../fonts/NeueMontreal/NeueMontreal-BoldItalic.woff2') format('woff2'),
+    url('../fonts/NeueMontreal/NeueMontreal-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'William';
+  src: url('../fonts/WilliamTextProBol.woff2') format('woff2'),
+    url('../fonts/WilliamTextProBol.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'William';
+  src: url('../fonts/WilliamTextProReg.woff2') format('woff2'),
+    url('../fonts/WilliamTextProReg.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF';
+  src: url('../fonts/SFCompactRounded-Bold.woff2') format('woff2'),
+    url('../fonts/SFCompactRounded-Bold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF';
+  src: url('../fonts/SFCompactRounded-Medium.woff2') format('woff2'),
+    url('../fonts/SFCompactRounded-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 
 
 
@@ -107,9 +181,16 @@ body {
   font-size: 120%;
 }
 
-h2{
+h2 {
   font-family: 'Cooper';
   font-size: 2em;
+  font-weight: 500;
+
+}
+
+h2 span{
+  font-family: 'SF';
+
 }
 
 .container {
@@ -122,22 +203,22 @@ h2{
   left: 0;
   right: 0;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
 #clickInfo {
   width: 100%;
   position: fixed;
-  bottom:20vh;
+  bottom: 20vh;
   z-index: 100;
 
 }
 
-.innerTitle{
+.innerTitle {
   z-index: 120 !important;
 }
 
-.innerTitle p{
+.innerTitle p {
   position: relative;
   z-index: 120 !important;
 
@@ -153,8 +234,8 @@ h2{
   /* width: 85vw;
   height: 90vh; */
   overflow: hidden !important;
-background-color: black
-;  object-fit: cover;
+  background-color: black;
+  object-fit: cover;
 
 }
 
@@ -170,9 +251,10 @@ background-color: black
   object-fit: cover !important;
 
 }
-#glitch{
+
+#glitch {
   position: absolute;
-  
+
   width: 20%;
   right: 0;
   bottom: 0;
@@ -180,7 +262,8 @@ background-color: black
   mix-blend-mode: difference;
   display: none;
 }
-#speed-log{
+
+#speed-log {
   position: absolute;
   text-align: left;
   z-index: 100;
@@ -188,7 +271,7 @@ background-color: black
   bottom: 5px;
   color: black;
   font-size: .8em;
-  }
+}
 
 .fullscreen {
 
@@ -229,7 +312,7 @@ background-color: black
 }
 
 .hStyle0 {
-  font-size: 5em;
+  font-size: 6em;
   font-family: 'Apple Garamond';
   font-weight: normal;
   line-height: .8em;
@@ -239,7 +322,7 @@ background-color: black
 }
 
 .hStyle1 {
-  font-size: 5em;
+  font-size: 6em;
 
   font-family: 'Cooper';
   font-weight: bold;
@@ -248,31 +331,59 @@ background-color: black
 }
 
 .hStyle2 {
-  font-size: 4.5em;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: light;
+  font-size: 6em;
+  font-family: 'William', Times, serif;
+  font-weight: normal;
   line-height: .8em;
-  /* font-style: italic; */
-  letter-spacing: -2px;
-  color: red;
+  font-style: italic;
+  letter-spacing: -5px;
+  color: rgb(255, 100, 0);
 }
 
 .hStyle3 {
-  font-size: 4.5em;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 3em;
+  font-family: 'Neue Montreal';
   font-weight: normal;
-  line-height: .9em;
-  color: red;
-  
+  line-height: .8em;
+  letter-spacing: -3px;
+  /* -webkit-text-stroke: 3px grey;
+  text-shadow: 1px 1px 0 lightskyblue; */
+  color: blue;
+
 }
-.hStyle3 {
+
+.hStyle4 {
   font-size: 6em;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: normal;
   line-height: .9em;
   color: yellow;
   transform: scaleY(2);
-  
+
+}
+
+.hStyle5 {
+  font-size: 5em;
+  font-family: 'Neue Montreal';
+  font-weight: bold;
+  font-style: normal;
+  line-height: .8em;
+  color: rgb(113, 0, 179);
+  letter-spacing: -1px;
+
+}
+
+.hStyle6 {
+  font-size: 6em;
+  font-family: 'Neue Montreal';
+  font-weight: bold;
+  font-style: normal;
+  line-height: .8em;
+
+  color: transparent;
+  text-shadow: 0 0 .1em rgb(255, 38, 0);
+  /* transform: scaleY(2); */
+
 }
 
 
@@ -286,21 +397,43 @@ background-color: black
 }
 
 .pStyle1 {
-  font-size: 1.5em !important;
+  font-size: 1em !important;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: normal;
-  line-height: .85em;
-  letter-spacing: -1px;
+  line-height: 1em;
+  letter-spacing: 0px;
 
   color: white;
 }
 
-.pStyle2{
-  font-family:'GT Alpina';
+.pStyle2 {
+  font-family: 'GT Alpina';
+  font-size: 1.3em !important;
+  font-weight: normal;
+  line-height: 1.1em;
+  letter-spacing: -1px;
+
+  color: yellow;
+}
+
+.pStyle3 {
+  font-family: 'GT Alpina';
   font-size: 1.5em !important;
   font-weight: normal;
   line-height: .9em;
   letter-spacing: -1px;
+  color: transparent;
+  text-shadow: 0 0 10px rgb(255, 255, 255);
+  /* transform: scaleY(2); */
 
-  color: yellow;
+}
+
+.pStyle4 {
+  font-family: 'SF';
+  font-size: 2.5em !important;
+  font-weight: 800;
+  line-height: .9em;
+  color: rgb(71, 139, 202);
+  /* transform: scaleY(2); */
+
 }
