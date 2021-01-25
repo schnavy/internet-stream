@@ -150,8 +150,9 @@ function stream() {
   }
   setTimeout(stream, speed);
 }
+console.log(isMobileDevice());
 
-if (isMobileDevice) {
+if (isMobileDevice() == false) {
   window.addEventListener("click", (e) => {
     toggleStream(e);
     streamIsPaused = false;
@@ -200,10 +201,13 @@ function logParameters() {
 }
 
 function isMobileDevice() {
-  return (
-    typeof window.orientation !== "undefined" ||
+  if (typeof window.orientation !== "undefined" ||
     navigator.userAgent.indexOf("IEMobile") !== -1
-  );
+  ){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 function map(value, x1, y1, x2, y2) {

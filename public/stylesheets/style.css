@@ -178,20 +178,21 @@ body {
   font-weight: 300;
   color: blue;
   /* height: 10000vh; */
-  font-size: 120%;
+  font-size: 110%;
 }
 
 h2 {
   font-family: 'Cooper';
   font-size: 2em;
   font-weight: 500;
-
 }
 
 h2 span{
   font-family: 'SF';
-
 }
+
+
+
 
 .container {
   display: flex;
@@ -236,7 +237,13 @@ h2 span{
   overflow: hidden !important;
   background-color: black;
   object-fit: cover;
+}
 
+@media (max-width: 768px){
+  .wrapper {
+  width: 100vw;
+  height: 100vh;
+  }
 }
 
 #curr-img {
