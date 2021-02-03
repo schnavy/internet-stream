@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "download": "node download.js",
     "scrape": "node scraper.js",
-    "deletedoubles" : "node deleteDoubles.js"
+    "deletedoubles": "node deleteDoubles.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
