@@ -118,7 +118,7 @@ function changeBoth() {
 
   audio.play();
 }
-// changeBoth();
+changeBoth();
 
 function toggleStream(e) {
   // currImg.style.display = "block";
