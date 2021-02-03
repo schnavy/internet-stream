@@ -28,7 +28,7 @@ router.get("/", function (req, res) {
           res.render("index", {
             imageData: imgCol,
             textData: textCol,
-            title: "Das Internet",
+            title: "Reiz/Flut",
           });
         }
       });

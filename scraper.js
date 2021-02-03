@@ -36,13 +36,9 @@ let noContent = [];
 let trends = [];
 let twitterurls = [];
 
-//TWITTER
 
-var params = {
-  id: "23424829",
-};
-// client.get("trends/place", params, getTwitterData);
-// client.get("trends/place", params,getKeywordImages);
+
+/// Main Funktion
 
 (async () => {
   console.log("scraper startet");
@@ -63,9 +59,77 @@ var params = {
   db.close();
 })();
 
-// scraper(websites[1]);
+
+
+
+
+
+
+
+
+
+//TWITTER
+
+var params = {
+  id: "23424829",
+};
+// client.get("trends/place", params, getTwitterData);
+// client.get("trends/place", params,getKeywordImages);
+
+
+
+function gotTweets(err, tweets, response) {
+  tweets.statuses.forEach((elem) => {
+    if (elem.entities.hasOwnProperty("media")) {
+      twitterurls.push(elem.entities.media[0].media_url);
+    }
+  });
+  // console.log(twitterurls);
+  data.imageurls = data.imageurls.concat(twitterurls);
+  addToJSON(data);
+}
+
+function getTwitterData(err, data, response) {
+  if (err) {
+    console.log(err);
+  } else {
+    trends = data[0].trends;
+    trends = trends.map((x) => x.name);
+
+    for (let i = 0; i < 5; i++) {
+      client.get("search/tweets", { q: trends[i], count: 20 }, gotTweets);
+      setTimeout(() => {
+        client.get("search/tweets", { q: trends[i], count: 20 }, gotTweets);
+      }, 15000000);
+    }
+  }
+}
+function getKeywordImages(err, data, response) {
+  if (err) {
+    console.log(err);
+  } else {
+    client.get("search/tweets", { q: "flooding", count: 1000 }, gotTweets);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // SCRAPER IMAGES
+
 async function scrapeImages(curr, selector) {
   let imageItems = [];
 
@@ -91,7 +155,7 @@ async function scrapeImages(curr, selector) {
     await page.waitForSelector(selector);
   } catch (e) {
     console.log("DISSSSS " + url + " " + e);
-    noContent.push(url)
+    noContent.push(url);
   }
   try {
     scrapedElements = await page.evaluate((selector) => {
@@ -217,37 +281,10 @@ function addToJSON(d) {
   let dataToJson = JSON.stringify(d);
   fs.writeFileSync("data.json", dataToJson);
 }
-
 function addToDb(d, zielDB) {
-  // try {
-  //   if (d[0].hasOwnProperty("text")) {
-  //     for (const elem of d) {
-  //       //check if doppelt
-  //       zielDB.count({ text: elem.text }, { limit: 1 }).then((www) => {
-  //         if (www == 0) {
-  //           zielDB.insert(elem);
-  //           console.log("Text hinzugefügt");
-  //         }
-  //       });
-  //     }
-  //   } else {
-  //     for (const elem of d) {
-  //       //check if doppelt
-  //       zielDB.count({ url: elem.url }, { limit: 1 }).then((www) => {
-  //         if (www == 0) {
-  //           zielDB.insert(elem);
-  //           console.log("Bild hinzugefügt");
-  //         }
-  //       });
-  //     }
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  // }
-
   zielDB.insert(d).then(() => db.close());
   elemscount += d.length;
-  console.log(d.length + " -> DB");
+  // console.log(d.length + " -> DB");
 }
 
 function uniq(a) {
@@ -255,36 +292,5 @@ function uniq(a) {
   return Array.from(new Set(a));
 }
 
-function gotTweets(err, tweets, response) {
-  tweets.statuses.forEach((elem) => {
-    if (elem.entities.hasOwnProperty("media")) {
-      twitterurls.push(elem.entities.media[0].media_url);
-    }
-  });
-  // console.log(twitterurls);
-  data.imageurls = data.imageurls.concat(twitterurls);
-  addToJSON(data);
-}
 
-function getTwitterData(err, data, response) {
-  if (err) {
-    console.log(err);
-  } else {
-    trends = data[0].trends;
-    trends = trends.map((x) => x.name);
 
-    for (let i = 0; i < 5; i++) {
-      client.get("search/tweets", { q: trends[i], count: 20 }, gotTweets);
-      setTimeout(() => {
-        client.get("search/tweets", { q: trends[i], count: 20 }, gotTweets);
-      }, 15000000);
-    }
-  }
-}
-function getKeywordImages(err, data, response) {
-  if (err) {
-    console.log(err);
-  } else {
-    client.get("search/tweets", { q: "flooding", count: 1000 }, gotTweets);
-  }
-}

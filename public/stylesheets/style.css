@@ -179,18 +179,22 @@ body {
   color: blue;
   /* height: 10000vh; */
   font-size: 110%;
+  cursor: url(../images/big2.png) 15 10, pointer;
+
 }
 
 h2 {
   font-family: 'Cooper';
   font-size: 2em;
   font-weight: 500;
+  z-index: 1000 !important;
 }
 
-h2 span{
-  font-family: 'SF';
+h2 span {
+  position: relative;
+  display: inline-block;
+  z-index: 120 !important;
 }
-
 
 
 
@@ -205,6 +209,13 @@ h2 span{
   right: 0;
   align-items: center;
   justify-content: center;
+  /* cursor: pointer; */
+}
+
+
+.crosshair{
+  cursor: url(../images/cross.png) 24 24, crosshair;
+
 }
 
 #clickInfo {
@@ -237,12 +248,13 @@ h2 span{
   overflow: hidden !important;
   background-color: black;
   object-fit: cover;
+
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
   .wrapper {
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
   }
 }
 
@@ -282,7 +294,7 @@ h2 span{
 
 .fullscreen {
 
-  background-color: black;
+  /* background-color: black; */
   /* object-fit: cover !important; */
   /* transform: scale(1); */
 }
@@ -338,13 +350,13 @@ h2 span{
 }
 
 .hStyle2 {
-  font-size: 6em;
+  font-size: 4em;
   font-family: 'William', Times, serif;
   font-weight: normal;
   line-height: .8em;
   font-style: italic;
   letter-spacing: -5px;
-  color: rgb(255, 100, 0);
+  color: rgb(255, 0, 0);
 }
 
 .hStyle3 {
@@ -437,7 +449,7 @@ h2 span{
 
 .pStyle4 {
   font-family: 'SF';
-  font-size: 2.5em !important;
+  font-size: 2em !important;
   font-weight: 800;
   line-height: .9em;
   color: rgb(71, 139, 202);
