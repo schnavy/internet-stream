@@ -13,8 +13,10 @@ var client = new Twit({
 const MongoClient = require("mongodb").MongoClient;
 const uri =
   "mongodb+srv://david:cameraraw@dw.afb8c.mongodb.net/Internet-stream?retryWrites=true&w=majority";
+
 const monk = require("monk");
 const db = monk(uri);
+
 
 const imageCol = db.get("imagedata");
 const textCol = db.get("textdata");
