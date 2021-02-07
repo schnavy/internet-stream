@@ -149,6 +149,7 @@ async function scrapeImages(curr, selector) {
       "--disable-gpu",
     ],
     headless: true,
+    executablePath: '/usr/bin/chromium-browser'
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 1400 });
@@ -227,6 +228,8 @@ async function scrapeText(curr, selector) {
       "--disable-gpu",
     ],
     headless: true,
+    executablePath: '/usr/bin/chromium-browser'
+
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 1400 });
