@@ -1,5 +1,5 @@
 const fs = require("fs");
-let keywords = ["fallback", "Fallback", "logo", "Logo", "engageya"];
+let keywords = ["fallback", "Fallback", "logo", "Logo", "engageya", "akamaihd"];
 
 const MongoClient = require("mongodb").MongoClient;
 const uri =

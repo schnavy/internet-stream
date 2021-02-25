@@ -1,0 +1,341 @@
+@font-face {
+    font-family: 'GT Alpina';
+    src: url('../fonts/GTA/GTAlpina-LightItalic.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'GT Alpina';
+    src: url('../fonts/GTA/GTAlpina-Medium.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'GT Alpina';
+    src: url('../fonts/GTA/GTAlpina-Light.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'GT Alpina';
+    src: url('../fonts/GTA/GTAlpina-Regular.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'GT Alpina';
+    src: url('../fonts/GTA/GTAlpina-MediumItalic.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'GT Alpina';
+    src: url('../fonts/GTA/GTAlpina-Bold.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'GT Alpina';
+    src: url('../fonts/GTA/GTAlpina-BoldItalic.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'GT Alpina';
+    src: url('GTAlpina-RegularItalic.woff2') format('woff2'),
+      url('../fonts/GTA/GTAlpina-RegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  
+  
+  @font-face {
+    font-family: 'Apple Garamond';
+    src: url('../fonts/AppleGaramond.woff2') format('woff2'),
+      url('../fonts/AppleGaramond.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Cooper';
+    src: url('../fonts/CooperBlack.woff2') format('woff2'),
+      url('../fonts/CooperBlack.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Impact';
+    src: url('../fonts/Impact.woff2') format('woff2'),
+      url('../fonts/Impact.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Neue Montreal';
+    src: url('../fonts/NeueMontreal/NeueMontreal-Regular.woff2') format('woff2'),
+      url('../fonts/NeueMontreal/NeueMontreal-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Neue Montreal';
+    src: url('../fonts/NeueMontreal/NeueMontreal-Bold.woff2') format('woff2'),
+      url('../fonts/NeueMontreal/NeueMontreal-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Neue Montreal';
+    src: url('../fonts/NeueMontreal/NeueMontreal-BoldItalic.woff2') format('woff2'),
+      url('../fonts/NeueMontreal/NeueMontreal-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'William';
+    src: url('../fonts/WilliamTextProBol.woff2') format('woff2'),
+      url('../fonts/WilliamTextProBol.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'William';
+    src: url('../fonts/WilliamTextProReg.woff2') format('woff2'),
+      url('../fonts/WilliamTextProReg.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'SF';
+    src: url('../fonts/SFCompactRounded-Bold.woff2') format('woff2'),
+      url('../fonts/SFCompactRounded-Bold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'SF';
+    src: url('../fonts/SFCompactRounded-Medium.woff2') format('woff2'),
+      url('../fonts/SFCompactRounded-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Distro';
+    src: url('../fonts/distro/DistroBlack.woff2') format('woff2'),
+      url('../fonts/distro/DistroBlack.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  
+  @font-face {
+    font-family: 'Distro';
+    src: url('../fonts/distro/DistroHeavy.woff2') format('woff2'),
+      url('../fonts/distro/DistroHeavy.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  
+
+#pMain {
+    position: absolute;
+    width: 700px;
+    max-width: 70vw;
+    z-index: 100;
+  
+  }
+  
+  .hStyle0 {
+    font-size: 6em;
+    font-family: 'Apple Garamond';
+    font-weight: normal;
+    line-height: .8em;
+    letter-spacing: -2px;
+  
+    color: blue;
+  }
+  
+  .hStyle1 {
+    font-size: 6em;
+  
+    font-family: 'Cooper';
+    font-weight: bold;
+    line-height: .8em;
+    color: red;
+  }
+  
+  .hStyle2 {
+    font-size: 4em;
+    font-family: 'William', Times, serif;
+    font-weight: normal;
+    line-height: .8em;
+    font-style: italic;
+    letter-spacing: -5px;
+    color: rgb(255, 0, 0);
+  }
+  
+  .hStyle3 {
+    font-size: 3em;
+    font-family: 'Neue Montreal';
+    font-weight: normal;
+    line-height: .8em;
+    letter-spacing: -3px;
+    /* -webkit-text-stroke: 3px grey;
+    text-shadow: 1px 1px 0 lightskyblue; */
+    color: blue;
+  
+  }
+  
+  .hStyle4 {
+    font-size: 6em;
+    font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: normal;
+    line-height: .9em;
+    color: yellow;
+    transform: scaleY(2);
+  
+  }
+  
+  .hStyle5 {
+    font-size: 5em;
+    font-family: 'Neue Montreal';
+    font-weight: bold;
+    font-style: normal;
+    line-height: .8em;
+    color: rgb(113, 0, 179);
+    letter-spacing: -1px;
+  
+  }
+  
+    .hStyle6 {
+      font-size: 6em;
+      font-family: 'Neue Montreal';
+      font-weight: bold;
+      font-style: normal;
+      line-height: .8em;
+    
+      color: transparent;
+      text-shadow: 0 0 .1em rgb(255, 38, 0);
+      /* transform: scaleY(2); */
+    
+    }
+    
+  
+  .hStyle7 {
+    font-size: 5em;
+    font-family: 'Distro';
+    font-weight: 900;
+    font-style: normal;
+    line-height: .8em;
+    color: white;
+    letter-spacing: -1px;
+  
+  }
+
+  
+  .pStyle0 {
+    font-size: 1.5em !important;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    line-height: .95em;
+    letter-spacing: -1px;
+    color: lightyellow;
+  }
+  
+  .pStyle1 {
+    font-size: 1em !important;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    line-height: 1em;
+    letter-spacing: 0px;
+  
+    color: white;
+  }
+  
+  .pStyle2 {
+    font-family: 'GT Alpina';
+    font-size: 1.3em !important;
+    font-weight: normal;
+    line-height: 1.1em;
+    letter-spacing: -1px;
+  
+    color: yellow;
+  }
+  
+  .pStyle3 {
+    font-family: 'GT Alpina';
+    font-size: 1.5em !important;
+    font-weight: normal;
+    line-height: .9em;
+    letter-spacing: -1px;
+    color: transparent;
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+    /* transform: scaleY(2); */
+  
+  }
+  
+  .pStyle4 {
+    font-family: 'SF';
+    font-size: 2em !important;
+    font-weight: 800;
+    line-height: .9em;
+    color: rgb(71, 139, 202);
+    /* transform: scaleY(2); */
+  
+  } 
+  
+  .pStyle5 {
+    font-family: 'Distro';
+    font-size: 2em !important;
+    font-weight: 800;
+    line-height: .9em;
+    color: red;
+    /* transform: scaleY(2); */
+  
+  }

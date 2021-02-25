@@ -148,8 +148,8 @@ async function scrapeImages(curr, selector) {
       "--single-process", // <- this one doesn't works in Windows
       "--disable-gpu",
     ],
-    headless: true,
-    executablePath: '/usr/bin/chromium-browser'
+    headless: true
+    // executablePath: '/usr/bin/chromium-browser'
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 1400 });
@@ -227,8 +227,8 @@ async function scrapeText(curr, selector) {
       "--single-process", // <- this one doesn't works in Windows
       "--disable-gpu",
     ],
-    headless: true,
-    executablePath: '/usr/bin/chromium-browser'
+    headless: true
+    // executablePath: '/usr/bin/chromium-browser'
 
   });
   const page = await browser.newPage();

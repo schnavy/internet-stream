@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Distro';
+    src: url('DistroLight.woff2') format('woff2'),
+        url('DistroLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Distro';
+    src: url('Distro.woff2') format('woff2'),
+        url('Distro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Distro';
+    src: url('DistroBlack.woff2') format('woff2'),
+        url('DistroBlack.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Distro';
+    src: url('Distro-Bold.woff2') format('woff2'),
+        url('Distro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Distro';
+    src: url('DistroHeavy.woff2') format('woff2'),
+        url('DistroHeavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Distro Mix';
+    src: url('DistroMix.woff2') format('woff2'),
+        url('DistroMix.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

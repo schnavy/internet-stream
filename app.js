@@ -77,29 +77,29 @@ app.use(function (err, req, res, next) {
 app.locals.data = data;
 app.locals.websites = websites;
 
-// let instantScraping = true;
+let instantScraping = false;
 
-// if (instantScraping) {
-//   startScraping()
-// }
-// setInterval(startScraping, 18000000);
+if (instantScraping) {
+  startScraping()
+}
+setInterval(startScraping, 18000000);
 
 
-// function startScraping() {
-//   const { exec } = require("child_process");
-//   let process = exec("npm run scrape", (error, stdout, stderr) => {
-//     if (error) {
-//       console.error("exec error:" + error);
-//       return;
-//     }
-//     console.log(`stdout: ${stdout}`);
-//     console.error(`stderr: ${stderr}`);
-//   });
+function startScraping() {
+  const { exec } = require("child_process");
+  let process = exec("npm run scrape", (error, stdout, stderr) => {
+    if (error) {
+      console.error("exec error:" + error);
+      return;
+    }
+    console.log(stdout);
+    console.error(stderr);
+  });
 
-//   process.stdout.on("data", function (data) {
-//     console.log(data);
-//   });
-// }
+  process.stdout.on("data", function (data) {
+    console.log(data);
+  });
+}
 
 module.exports = app;
 

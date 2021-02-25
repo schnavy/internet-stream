@@ -46,7 +46,7 @@ let scrollCounter = 0;
 let streamIsActive = false;
 let streamIsPaused = false;
 let num = imgArray.length - 1;
-let colors = ["black", "white", "red", "blue", "yellow", "magenta"];
+let colors = ["black", "#e2e2e2", "#c30000", "#1a29b6", "#e1f36b", "#c41bc2"];
 
 titleh2.addEventListener("mouseenter", (e) => {
   titlechanger = setInterval((e) => {
@@ -91,11 +91,11 @@ function changeText() {
   textR = Math.floor(Math.random() * txtdata.length);
   currText.textContent = txtdata[textR].text;
   if (txtdata[textR].type == "p" || txtdata[textR].text.length > 300) {
-    let tempR = Math.floor(Math.random() * 5);
+    let tempR = Math.floor(Math.random() * 6);
     currText.className = "";
     currText.classList.add("pStyle" + tempR);
   } else {
-    let tempR = Math.floor(Math.random() * 7);
+    let tempR = Math.floor(Math.random() * 8);
     currText.className = "";
     currText.classList.add("hStyle" + tempR);
   }
