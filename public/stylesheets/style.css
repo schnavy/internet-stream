@@ -81,13 +81,18 @@ h2 span {
   overflow: hidden !important;
   background-color: black;
   object-fit: cover;
+  border-radius: 15px;
 
 }
 
+
 @media (max-width: 768px) {
-  .wrapper {
+  body, .wrapper {
     width: 100vw;
     height: 100vh;
+    overflow: visible !important;
+    font-size: 90%;
+
   }
 }
 
@@ -151,5 +156,33 @@ h2 span {
   align-items: center;
   justify-content: center;
   z-index: 100;
+
+}
+
+
+.downloadMode{
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden !important;
+  background-color: black;
+  object-fit: cover;
+  border-radius: 0;
+  z-index: 1000;
+  font-size: 200% !important;
+
+}
+
+.downloadMode .mainText{
+
+   width: 70vw!important;
+}
+
+.downloadMode .speedlog{
+  display: none;
+  font-size: 50% !important;
+  left: 50px !important;
+  bottom: 50px!important;
+  color: white !important;
 
 }

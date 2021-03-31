@@ -164,13 +164,13 @@
   
   @font-face {
     font-family: 'Distro';
-    src: url('../fonts/distro/DistroBlack.woff2') format('woff2'),
-      url('../fonts/distro/DistroBlack.woff') format('woff');
-    font-weight: 900;
+    src: url('../fonts/distro/DistroBold.woff2') format('woff2'),
+      url('../fonts/distro/DistroBold.woff') format('woff');
+    font-weight: bold;
     font-style: normal;
     font-display: swap;
   }
-  
+    
   
   @font-face {
     font-family: 'Distro';
@@ -202,7 +202,7 @@
   }
   
   .hStyle1 {
-    font-size: 6em;
+    font-size: 5em;
   
     font-family: 'Cooper';
     font-weight: bold;
@@ -211,20 +211,20 @@
   }
   
   .hStyle2 {
-    font-size: 4em;
+    font-size: 3.5em;
     font-family: 'William', Times, serif;
     font-weight: normal;
-    line-height: .8em;
+    line-height: 1em;
     font-style: italic;
     letter-spacing: -5px;
     color: rgb(255, 0, 0);
   }
   
   .hStyle3 {
-    font-size: 3em;
+    font-size: 2.5em;
     font-family: 'Neue Montreal';
     font-weight: normal;
-    line-height: .8em;
+    line-height: .9em;
     letter-spacing: -3px;
     /* -webkit-text-stroke: 3px grey;
     text-shadow: 1px 1px 0 lightskyblue; */
@@ -233,7 +233,7 @@
   }
   
   .hStyle4 {
-    font-size: 6em;
+    font-size: 5em;
     font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: normal;
     line-height: .9em;
@@ -243,18 +243,19 @@
   }
   
   .hStyle5 {
-    font-size: 5em;
+    font-size: 4em;
     font-family: 'Neue Montreal';
     font-weight: bold;
     font-style: normal;
     line-height: .8em;
-    color: rgb(113, 0, 179);
+    color: rgb(0, 0, 0);
     letter-spacing: -1px;
+
   
   }
   
     .hStyle6 {
-      font-size: 6em;
+      font-size: 5em;
       font-family: 'Neue Montreal';
       font-weight: bold;
       font-style: normal;
@@ -265,12 +266,12 @@
       /* transform: scaleY(2); */
     
     }
-    
+      
   
   .hStyle7 {
     font-size: 5em;
     font-family: 'Distro';
-    font-weight: 900;
+    font-weight: 700;
     font-style: normal;
     line-height: .8em;
     color: white;
@@ -333,7 +334,7 @@
   .pStyle5 {
     font-family: 'Distro';
     font-size: 2em !important;
-    font-weight: 800;
+    font-weight: 700;
     line-height: .9em;
     color: red;
     /* transform: scaleY(2); */

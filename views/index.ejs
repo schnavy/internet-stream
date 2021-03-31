@@ -9,7 +9,7 @@
   <script>
     var imgdata = <%-JSON.stringify(imageData) %>
     var txtdata = <%-JSON.stringify(textData) %>
-      var websites = <%-JSON.stringify(websites) %>
+      var isDownloader = <%-JSON.stringify(isDownloader) %>
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -21,23 +21,21 @@
   </h2>
   <p> Im Rausch der Daten — Der Flut an Reizen.</p><br>
   </div>
-  <p id="clickInfo">Click to Start the Reizüberflutung!</br>Y-Position der Maus bestimmt die Intensität</p>
+  <p id="clickInfo">Click to Start the Reizüberflutung!<br/>Y-Position der Maus bestimmt die Intensität</p>
 <div class="container">
   <div class="wrapper">
-  <span id ="speed-log"></span>
-  <!-- <div class="textWrapper">-->
+  <span id ="speed-log" class="speedlog"></span>
   <p id="pMain" class="mainText style1"></p>
-  <!-- </div> -->
+
   
-  <img id="glitch" align="center" src="images/kreis2.png" alt="">
-  <img id="curr-img" align="center" src="" alt="">
+  <img id="curr-img" text-align="center" src="" alt="">
 </div>
 </div>
 </body>
 
 <footer>
-
   <script src="js/main.js"></script>
+
 </footer>
 
 </html>

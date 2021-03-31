@@ -1,5 +1,5 @@
 let imgArray = [];
-let anzahl = 1000;
+let anzahl = 2000;
 let mouseX = 0;
 let mouseY = 0;
 
@@ -16,8 +16,10 @@ txtdata.splice(0, txtdata.length - anzahl);
 //   }
 // });
 
-// txtdata = txtdata.map((x) => x.text);
-// imgdata = imgdata.map((x) => x.url);
+// txtdata = txtdata.filter((x) => x.category == "News");
+// imgdata = imgdata.filter((x) => x.category == "News");
+
+console.log(isDownloader);
 
 console.log(imgdata);
 console.log(txtdata);
@@ -27,6 +29,7 @@ for (i = 0; i < imgdata.length; i++) {
   imgArray[i] = new Image();
   imgArray[i] = imgdata[i].url;
 }
+
 
 const body = document.querySelector("body");
 let currImg = document.querySelector("#curr-img");
@@ -48,6 +51,17 @@ let streamIsPaused = false;
 let num = imgArray.length - 1;
 let colors = ["black", "#e2e2e2", "#c30000", "#1a29b6", "#e1f36b", "#c41bc2"];
 
+
+changeBoth();
+
+if (isDownloader) {
+  toggleStream();
+  setInterval(changeBoth, 500);
+  wrapper.classList.add("downloadMode")
+} else {
+  stream();
+}
+
 titleh2.addEventListener("mouseenter", (e) => {
   titlechanger = setInterval((e) => {
     let tempR = Math.floor(Math.random() * 7);
@@ -67,6 +81,46 @@ titleh2.addEventListener("mouseleave", (e) => {
   console.log(e);
 });
 
+document.addEventListener(
+  "keydown",
+  (e) => {
+    if (e.code === "Space") {
+      streamIsPaused = !streamIsPaused;
+    }
+  },
+  false
+);
+
+window.addEventListener("mousemove", (e) => {
+  mouseX = e.x;
+  mouseY = e.y;
+  let cY = Math.floor(
+    map(mouseY, 100, document.documentElement.clientHeight, 80, 170)
+  );
+  let cX = Math.floor(
+    map(mouseX, 0, document.documentElement.clientWidth, -5, 5)
+  );
+  let r = cY - cX;
+  let g = cY;
+  let b = cY + cX;
+  body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+});
+
+if (isMobileDevice() == false) {
+  window.addEventListener("click", (e) => {
+    toggleStream();
+    streamIsPaused = false;
+  });
+} else {
+  window.addEventListener("touchend", (e) => {
+    toggleStream();
+  });
+}
+
+
+
+
+
 function changeImg() {
   imgR = Math.floor(Math.random() * imgArray.length);
   currImg.src = imgArray[imgR];
@@ -79,10 +133,11 @@ function changeImg() {
     num--;
   }
   scale = Math.max(
-    map(mouseY, 0, document.documentElement.clientHeight - 300, 7, 1),
+    map(mouseY, 0, document.documentElement.clientHeight - 300, 9, 1),
     1
   );
   currImg.style.transform = "scale(" + scale + ")";
+
   let rc = Math.floor(Math.random() * colors.length);
   wrapper.style.backgroundColor = colors[rc];
 }
@@ -92,14 +147,13 @@ function changeText() {
   currText.textContent = txtdata[textR].text;
   if (txtdata[textR].type == "p" || txtdata[textR].text.length > 300) {
     let tempR = Math.floor(Math.random() * 6);
-    currText.className = "";
+    currText.className = "mainText";
     currText.classList.add("pStyle" + tempR);
   } else {
     let tempR = Math.floor(Math.random() * 8);
-    currText.className = "";
+    currText.className = "mainText";
     currText.classList.add("hStyle" + tempR);
   }
-
   if (n == imgArray.length - 1) {
     n = 0;
   } else {
@@ -113,15 +167,15 @@ function changeText() {
 function changeBoth() {
   changeImg();
   changeText();
-  let audio = new Audio("../audio/click.mp3");
-  audio.volume = 0.05;
+  if (!isDownloader) {
+    let audio = new Audio("../audio/click.mp3");
+    audio.volume = 0.05;
 
-  audio.play();
+    audio.play();
+  }
 }
-changeBoth();
 
-function toggleStream(e) {
-  // currImg.style.display = "block";
+function toggleStream() {
   if (streamIsActive) {
     clearInterval(logStream);
     currImg.classList.remove("fullscreen");
@@ -142,79 +196,15 @@ function toggleStream(e) {
   streamIsActive = !streamIsActive;
 }
 
-document.addEventListener(
-  "keydown",
-  (e) => {
-    if (e.code === "Space") {
-      streamIsPaused = !streamIsPaused;
-    }
-  },
-  false
-);
-
-//SEPERATE STREAMS
-// function imageStream() {
-//   if (streamIsActive && !streamIsPaused) {
-//     changeImg();
-//   }
-//   setTimeout(imageStream, speed);
-// }
-// function textStream() {
-//   speed = map(mouseY, 100, document.documentElement.clientHeight, 200, 2000);
-
-//   if (streamIsActive && !streamIsPaused) {
-//     changeText();
-//   }
-//   setTimeout(textStream, speed);
-// }
-// imageStream();
-// textStream();
-
-stream();
 
 function stream() {
   speed = map(mouseY, 200, document.documentElement.clientHeight, 200, 1800);
-
   if (streamIsActive && !streamIsPaused) {
     changeBoth();
   }
   setTimeout(stream, speed);
 }
 
-if (isMobileDevice() == false) {
-  window.addEventListener("click", (e) => {
-    toggleStream(e);
-    streamIsPaused = false;
-  });
-} else {
-  window.addEventListener("touchend", (e) => {
-    toggleStream(e);
-  });
-}
-
-window.addEventListener("wheel", (e) => {
-  // currImg.style.display = "block";
-  if (scrollCounter % 2 == 0) {
-    changeImg();
-    changeText();
-  }
-  scrollCounter++;
-});
-
-window.addEventListener("mousemove", (e) => {
-  mouseX = e.x;
-  mouseY = e.y;
-  let cY = Math.floor(
-    map(mouseY, 100, document.documentElement.clientHeight, 80, 170)
-  );
-  let cX = Math.floor(
-    map(mouseX, 0, document.documentElement.clientWidth, -5, 5)
-  );
-  let r = cY - cX;
-  let g = cY;
-  let b = cY + cX;
-  body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
-});
 
 function logParameters() {
   speedLog.innerHTML =
@@ -226,8 +216,10 @@ function logParameters() {
     txtdata[textR].origin +
     "</br> Skalierung: " +
     scale +
-    "x";
+    "x</br> Kategorie: " +
+    imgdata[imgR].category;
 }
+
 
 function isMobileDevice() {
   if (
