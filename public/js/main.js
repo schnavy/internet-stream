@@ -164,7 +164,7 @@ function changeText() {
     currText.className = "mainText";
     currText.classList.add("pStyle" + tempR);
   } else {
-    let tempR = getRandomOf(8);
+    let tempR = getRandomOf(10);
     currText.className = "mainText";
     currText.classList.add("hStyle" + tempR);
   }
