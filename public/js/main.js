@@ -1,7 +1,12 @@
 let imgArray = [];
+let newsImgs = [];
+let ugImgs = [];
 let anzahl = 2000;
 let mouseX = 0;
 let mouseY = 0;
+let imgsource;
+let sourceObjs;
+let audio = new Audio("../audio/click.mp3");
 
 imgdata.splice(0, imgdata.length - anzahl);
 txtdata.splice(0, txtdata.length - anzahl);
@@ -17,7 +22,9 @@ txtdata.splice(0, txtdata.length - anzahl);
 // });
 
 // txtdata = txtdata.filter((x) => x.category == "News");
-// imgdata = imgdata.filter((x) => x.category == "News");
+newsImgData = imgdata.filter((x) => x.category == "News");
+ugImgData = imgdata.filter((x) => x.category == "user generated");
+
 
 console.log(isDownloader);
 
@@ -25,14 +32,23 @@ console.log(imgdata);
 console.log(txtdata);
 
 //Preloader
-for (i = 0; i < imgdata.length; i++) {
-  imgArray[i] = new Image();
-  imgArray[i] = imgdata[i].url;
+for (i = 0; i < newsImgData.length; i++) {
+  // imgArray[i] = new Image();
+  // imgArray[i] = imgdata[i].url;
+
+  newsImgs[i] = new Image();
+  newsImgs[i] = newsImgData[i].url;
 }
+for (i = 0; i < ugImgData.length; i++) {
+  ugImgs[i] = new Image();
+  ugImgs[i] = ugImgData[i].url;
+}
+
 
 
 const body = document.querySelector("body");
 let currImg = document.querySelector("#curr-img");
+let otherImg = document.querySelector("#other-img");
 let currText = document.querySelector("#pMain");
 let clickInfo = document.querySelector("#clickInfo");
 let title = document.querySelector(".innerTitle");
@@ -44,19 +60,19 @@ let speedLog = document.querySelector("#speed-log");
 let imgR;
 let textR;
 let scale;
-let n = 0;
 let scrollCounter = 0;
 let streamIsActive = false;
 let streamIsPaused = false;
-let num = imgArray.length - 1;
-let colors = ["black", "#e2e2e2", "#c30000", "#1a29b6", "#e1f36b", "#c41bc2"];
+let imgswitcher = false
 
-
-changeBoth();
+// let colors = ["black", "#e2e2e2", "#c30000", "#1a29b6", "#e1f36b", "#c41bc2"];
 
 if (isDownloader) {
   toggleStream();
-  setInterval(changeBoth, 500);
+  setInterval(() => {
+    changeImg();
+    changeText();
+  }, 500);
   wrapper.classList.add("downloadMode")
 } else {
   stream();
@@ -122,24 +138,34 @@ if (isMobileDevice() == false) {
 
 
 function changeImg() {
-  imgR = Math.floor(Math.random() * imgArray.length);
-  currImg.src = imgArray[imgR];
-  if (n == imgArray.length - 1) {
-    n = 0;
+  if (mouseX > document.documentElement.clientWidth / 2) {
+    sourceObjs = newsImgData;
+    imgsource = newsImgs;
   } else {
-    n++;
+    sourceObjs = ugImgData;
+    imgsource = ugImgs;
   }
-  if (num > 1) {
-    num--;
-  }
+
+  imgR = Math.floor(Math.random() * imgsource.length);
+
   scale = Math.max(
     map(mouseY, 0, document.documentElement.clientHeight - 300, 9, 1),
     1
   );
-  currImg.style.transform = "scale(" + scale + ")";
 
-  let rc = Math.floor(Math.random() * colors.length);
-  wrapper.style.backgroundColor = colors[rc];
+  if (imgswitcher) {
+    otherImg.style.display = "none"
+    currImg.style.display = "block"
+    otherImg.src = imgsource[imgR];
+    currImg.style.transform = "scale(" + scale + ")";
+  } else {
+    otherImg.style.display = "block"
+    currImg.style.display = "none"
+    currImg.src = imgsource[imgR];
+    otherImg.style.transform = "scale(" + scale + ")";
+
+  }
+  imgswitcher = !imgswitcher
 }
 
 function changeText() {
@@ -154,26 +180,8 @@ function changeText() {
     currText.className = "mainText";
     currText.classList.add("hStyle" + tempR);
   }
-  if (n == imgArray.length - 1) {
-    n = 0;
-  } else {
-    n++;
-  }
-  if (num > 1) {
-    num--;
-  }
 }
 
-function changeBoth() {
-  changeImg();
-  changeText();
-  if (!isDownloader) {
-    let audio = new Audio("../audio/click.mp3");
-    audio.volume = 0.05;
-
-    audio.play();
-  }
-}
 
 function toggleStream() {
   if (streamIsActive) {
@@ -200,24 +208,31 @@ function toggleStream() {
 function stream() {
   speed = map(mouseY, 200, document.documentElement.clientHeight, 200, 1800);
   if (streamIsActive && !streamIsPaused) {
-    changeBoth();
+    changeImg();
+    changeText();
+
+    audio.volume = 0.05;
+
+    audio.play();
   }
   setTimeout(stream, speed);
 }
 
 
 function logParameters() {
-  speedLog.innerHTML =
-    "Speed: " +
-    Math.floor(speed) +
-    " ms </br> Image Origin: " +
-    imgdata[imgR].origin +
-    "</br> Text Origin: " +
-    txtdata[textR].origin +
-    "</br> Skalierung: " +
-    scale +
-    "x</br> Kategorie: " +
-    imgdata[imgR].category;
+  if (typeof sourceObjs != "undefined") {
+    speedLog.innerHTML =
+      "Speed: " +
+      Math.floor(speed) +
+      " ms </br> Image Origin: " +
+      sourceObjs[imgR].origin +
+      "</br> Text Origin: " +
+      txtdata[textR].origin +
+      "</br> Skalierung: " +
+      scale +
+      "x</br> Kategorie: " +
+      sourceObjs[imgR].category;
+  }
 }
 
 

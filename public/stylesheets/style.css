@@ -1,4 +1,3 @@
-
 * {
   padding: 0;
   margin: 0;
@@ -7,13 +6,11 @@
 body {
   background-color: #666;
   text-align: center;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'GT Alpina', serif;
   font-weight: 300;
   color: blue;
-  /* height: 10000vh; */
   font-size: 110%;
   cursor: url(../images/big2.png) 15 10, pointer;
-
 }
 
 h2 {
@@ -46,7 +43,7 @@ h2 span {
 }
 
 
-.crosshair{
+.crosshair {
   cursor: url(../images/cross.png) 24 24, crosshair;
 
 }
@@ -54,7 +51,7 @@ h2 span {
 #clickInfo {
   width: 100%;
   position: fixed;
-  bottom: 20vh;
+  bottom: 10vh;
   z-index: 100;
 
 }
@@ -79,7 +76,7 @@ h2 span {
   /* width: 85vw;
   height: 90vh; */
   overflow: hidden !important;
-  background-color: black;
+  background-color: grey;
   object-fit: cover;
   border-radius: 15px;
 
@@ -87,7 +84,9 @@ h2 span {
 
 
 @media (max-width: 768px) {
-  body, .wrapper {
+
+  body,
+  .wrapper {
     width: 100vw;
     height: 100vh;
     overflow: visible !important;
@@ -96,22 +95,20 @@ h2 span {
   }
 }
 
-#curr-img {
+#curr-img, #other-img {
+  position: absolute;
   display: block;
   z-index: 10;
   margin: auto;
   width: 100%;
   height: 100%;
   text-align: center;
-  opacity: 1;
   /* mix-blend-mode: difference; */
   object-fit: cover !important;
-
 }
 
 #glitch {
   position: absolute;
-
   width: 20%;
   right: 0;
   bottom: 0;
@@ -120,14 +117,27 @@ h2 span {
   display: none;
 }
 
+#raster {
+  position: absolute;
+  width: 100%;
+  object-fit: cover !important;
+  height: 100%;
+  z-index: 95;
+  opacity: .1;
+  /* mix-blend-mode: difference; */
+  background-color: black;
+}
+
+
 #speed-log {
   position: absolute;
   text-align: left;
   z-index: 100;
-  left: 5px;
-  bottom: 5px;
+  left: 10px;
+  bottom: 10px;
   color: black;
-  font-size: .8em;
+  font-size: .9em;
+  opacity: .8;
 }
 
 .fullscreen {
@@ -160,7 +170,7 @@ h2 span {
 }
 
 
-.downloadMode{
+.downloadMode {
   display: block;
   width: 100vw;
   height: 100vh;
@@ -173,16 +183,16 @@ h2 span {
 
 }
 
-.downloadMode .mainText{
-
-   width: 70vw!important;
+.downloadMode .mainText {
+  z-index: 1000;
+  width: 70vw !important;
 }
 
-.downloadMode .speedlog{
+.downloadMode .speedlog {
   display: none;
   font-size: 50% !important;
   left: 50px !important;
-  bottom: 50px!important;
+  bottom: 50px !important;
   color: white !important;
 
 }

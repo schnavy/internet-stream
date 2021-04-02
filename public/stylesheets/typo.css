@@ -296,15 +296,15 @@
     line-height: 1em;
     letter-spacing: 0px;
   
-    color: white;
+    color: rgb(210, 210, 210);
   }
   
   .pStyle2 {
     font-family: 'GT Alpina';
     font-size: 1.3em !important;
     font-weight: normal;
-    line-height: 1.1em;
-    letter-spacing: -1px;
+    line-height: 1.2em;
+    /* letter-spacing: -1px; */
   
     color: yellow;
   }
