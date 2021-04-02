@@ -9,13 +9,12 @@ const uri =
 const monk = require("monk");
 const db = monk(uri, {
   useUnifiedTopology: true,
-  useNewUrlParser: true
+  useNewUrlParser: true,
 });
 
 db.then(() => {
   console.log("Connected correctly to server");
 });
-
 
 var indexRouter = require("./routes/index");
 
@@ -27,9 +26,11 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(
+  express.urlencoded({
+    extended: false,
+  })
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(function (req, res, next) {
@@ -54,8 +55,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-app.locals.isDownloader = false;
 
+app.locals.isDownloader = false;
 
 module.exports = app;
 

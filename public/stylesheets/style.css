@@ -11,6 +11,9 @@ body {
   color: blue;
   font-size: 110%;
   cursor: url(../images/big2.png) 15 10, pointer;
+  max-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 h2 {
@@ -25,8 +28,6 @@ h2 span {
   display: inline-block;
   z-index: 120 !important;
 }
-
-
 
 .container {
   display: flex;
@@ -45,16 +46,21 @@ h2 span {
 
 .crosshair {
   cursor: url(../images/cross.png) 24 24, crosshair;
-
 }
 
-#clickInfo {
+/* #clickInfo {
   width: 100%;
   position: fixed;
   bottom: 10vh;
   z-index: 100;
+} */
+/* #clickInfo {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  color: grey;
+} */
 
-}
 
 .innerTitle {
   z-index: 120 !important;
@@ -79,7 +85,7 @@ h2 span {
   background-color: grey;
   object-fit: cover;
   border-radius: 15px;
-
+  cursor: url(../images/cross.png) 24 24, crosshair;
 }
 
 
@@ -93,9 +99,14 @@ h2 span {
     font-size: 90%;
 
   }
+
+  .wrapper {
+    font-size: 50%;
+  }
 }
 
-#curr-img, #other-img {
+#curr-img,
+#other-img {
   position: absolute;
   display: block;
   z-index: 10;
@@ -107,7 +118,7 @@ h2 span {
   object-fit: cover !important;
 }
 
-#glitch {
+/* #glitch {
   position: absolute;
   width: 20%;
   right: 0;
@@ -115,7 +126,7 @@ h2 span {
   z-index: 99;
   mix-blend-mode: difference;
   display: none;
-}
+} */
 
 #raster {
   position: absolute;
@@ -136,15 +147,8 @@ h2 span {
   left: 10px;
   bottom: 10px;
   color: black;
-  font-size: .9em;
-  opacity: .8;
-}
-
-.fullscreen {
-
-  /* background-color: black; */
-  /* object-fit: cover !important; */
-  /* transform: scale(1); */
+  font-size: .8em;
+  opacity: 1;
 }
 
 
