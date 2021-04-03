@@ -10,6 +10,7 @@ const speedLog = document.querySelector("#speed-log");
 const audio = new Audio("../audio/click.mp3");
 audio.volume = 0.4;
 
+let titlechanger;
 let speed;
 let imgR;
 let textR;
@@ -20,14 +21,10 @@ let imgswitcher = false;
 let imgArray = [];
 let newsImgs = [];
 let ugImgs = [];
-let anzahl = 2000;
 let mouseX = 0;
 let mouseY = 0;
 let imgsource;
 let sourceObjs;
-
-imgdata.splice(0, imgdata.length - anzahl);
-txtdata.splice(0, txtdata.length - anzahl);
 
 // txtdata = txtdata.filter((x) => x.category == "News");
 newsImgData = imgdata.filter((x) => x.category == "News");
@@ -69,7 +66,7 @@ if (isDownloader) {
 }
 
 titleh2.addEventListener("mouseenter", (e) => {
-  let titlechanger = setInterval((e) => {
+  titlechanger = setInterval((e) => {
     let tempR = getRandomOf(7);
     titleh2.className = "";
     titleh2.classList.add("hStyle" + tempR);
