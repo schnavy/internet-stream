@@ -128,7 +128,7 @@ h2 span {
   display: none;
 } */
 
-#raster {
+.raster {
   position: absolute;
   width: 100%;
   object-fit: cover !important;
@@ -199,4 +199,8 @@ h2 span {
   bottom: 50px !important;
   color: white !important;
 
+}
+
+.downloadMode .raster {
+display: none;
 }

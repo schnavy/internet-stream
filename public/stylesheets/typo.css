@@ -256,9 +256,9 @@
   font-weight: bold;
   font-style: normal;
   line-height: .8em;
-  color: rgb(0, 0, 0);
+  color: white;
   letter-spacing: -1px;
-  mix-blend-mode: overlay;
+  mix-blend-mode: difference;
 
 }
 
@@ -287,10 +287,11 @@
 
 .hStyle8 {
   font-size: 3em;
-  font-family: 'Anarchic';
-  /* color: rgb(122 136 19); */
-  color: rgb(0, 0, 0);
-  line-height: 1.3em;
+  font-family: 'Apple Garamond';
+  font-weight: normal;
+  line-height: .8em;
+  letter-spacing: -2px;
+  color: white;
 }
 
 .hStyle9 {
@@ -298,7 +299,7 @@
   font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: rgb(130, 130, 130);
   line-height: .9em;
-  text-shadow: 0 0 .1em rgb(130, 130, 130);
+  text-shadow: 0 0 .05em rgb(130, 130, 130);
 
 }
 
@@ -313,7 +314,7 @@
 }
 
 .pStyle1 {
-  font-size: 1em !important;
+  font-size: 1.5em !important;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: 1em;
