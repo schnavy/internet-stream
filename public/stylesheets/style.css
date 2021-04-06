@@ -6,10 +6,12 @@
 body {
   background-color: #666;
   text-align: center;
-  font-family: 'GT Alpina', serif;
+  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'GT Alpina', serif; */
+
   font-weight: 300;
   color: blue;
-  font-size: 110%;
+  font-size: 120%;
   cursor: url(../images/big2.png) 15 10, pointer;
   max-height: 100vh;
   box-sizing: border-box;
@@ -18,15 +20,20 @@ body {
 
 h2 {
   font-family: 'Cooper';
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 500;
   z-index: 1000 !important;
+  text-shadow: 0 0 3px blue;
+
 }
+
 
 h2 span {
   position: relative;
   display: inline-block;
+  padding: 10px;
   z-index: 120 !important;
+
 }
 
 .container {
@@ -67,8 +74,14 @@ h2 span {
 }
 
 .innerTitle p {
-  position: relative;
+  position: absolute;
+  bottom: 5vh;
+  left: 0;
+  right: 0;
+color: white;
+mix-blend-mode: difference;
   z-index: 120 !important;
+  font-size: 1em;
 
 }
 
