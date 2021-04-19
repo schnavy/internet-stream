@@ -7,7 +7,7 @@ body {
   background-color: #666;
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
-  /* font-family: 'GT Alpina', serif; */
+  font-family: 'GT Alpina', serif;
 
   font-weight: 300;
   color: blue;
@@ -19,9 +19,11 @@ body {
 }
 
 h2 {
-  font-family: 'Cooper';
-  font-size: 3em;
-  font-weight: 500;
+  font-family: 'Distro';
+  font-size: 2.5em;
+  font-weight: bold;
+  color: transparent;
+
   z-index: 1000 !important;
   text-shadow: 0 0 3px blue;
 
@@ -75,11 +77,11 @@ h2 span {
 
 .innerTitle p {
   position: absolute;
-  bottom: 5vh;
+  bottom: 3vh;
   left: 0;
   right: 0;
-color: white;
-mix-blend-mode: difference;
+color: blue;
+/* mix-blend-mode: difference; */
   z-index: 120 !important;
   font-size: 1em;
 
@@ -95,7 +97,7 @@ mix-blend-mode: difference;
   /* width: 85vw;
   height: 90vh; */
   overflow: hidden !important;
-  background-color: grey;
+  background-color: white;
   object-fit: cover;
   border-radius: 15px;
   cursor: url(../images/cross.png) 24 24, crosshair;

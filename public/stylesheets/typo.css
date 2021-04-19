@@ -182,9 +182,9 @@
 }
 
 @font-face {
-  font-family: 'Anarchic';
-  src: url('../fonts/Anarchic/AnarchicType.woff2') format('woff2'),
-    url('../fonts/Anarchic/AnarchicType.woff') format('woff');
+  font-family: 'Syntosis';
+  src: url('../fonts/Syntosis/Syntosis.woff2') format('woff2'),
+    url('../fonts/Syntosis/Syntosis.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -193,25 +193,23 @@
 
 #pMain {
   position: absolute;
-  width: 700px;
-  max-width: 70vw;
+  width: 900px;
+  max-width: 80vw;
   z-index: 100;
-
+  /* word-break: break-all; */
 }
 
 .hStyle0 {
-  font-size: 6em;
+  font-size: 5em;
   font-family: 'Apple Garamond';
   font-weight: normal;
   line-height: .8em;
   letter-spacing: -2px;
-
   color: blue;
 }
 
 .hStyle1 {
   font-size: 5em;
-
   font-family: 'Cooper';
   font-weight: bold;
   line-height: .8em;
@@ -219,12 +217,12 @@
 }
 
 .hStyle2 {
-  font-size: 3.5em;
+  font-size: 3.3em;
   font-family: 'William', Times, serif;
   font-weight: normal;
   line-height: 1em;
   font-style: italic;
-  letter-spacing: -5px;
+  letter-spacing: -4px;
   color: rgb(255, 0, 0);
 }
 
@@ -241,24 +239,24 @@
 }
 
 .hStyle4 {
-  font-size: 5em;
+  font-size: 2.5em;
   font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: normal;
   line-height: .9em;
   color: yellow;
-  transform: scaleY(2);
+  transform: scaleY(2.6);
 
 }
 
 .hStyle5 {
   font-size: 4em;
   font-family: 'Neue Montreal';
-  font-weight: bold;
+  font-weight: normal;
   font-style: normal;
   line-height: .8em;
   color: white;
   letter-spacing: -1px;
-  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; */
 
 }
 
@@ -269,20 +267,21 @@
   font-style: normal;
   line-height: .8em;
 
-  color: transparent;
-  text-shadow: 0 0 .1em rgb(255, 38, 0);
+  color: transparent !important;
+  text-shadow: 0 0 .1em rgb(255, 0, 0);
   /* transform: scaleY(2); */
 
 }
 
-
 .hStyle7 {
-  font-size: 4em;
+  font-size: 2em;
   font-family: 'Distro';
   font-weight: 700;
   font-style: normal;
   line-height: .8em;
-  color: white;
+  color:  rgb(232, 232, 232);
+  text-shadow: 0 0 .1em rgb(232, 232, 232);
+
 }
 
 .hStyle8 {
@@ -297,52 +296,62 @@
 .hStyle9 {
   font-size: 6em;
   font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: rgb(130, 130, 130);
+  /* color: rgb(130, 130, 130); */
+  color: transparent;
+
   line-height: .9em;
-  text-shadow: 0 0 .05em rgb(130, 130, 130);
+  text-shadow: 0 0 .1em rgb(176, 176, 176);
+
+}
+
+.hStyle10 {
+  font-size: 1em;
+  font-family: 'Syntosis';
+  color: rgb(255, 255, 255);
+  line-height: 1.5em;
+  letter-spacing: 0px;
+  /* text-shadow: 0 0 0.2em rgb(0 0 255); */
 
 }
 
 
 .pStyle0 {
-  font-size: 1.5em !important;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  line-height: .95em;
-  letter-spacing: -1px;
-  color: rgb(255, 255, 184);
-}
+  font-family: 'Distro';
+  font-size: 1.7em !important;
+  font-weight: 700;
+  line-height: .9em;
+  color:red;
+  transform: scaleX(1.2);
 
+}
 .pStyle1 {
-  font-size: 1.5em !important;
-  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.3em !important;
+  font-family: Arial, Helvetica,'Neue Montreal', sans-serif;
   font-weight: normal;
   line-height: 1em;
   letter-spacing: 0px;
-
-  color: rgb(255, 255, 255);
-  text-shadow: 0 0 .1em rgb(130, 130, 130);
+  color: yellow;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
 
 }
 
 .pStyle2 {
   font-family: 'GT Alpina';
-  font-size: 1.3em !important;
+  font-size: 1.2em !important;
   font-weight: normal;
   line-height: 1.2em;
   /* letter-spacing: -1px; */
-
-  color: yellow;
+  color: white;
 }
 
 .pStyle3 {
   font-family: 'GT Alpina';
-  font-size: 1.5em !important;
+  font-size: 1.3em !important;
   font-weight: normal;
   line-height: .9em;
   letter-spacing: -1px;
   color: transparent;
-  text-shadow: 0 0 10px rgb(0, 21, 255);
+  text-shadow: 0 0 5px rgb(0, 21, 255);
   /* transform: scaleY(2); */
 
 }
@@ -353,19 +362,10 @@
   font-weight: 800;
   line-height: .9em;
   color: rgb(98, 160, 218);
-  /* transform: scaleY(2); */
-
+  transform: scaleY(2);
 }
 
-.pStyle5 {
-  font-family: 'Distro';
-  font-size: 2em !important;
-  font-weight: 700;
-  line-height: .9em;
-  color: rgb(151, 198, 57);
-  /* transform: scaleY(2); */
 
-}
 
 .emojistyle{
   font-family: Arial, Helvetica, sans-serif;
@@ -374,7 +374,7 @@
   background-color: white;
   /* border: 2px solid white; */
   border-radius: 10px;
-  padding: 15px 15px 25px 15px;
+  padding: 15px 15px 20px 15px;
   max-width: 500px!important;
   text-align: left;
 }

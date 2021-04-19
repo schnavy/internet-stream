@@ -7,16 +7,16 @@ router.get("/", function (req, res) {
 
   imgCol.find({}, {
     sort: {
-      "timecode": -1
+      timecode: -1
     },
-    limit: 2000
+    limit: 1000
   }, (e, imgs) => {
     if (e) return next(e);
     textCol.find({}, {
       sort: {
-        "timecode": -1
+        timecode: -1
       },
-      limit: 2000
+      limit: 1000
     }, (e, texts) => {
       if (e) return next(e);
       res.render("index", {
