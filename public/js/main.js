@@ -9,11 +9,11 @@ const wrapper = document.querySelector(".wrapper");
 const speedLog = document.querySelector("#speed-log");
 const audio = new Audio("../audio/click.mp3");
 var regexExp = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
-audio.volume = 0.4;
+audio.volume = 0.1;
 
 let speed, imgR, textR, scale, titlechanger, imgsource, source;
-let pStyleAnzahl = 5;
-let hStyleAnzahl = 11;
+let pStyleAnzahl = 1;
+let hStyleAnzahl = 2;
 let titlewords = ["Die", "Flut", "der", "Reize", "/", "Der", "Reiz", "der", "Fluten", "/"]
 let tcounter = 0;
 let streamIsActive = false;
@@ -24,6 +24,9 @@ let newsImgs = [];
 let ugImgs = [];
 let mouseX = 0;
 let mouseY = 0;
+// let colors = ["black", "#e2e2e2", "#c30000", "#1a29b6", "#e1f36b", "#c41bc2"];
+let colors = ["#0000ff", "#FF0000", "#FFFF00", "#cccccc", "#ffffff"]
+
 
 let data = {
   news: {
@@ -75,7 +78,6 @@ for (const cat in data) {
 }
 window.onload = console.log("Preloader fertig!");
 
-let colors = ["black", "#e2e2e2", "#c30000", "#1a29b6", "#e1f36b", "#c41bc2"];
 
 if (isDownloader) {
   toggleStream();
@@ -146,8 +148,6 @@ if (isMobileDevice() == false) {
     changeImg();
     changeText();
     toggleStream();
-
-    audio.volume = 0.4;
     audio.play();
   });
 }
@@ -172,12 +172,14 @@ function changeImg(input = data.news.images) {
 }
 
 function changeText(input = data.news.texte) {
+
   textR = getRandomOf(input.length);
+  currText.removeAttribute("style");
   currText.innerHTML = "<span>" + input[textR].text + "</span>";
   if (regexExp.test(input[textR].text)) {
     currText.className = "mainText";
     currText.classList.add("emojistyle");
-  } else if (txtdata[textR].type == "p" || input[textR].text.length > 200) {
+  } else if (input[textR].text.length > 100) {
     let tempR = getRandomOf(pStyleAnzahl);
     currText.className = "mainText";
     currText.classList.add("pStyle" + tempR);
@@ -186,7 +188,17 @@ function changeText(input = data.news.texte) {
     currText.className = "mainText";
     currText.classList.add("hStyle" + tempR);
   }
+  let c = colors[getRandomOf(colors.length)]
 
+  currText.querySelector("span").style.textShadow = '0px 0px ' + (getRandomOf(12)-3) + 'px' + c;
+  let r = getRandomOf(12)
+  if (r == 1) {
+    currText.querySelector("span").classList.add("balken")
+  } else if (r < 6) {
+    currText.style.color = "rgba(0,0,0,0)"
+  } else {
+    currText.style.color = c
+  }
 }
 
 function toggleStream() {
@@ -247,13 +259,13 @@ function map(value, x1, y1, x2, y2) {
 
 function getScaleFromMouse() {
   return Math.max(
-    map(mouseY, 0, document.documentElement.clientHeight - 300, 9, 1),
+    map(mouseY, 0, document.documentElement.clientHeight - 300, 12, 1),
     1
   );
 }
 
 function getSpeedFromMouseY() {
-  return map(mouseY, 200, document.documentElement.clientHeight, 200, 1800);
+  return map(mouseY, 200, document.documentElement.clientHeight, 200, 2200);
 }
 
 function getRandomOf(x) {

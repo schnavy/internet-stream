@@ -7,7 +7,7 @@ body {
   background-color: #666;
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
-  font-family: 'GT Alpina', serif;
+  font-family: 'Arial Narrow';
 
   font-weight: 300;
   color: blue;
@@ -80,8 +80,8 @@ h2 span {
   bottom: 3vh;
   left: 0;
   right: 0;
-color: blue;
-/* mix-blend-mode: difference; */
+  color: blue;
+  /* mix-blend-mode: difference; */
   z-index: 120 !important;
   font-size: 1em;
 
@@ -147,6 +147,8 @@ color: blue;
   position: absolute;
   width: 100%;
   object-fit: cover !important;
+  object-fit: fill !important;
+
   height: 100%;
   z-index: 95;
   opacity: .1;
@@ -217,5 +219,5 @@ color: blue;
 }
 
 .downloadMode .raster {
-display: none;
+  display: none;
 }

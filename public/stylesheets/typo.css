@@ -1,385 +1,109 @@
 @font-face {
-  font-family: 'GT Alpina';
-  src: url('../fonts/GTA/GTAlpina-LightItalic.woff2') format('woff2'),
-    url('../fonts/GTA/GTAlpina-LightItalic.woff') format('woff');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
+    font-family: 'Anton';
+    src: url('../fonts/Anton/Anton-Regular.woff2') format('woff2'),
+        url('../fonts/Anton/Anton-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'GT Alpina';
-  src: url('../fonts/GTA/GTAlpina-Medium.woff2') format('woff2'),
-    url('../fonts/GTA/GTAlpina-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Apple Garamond';
+    src: url('../fonts/Apple_Gara/AppleGaramond.woff2') format('woff2'),
+        url('../fonts/Apple_Gara/AppleGaramond.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'GT Alpina';
-  src: url('../fonts/GTA/GTAlpina-Light.woff2') format('woff2'),
-    url('../fonts/GTA/GTAlpina-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Poster';
+    src: url('../fonts/Poster/POSTER-regular.woff2') format('woff2'),
+        url('../fonts/Poster/POSTER-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'GT Alpina';
-  src: url('../fonts/GTA/GTAlpina-Regular.woff2') format('woff2'),
-    url('../fonts/GTA/GTAlpina-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Arial Narrow';
+    src: url('../fonts/Arial_Narrow/ArialNarrow.woff2') format('woff2'),
+        url('../fonts/Arial_Narrow/ArialNarrow.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
-
-@font-face {
-  font-family: 'GT Alpina';
-  src: url('../fonts/GTA/GTAlpina-MediumItalic.woff2') format('woff2'),
-    url('../fonts/GTA/GTAlpina-MediumItalic.woff') format('woff');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'GT Alpina';
-  src: url('../fonts/GTA/GTAlpina-Bold.woff2') format('woff2'),
-    url('../fonts/GTA/GTAlpina-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'GT Alpina';
-  src: url('../fonts/GTA/GTAlpina-BoldItalic.woff2') format('woff2'),
-    url('../fonts/GTA/GTAlpina-BoldItalic.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'GT Alpina';
-  src: url('GTAlpina-RegularItalic.woff2') format('woff2'),
-    url('../fonts/GTA/GTAlpina-RegularItalic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-
-
-@font-face {
-  font-family: 'Apple Garamond';
-  src: url('../fonts/AppleGaramond.woff2') format('woff2'),
-    url('../fonts/AppleGaramond.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Cooper';
-  src: url('../fonts/CooperBlack.woff2') format('woff2'),
-    url('../fonts/CooperBlack.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Impact';
-  src: url('../fonts/Impact.woff2') format('woff2'),
-    url('../fonts/Impact.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  src: url('../fonts/NeueMontreal/NeueMontreal-Regular.woff2') format('woff2'),
-    url('../fonts/NeueMontreal/NeueMontreal-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  src: url('../fonts/NeueMontreal/NeueMontreal-Bold.woff2') format('woff2'),
-    url('../fonts/NeueMontreal/NeueMontreal-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  src: url('../fonts/NeueMontreal/NeueMontreal-BoldItalic.woff2') format('woff2'),
-    url('../fonts/NeueMontreal/NeueMontreal-BoldItalic.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'William';
-  src: url('../fonts/WilliamTextProBol.woff2') format('woff2'),
-    url('../fonts/WilliamTextProBol.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'William';
-  src: url('../fonts/WilliamTextProReg.woff2') format('woff2'),
-    url('../fonts/WilliamTextProReg.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF';
-  src: url('../fonts/SFCompactRounded-Bold.woff2') format('woff2'),
-    url('../fonts/SFCompactRounded-Bold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF';
-  src: url('../fonts/SFCompactRounded-Medium.woff2') format('woff2'),
-    url('../fonts/SFCompactRounded-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Distro';
-  src: url('../fonts/distro/DistroBold.woff2') format('woff2'),
-    url('../fonts/distro/DistroBold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-
-@font-face {
-  font-family: 'Distro';
-  src: url('../fonts/distro/DistroHeavy.woff2') format('woff2'),
-    url('../fonts/distro/DistroHeavy.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Syntosis';
-  src: url('../fonts/Syntosis/Syntosis.woff2') format('woff2'),
-    url('../fonts/Syntosis/Syntosis.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 
 #pMain {
-  position: absolute;
-  width: 900px;
-  max-width: 80vw;
-  z-index: 100;
-  /* word-break: break-all; */
+    position: absolute;
+    width: 900px;
+    max-width: 80vw;
+    z-index: 100;
+    /* word-break: break-all; */
 }
 
 .hStyle0 {
-  font-size: 5em;
-  font-family: 'Apple Garamond';
-  font-weight: normal;
-  line-height: .8em;
-  letter-spacing: -2px;
-  color: blue;
+    font-size: 3em;
+    font-family: 'Anton';
+    font-weight: normal;
+    line-height: 1em;
+    letter-spacing: -1px;
+    color: red;
 }
 
 .hStyle1 {
-  font-size: 5em;
-  font-family: 'Cooper';
-  font-weight: bold;
-  line-height: .8em;
-  color: red;
+    font-size: 4em;
+    font-family: 'Apple Garamond';
+    font-weight: normal;
+    line-height: .83em;
+    letter-spacing: -1px;
+    color: blue;
 }
 
 .hStyle2 {
-  font-size: 3.3em;
-  font-family: 'William', Times, serif;
-  font-weight: normal;
-  line-height: 1em;
-  font-style: italic;
-  letter-spacing: -4px;
-  color: rgb(255, 0, 0);
+    font-size: 3em;
+    font-family: 'Poster';
+    font-weight: normal;
+    line-height: .6em;
+    letter-spacing: -2px;
+    color: blue;
 }
-
-.hStyle3 {
-  font-size: 2.5em;
-  font-family: 'Neue Montreal';
-  font-weight: normal;
-  line-height: .9em;
-  letter-spacing: -1px;
-  /* -webkit-text-stroke: 3px grey;
-    text-shadow: 1px 1px 0 lightskyblue; */
-  color: blue;
-
-}
-
-.hStyle4 {
-  font-size: 2.5em;
-  font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: normal;
-  line-height: .9em;
-  color: yellow;
-  transform: scaleY(2.6);
-
-}
-
-.hStyle5 {
-  font-size: 4em;
-  font-family: 'Neue Montreal';
-  font-weight: normal;
-  font-style: normal;
-  line-height: .8em;
-  color: white;
-  letter-spacing: -1px;
-  /* mix-blend-mode: difference; */
-
-}
-
-.hStyle6 {
-  font-size: 5em;
-  font-family: 'Neue Montreal';
-  font-weight: bold;
-  font-style: normal;
-  line-height: .8em;
-
-  color: transparent !important;
-  text-shadow: 0 0 .1em rgb(255, 0, 0);
-  /* transform: scaleY(2); */
-
-}
-
-.hStyle7 {
-  font-size: 2em;
-  font-family: 'Distro';
-  font-weight: 700;
-  font-style: normal;
-  line-height: .8em;
-  color:  rgb(232, 232, 232);
-  text-shadow: 0 0 .1em rgb(232, 232, 232);
-
-}
-
-.hStyle8 {
-  font-size: 3em;
-  font-family: 'Apple Garamond';
-  font-weight: normal;
-  line-height: .8em;
-  letter-spacing: -2px;
-  color: white;
-}
-
-.hStyle9 {
-  font-size: 6em;
-  font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  /* color: rgb(130, 130, 130); */
-  color: transparent;
-
-  line-height: .9em;
-  text-shadow: 0 0 .1em rgb(176, 176, 176);
-
-}
-
-.hStyle10 {
-  font-size: 1em;
-  font-family: 'Syntosis';
-  color: rgb(255, 255, 255);
-  line-height: 1.5em;
-  letter-spacing: 0px;
-  /* text-shadow: 0 0 0.2em rgb(0 0 255); */
-
-}
-
 
 .pStyle0 {
-  font-family: 'Distro';
-  font-size: 1.7em !important;
-  font-weight: 700;
-  line-height: .9em;
-  color:red;
-  transform: scaleX(1.2);
-
-}
-.pStyle1 {
-  font-size: 1.3em !important;
-  font-family: Arial, Helvetica,'Neue Montreal', sans-serif;
-  font-weight: normal;
-  line-height: 1em;
-  letter-spacing: 0px;
-  color: yellow;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
-
-}
-
-.pStyle2 {
-  font-family: 'GT Alpina';
-  font-size: 1.2em !important;
-  font-weight: normal;
-  line-height: 1.2em;
-  /* letter-spacing: -1px; */
-  color: white;
-}
-
-.pStyle3 {
-  font-family: 'GT Alpina';
-  font-size: 1.3em !important;
-  font-weight: normal;
-  line-height: .9em;
-  letter-spacing: -1px;
-  color: transparent;
-  text-shadow: 0 0 5px rgb(0, 21, 255);
-  /* transform: scaleY(2); */
-
-}
-
-.pStyle4 {
-  font-family: 'SF';
-  font-size: 2em !important;
-  font-weight: 800;
-  line-height: .9em;
-  color: rgb(98, 160, 218);
-  transform: scaleY(2);
+    font-size: 1.3em;
+    font-family: 'Arial Narrow';
+    font-weight: normal;
+    line-height: 1em;
+    letter-spacing: 0px;
+    color: yellow;
 }
 
 
-
-.emojistyle{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2em !important;
-  color: black;
-  background-color: white;
-  /* border: 2px solid white; */
-  border-radius: 10px;
-  padding: 15px 15px 20px 15px;
-  max-width: 500px!important;
-  text-align: left;
+.transparent {
+    color: transparent !important;
 }
 
-.downloadMode .emojistyle{
-  font-size: .8em !important;
-  max-width: 700px!important;
+.balken {
+    text-shadow: none !important;
+    color: black !important;
+    background-color: black !important;
+    line-height: 120%;
+}
+
+
+.emojistyle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em !important;
+    color: black !important;
+    background-color: white;
+    /* border: 2px solid white; */
+    border-radius: 10px;
+    padding: 15px 15px 20px 15px;
+    max-width: 500px !important;
+    text-align: left;
+}
+
+.downloadMode .emojistyle {
+    font-size: .8em !important;
+    max-width: 700px !important;
 }
