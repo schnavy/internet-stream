@@ -17,6 +17,15 @@
 }
 
 @font-face {
+    font-family: 'Distro';
+    src: url('../fonts/distro/DistroBold.woff2') format('woff2'),
+      url('../fonts/distro/DistroBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+@font-face {
     font-family: 'Poster';
     src: url('../fonts/Poster/POSTER-regular.woff2') format('woff2'),
         url('../fonts/Poster/POSTER-regular.woff') format('woff');
@@ -36,7 +45,7 @@
 
 #pMain {
     position: absolute;
-    width: 900px;
+    width: 1000px;
     max-width: 80vw;
     z-index: 100;
     /* word-break: break-all; */
@@ -60,12 +69,20 @@
     color: blue;
 }
 
-.hStyle2 {
+/* .hStyle2 {
     font-size: 3em;
     font-family: 'Poster';
     font-weight: normal;
     line-height: .6em;
     letter-spacing: -2px;
+    color: blue;
+} */
+.hStyle3 {
+    font-size: 3em;
+    font-family: 'Distro';
+    font-weight: bold;
+    line-height: 1em;
+    letter-spacing: 0px;
     color: blue;
 }
 

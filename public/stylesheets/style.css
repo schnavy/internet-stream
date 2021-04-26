@@ -131,6 +131,7 @@ h2 span {
   text-align: center;
   /* mix-blend-mode: difference; */
   object-fit: cover !important;
+  filter: blur(5px);
 }
 
 /* #glitch {
@@ -187,8 +188,52 @@ h2 span {
   align-items: center;
   justify-content: center;
   z-index: 100;
+  box-sizing: border-box;
+}
+
+
+.circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid white;
+  /* mix-blend-mode: difference; */
+  opacity: .2;
+  border-radius: 100%;
+  display: block;
+  z-index: 200;
+}
+
+.svg-container{
+  display: none;
+
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 600;
+  left: 600;
+  width: 600px;
+  z-index: 300;
+}
+
+.formlinie {
 
 }
+
+.cls-1 {
+  fill: none;
+  stroke: red;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  mix-blend-mode: difference;
+  filter: blur(1px);
+}
+
+
+
+
+
+
 
 
 .downloadMode {
