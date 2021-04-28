@@ -1,20 +1,25 @@
+let local = true;
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
+if (!local) {
+  const MongoClient = require("mongodb").MongoClient;
+  const uri =
+    "mongodb+srv://david:cameraraw@dw.afb8c.mongodb.net/Internet-stream?retryWrites=true&w=majority";
 
-const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://david:cameraraw@dw.afb8c.mongodb.net/Internet-stream?retryWrites=true&w=majority";
+  const monk = require("monk");
+  const db = monk(uri, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  });
 
-const monk = require("monk");
-const db = monk(uri, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-});
 
-db.then(() => {
-  console.log("Connected correctly to server");
-});
+
+  db.then(() => {
+    console.log("Connected correctly to server");
+  });
+
+}
 
 var indexRouter = require("./routes/index");
 
@@ -33,10 +38,13 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(function (req, res, next) {
-  req.db = db;
-  next();
-});
+if (!local) {
+
+  app.use(function (req, res, next) {
+    req.db = db;
+    next();
+  });
+}
 
 app.use("/", indexRouter);
 
@@ -57,6 +65,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.locals.isDownloader = false;
+app.locals.local = local;
 
 module.exports = app;
 
