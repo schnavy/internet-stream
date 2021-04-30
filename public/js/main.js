@@ -1,21 +1,30 @@
-const body = document.querySelector("body");
 const currImg = document.querySelector("#curr-img");
 const otherImg = document.querySelector("#other-img");
 const currText = document.querySelector("#pMain");
 const clickInfo = document.querySelector("#clickInfo");
 const title = document.querySelector(".innerTitle");
 const titleh2 = document.querySelector(".innerTitle h2 span");
-const wrapper = document.querySelector(".wrapper");
 const speedLog = document.querySelector("#speed-log");
 const circles = document.querySelectorAll(".circle")
-const audio = new Audio("../audio/click.mp3");
+const enter = document.querySelector(".enter")
+let intro = document.querySelector(".description")
+let introsps = document.querySelectorAll(".description .intro")
+let mehrps = document.querySelectorAll(".description .more")
+let creditps = document.querySelectorAll(".description .more2")
+const moreBtn = document.querySelector(".moreInfo")
+const creditBtn = document.querySelector(".credit")
 var regexExp = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
-audio.volume = 0.1;
+const audio = new Audio("../audio/click.mp3");
+audio.volume = 0.2;
+const introaudio = new Audio("../audio/robot.mp3");
+introaudio.volume = 0.2;
 
 let speed, imgR, textR, scale, titlechanger, imgsource, source;
 let pStyleAnzahl = 1;
 let hStyleAnzahl = 4;
 let titlewords = ["Die", "Flut", "der", "Reize", "/", "Der", "Reiz", "der", "Fluten", "/"]
+// let titlewords = ["Hello", " ${user.name}",",", "what‘s", "going", "on ", "today", "?"]
+
 let tcounter = 0;
 let streamIsActive = false;
 let streamIsPaused = false;
@@ -23,13 +32,37 @@ let imgswitcher = false;
 let imgArray = [];
 let newsImgs = [];
 let ugImgs = [];
-let mouseX = 0;
-let mouseY = 0;
 let moveCounter = 0
 // let colors = ["black", "#e2e2e2", "#c30000", "#1a29b6", "#e1f36b", "#c41bc2"];
 let colors = ["#0000ff", "#FF0000", "#FFFF00", "#cccccc", "#ffffff"]
 let swcolors = ["black", "white", "grey", "lightgray", "#ddd", "#0000ff", "#FF0000", "#FFFF00", "#cccccc", "#ffffff"]
+// let swcolors = ["black", "white", "grey", "lightgray", "#ddd"]
 
+
+let introTexte = {
+  start: ['Herzlich Willkommen bei', 'Hello ${user.name}, what‘s going on today?', 'Hello ${user.name}, what‘s going on today?',
+    'ist ein Raum.', 'ist Interaktion mit', 'und ohne Inhalt.', ' ist ein Ort der Machtbeziehungen', 'durch Handlung', 'durch Form',
+    'durch Geschwindigkeit', 'Tritt ein und aale dich im Rausch der Informationen.', 'Bewege dich durch den Raum des Affekts',
+    'losgelöst von Kontext und Bedeutung.', 'credit +', 'mehr Informationen +', 'Enter ↵'
+  ],
+  mehr: ['Hello ${user.name}, what‘s going on today?',
+    'sammelt täglich Bild- und Textelemente von', '189 Nachrichtenportalen', '50 zufälligen Wikipedia-Artikeln',
+    '700 aktuelle Twitter-Beiträgen', 'Diese werden zerstört, verändert, neu zusammengesetzt, instrumentalisiert',
+    'und bilden einen flüchtigen, nicht-greifbaren Strom der Dinge', 'eine Flut der Reize.', 'Es öffnet sich ein Bewegungspektrum, in dem',
+    'die Handlung die Form der Inhalte bedingt.',
+    'die Form der Inhalte die Handlung bedingt.',
+    'Ein System der Affirmation', 'nutzt diese Wechselwirkung zum Selbst- und Machterhalt.', 'Enter ↵'
+  ],
+  credit: ['Hello ${user.name}, what‘s going on today?', 'Eine Installation von David Wahrenburg', 'Sounddesign von Lasse Bornträger']
+}
+
+let j = 0;
+let count = 0;
+let waitcount = 0;
+let newtext = ""
+let moreActive = false
+let creditActive = false
+let introSpeed = 100;
 
 let data = {
   news: {
@@ -52,8 +85,6 @@ let PLimgs = {
   "wiki": []
 }
 
-
-
 // txtdata = txtdata.filter((x) => x.category == "News");
 data.news.images = imgdata.filter((x) => x.category == "News");
 data.userGenerated.images = imgdata.filter((x) => x.category == "user generated");
@@ -65,10 +96,9 @@ data.wiki.texte = txtdata.filter((x) => x.category == "Wiki");
 
 
 // console.log(txtdata.filter((x) => x.category == "News"));
-console.log(isDownloader);
 
-console.log(imgdata);
-console.log(txtdata);
+// console.log(imgdata);
+// console.log(txtdata);
 console.log(data);
 
 //Preloader
@@ -82,6 +112,8 @@ for (const cat in data) {
 window.onload = console.log("Preloader fertig!");
 
 
+
+
 if (isDownloader) {
   toggleStream();
   setInterval(() => {
@@ -92,24 +124,31 @@ if (isDownloader) {
   }, 300);
   wrapper.classList.add("downloadMode");
 } else {
+  waitToggle()
   changeImg();
   changeImg();
   changeText();
   streamDesktop();
+  setInterval(moveBlurryCircles, 70);
 }
 
-titlechanger = setInterval((e) => {
+// titlechanger = setInterval((e) => {
 
-  if (streamIsActive) return
-  if (tcounter < titlewords.length - 1) {
-    tcounter++
-    titleh2.textContent = titlewords[tcounter - 1] + " " + titlewords[tcounter];
-  } else {
-    tcounter = 0
-    titleh2.textContent = titlewords[titlewords.length - 1] + " " + titlewords[tcounter];
-  }
+//   if (streamIsActive) return
+//   if (tcounter < titlewords.length - 1) {
+//     tcounter++
+//     titleh2.textContent = titlewords[tcounter - 1] + " " + titlewords[tcounter];
+//   } else {
+//     tcounter = 0
+//     titleh2.textContent = titlewords[titlewords.length - 1] + " " + titlewords[tcounter];
+//   }
 
-}, 600);
+// }, 600);
+
+
+
+
+
 
 
 document.addEventListener(
@@ -119,42 +158,25 @@ document.addEventListener(
       streamIsPaused = !streamIsPaused;
     } else if (e.code === "Escape") {
       toggleStream();
+    } else if (e.code === "Enter") {
+      toggleStream();
     }
   },
   false
 );
 
-window.addEventListener("mousemove", (e) => {
-  mouseX = e.x;
-  mouseY = e.y;
-  let cY = Math.floor(
-    map(mouseY, 100, document.documentElement.clientHeight, 80, 170)
-  );
-  let cX = Math.floor(
-    map(mouseX, 0, document.documentElement.clientWidth, -5, 5)
-  );
-  let r = cY - cX;
-  let g = cY;
-  let b = cY + cX;
-  body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
-  changeCircles()
 
-  // if (moveCounter % 20 == 0) {
-  //   source = getCategory()
-  //   changeImg(source.images);
-  //   changeText(source.texte);
-  //   logParameters()
-  //   audio.play();
-
-  //   console.log(moveCounter);
-  // }
-  // moveCounter++
-});
 
 if (isMobileDevice() == false) {
   window.addEventListener("click", (e) => {
-    toggleStream();
-    streamIsPaused = false;
+    if (e.target == moreBtn) {
+      moreActive = toggleTypewriter(mehrps, introTexte.mehr, moreActive, moreBtn)
+    } else if (e.target == creditBtn) {
+      creditActive = toggleTypewriter(creditps, introTexte.credit, creditActive, creditBtn)
+    } else {
+      toggleStream();
+      streamIsPaused = false;
+    }
   });
 } else {
   window.addEventListener("touchend", (e) => {
@@ -219,15 +241,14 @@ function changeText(input = data.news.texte) {
 
 function toggleStream() {
   if (streamIsActive) {
-    // clearInterval(logStream);
     body.classList.remove("crosshair");
-    title.style.display = "block";
     wrapper.style.display = "none";
+    intro.style.display = "block";
   } else {
     body.classList.add("crosshair");
+
     wrapper.style.display = "flex";
-    // logStream = setInterval(logParameters, 10);
-    title.style.display = "none";
+    intro.style.display = "none"
   }
   streamIsActive = !streamIsActive;
 }
@@ -239,8 +260,7 @@ function streamDesktop() {
     changeImg(source.images);
     changeText(source.texte);
     logParameters()
-
-    changeFormlinien()
+    // changeFormlinien()
 
     audio.play();
 
@@ -261,15 +281,32 @@ function changeCircles() {
 
     // elem.style.left = Math.floor(getRandomOf(document.documentElement.clientWidth-w )) + "px";
     elem.style.top = "0px"
-
   }
+}
 
+
+function moveBlurryCircles() {
+  if (!streamIsActive) return
+  circle.style.top = mouseY + "px"
+  circle.style.left = mouseX + "px"
+  circle2.style.top = prevMouseY + "px"
+  circle2.style.left = prevMouseX + "px"
+  if (radius % 10 == 0) {
+
+    // circle.style.transform = "translate(-50%, -50%) rotate(" + (radius + 100) + "deg)";
+    circle2.style.transform = "translate(-50%, -50%) rotate(" + (-radius) + "deg)";
+  }
+  radius += 5
+  if (radius == 360) {
+    radius = 0
+  }
 }
 
 let linienFormen = document.querySelectorAll(".svg-container")
 let linienQuote;
 
 function changeFormlinien() {
+  if (!streamIsActive || streamIsPaused) return
 
   let h = wrapper.clientHeight;
   let w = wrapper.clientWidth;
@@ -295,6 +332,8 @@ function changeFormlinien() {
 
 
 function logParameters() {
+  if (!streamIsActive || streamIsPaused) return
+
   if (typeof source != "undefined") {
     speedLog.innerHTML =
       "Speed: " +
@@ -347,10 +386,14 @@ function getCategory() {
     return data[value];
   }
   if (mouseX < document.documentElement.clientWidth / 3) {
-    return data.news;
-  } else if (mouseX < document.documentElement.clientWidth / 3 * 2) {
     return data.wiki;
+  } else if (mouseX < document.documentElement.clientWidth / 3 * 2) {
+    return data.news;
   } else {
     return data.userGenerated;
   }
+}
+
+function map(value, x1, y1, x2, y2) {
+  return ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 }

@@ -16,6 +16,10 @@ body {
   max-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
+  /* display: grid;
+  justify-content: center;
+  align-content: center; */
+  height: 100vh;
 }
 
 h2 {
@@ -50,11 +54,13 @@ h2 span {
   align-items: center;
   justify-content: center;
   /* cursor: pointer; */
+  z-index: 50;
 }
 
 
 .crosshair {
-  cursor: url(../images/cross.png) 24 24, crosshair;
+  /* cursor: url(../images/cross.png) 24 24, crosshair; */
+  cursor: none
 }
 
 /* #clickInfo {
@@ -73,6 +79,7 @@ h2 span {
 
 .innerTitle {
   z-index: 120 !important;
+  display: none;
 }
 
 .innerTitle p {
@@ -145,6 +152,7 @@ h2 span {
 } */
 
 .raster {
+  display: none;
   position: absolute;
   width: 100%;
   object-fit: cover !important;
@@ -204,7 +212,7 @@ h2 span {
   z-index: 200;
 }
 
-.svg-container{
+.svg-container {
   display: none;
 
   position: absolute;
@@ -215,9 +223,7 @@ h2 span {
   z-index: 300;
 }
 
-.formlinie {
-
-}
+.formlinie {}
 
 .cls-1 {
   fill: none;
@@ -265,4 +271,126 @@ h2 span {
 
 .downloadMode .raster {
   display: none;
+}
+
+
+#circle, #circle2 {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(0);
+  width: 1000px;
+  height: 500px;
+  border-radius: 1000px;
+  background-color: black;
+  mix-blend-mode:overlay;
+  left: 50%;
+  top: 50%;
+  z-index: 500;
+  filter: blur(200px);
+}
+#circle{
+  background-color: white;
+  mix-blend-mode:overlay;
+
+  width: 400px;
+  height: 300px;
+  filter: blur(100px);
+
+}
+.description-wrapper{
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  justify-content: center;
+  width: 100vw;
+  /* padding-left: 150px; */
+  padding-bottom: 150px;
+
+}
+.description {
+  /* margin-top: 10vh; */
+  /* margin-bottom: 10vh; */
+  text-align: left;
+  z-index: 200;
+  font-size: 1em;
+  max-width: 100%;
+
+}
+
+
+.intro {
+  text-align: left;
+  font-size: 20px;
+  text-shadow: 0 0 2px blue;
+}
+
+.indent0 {
+  margin-left: 0;
+}
+
+.indent1 {
+  margin-left: 12.8em;
+}
+
+.indent2 {
+  margin-left: 23em;
+}
+
+.indent3 {
+  margin-left: 26.7em;
+}
+
+.indentBetween {
+  margin-left: 4em;
+}
+
+.indentBetween2 {
+  margin-left: 6em;
+}
+
+.moreInfo:hover, .enter:hover , .credit:hover{
+  font-style: italic;
+}
+
+.kursiv {
+  font-style: italic;
+
+}
+
+@media(max-width: 908px) {
+
+  .description {
+    font-size: .3em;
+    margin-left: 0px;
+    padding: 10px;
+  }
+
+  .intro {
+    text-align: left;
+    font-size: 20px;
+    text-shadow: 0 0 2px blue;
+  }
+
+  .indent0 {
+    margin-left: 0;
+  }
+
+  .indent1 {
+    margin-left: 6.4em;
+  }
+
+  .indent2 {
+    margin-left: 11.5em;
+  }
+
+  .indent3 {
+    margin-left: 13.35em;
+  }
+
+  .indentBetween {
+    margin-left: 2em;
+  }
+
+  .indentBetween2 {
+    margin-left: 5.9em;
+  }
 }

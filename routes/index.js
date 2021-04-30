@@ -25,15 +25,12 @@ router.get("/", function (req, res) {
           imageData: imgs,
           textData: texts,
           title: "Reiz/Flut",
-          isDownloader: false
+          isDownloader: false,
+          kinect: false
         });
       });
     });
 });
-
-
-
-
 
 
   router.get("/local", function (req, res) {
@@ -43,7 +40,8 @@ router.get("/", function (req, res) {
       imageData: imageJsonOBj,
       textData: textJsonOBj,
       title: "Reiz/Flut",
-      isDownloader: false
+      isDownloader: false,
+      kinect: false
     });
   });
 
@@ -71,7 +69,8 @@ router.get("/download", function (req, res) {
         imageData: imgs,
         textData: texts,
         title: "Reiz/Flut",
-        isDownloader: true
+        isDownloader: true,
+        kinect: false
       });
     });
   });

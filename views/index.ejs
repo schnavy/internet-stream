@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -10,6 +11,7 @@
       var imgdata = <%-JSON.stringify(imageData) %>
       var txtdata = <%-JSON.stringify(textData) %>
       var isDownloader = <%-JSON.stringify(isDownloader) %>
+      var kinect = <%-JSON.stringify(kinect) %>
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -19,7 +21,46 @@
       <h2 style="margin-top: 10px"><span>Die</span>
       <!--<br/>Reiz<span>&#x2009;/&#x2009;</span>Flut-->
       </h2>
-      <p>Klicke zum Starten und aale dich im Rausch der Informationen. <br/>Bewege dich durch den Raum des Affekts — losgelöst von Kontext und Bedeutung.</p><br>
+
+
+      
+    </div>
+    <div class="description-wrapper">
+      <div class="description">
+        <span class="intro indent0"></span><span class="intro indentBetween kursiv"></span><br/><br/>
+        <p class="intro indent1 kursiv"></p>
+        <p class="intro indent2"></p>
+        <p class="intro indent2"></p>
+        <p class="intro indent3"></p>
+        <p class="intro indent2"></p>
+        <p class="intro indent3"></p>
+        <p class="intro indent3"></p>
+        <p class="intro indent3"></p><br/><br/><br/>
+        <p class="intro indent0"></p>
+        <p class="intro indent1"></p>
+        <p class="intro indent1"></p><br/><br/>
+        <p class="intro indent1 credit"></p>
+        <span class="intro indent1 moreInfo"></span>
+        <span class="intro indentBetween2 enter"></span><br/><br/><br/>
+        <p class="intro indent1 more kursiv"></p>
+        <p class="intro indent2 more"></p>
+        <p class="intro indent3 more"></p>
+        <p class="intro indent3 more"></p>
+        <p class="intro indent3 more"></p><br/><br/><br/>
+        <p class="intro indent0 more"></p>
+        <p class="intro indent1 more"></p>
+        <p class="intro indent1 more"></p><br/><br/>
+        <p class="intro indent1 more"></p>
+        <p class="intro indent2 more"></p>
+        <p class="intro indent2 more"></p><br/><br/><br/>
+        <p class="intro indent0 more"></p>
+        <p class="intro indent0 more"></p><br/><br/>
+        <p class="intro indent3 more enter"></p><br/><br/>
+        <p class="intro indent1 more2"></p><br/>
+        <p class="intro indent2 more2"></p>
+        <p class="intro indent2 more2"></p>
+      </div>
+
     </div>
     <!--<p id="clickInfo"></p>-->
     <div class="container">
@@ -42,8 +83,21 @@
           <path class="cls-1" d="M109.5,2.5s-1,35,0,41,8,24,8,24c4,8,0,8,0,8s-7,22,2,0,0-38,0-38l4-19,5,35,2,11s12,8-2,39-14,37-25,59-83,54-87,56-12,2-14-3"/>
           </svg>
         </div>
-
-
+        <div class="svg-container">
+          <svg class="formlinie" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 49.64">
+            <path class="cls-1" d="M131.56,2.5c-45.78,15.69-77.89,52.3-82,94-.54,5.5-4.73,56.09,32,81,34.29,23.25,87.17,12.55,112-22,23.49-32.68,13.27-74.72-2-99-28.87-45.91-98.16-63.89-144-34-27,17.6-57.26,59.25-40,100,15,35.46,60,55.9,97,41,38.42-15.46,45.69-59.87,46-62"/>
+          </svg>
+        </div>
+        <div class="svg-container">
+          <svg class="formlinie" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 137.79 222.25">
+          <path class="cls-1" d="M2.5,37.61s118.09,140.23,173,135c63-6-28.92-207.34-53-164-20,36,31,93,64,93,29,0,77-12,77-80"/>
+          </svg>
+        </div>
+        <div class="svg-container">
+          <svg class="formlinie" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 137.79 222.25">
+          <path class="cls-1" d="M30.62,2.5c-6.51,15.82-69.25,174.74,17,289,13.21,17.49,33.87,39.19,66,58"/>
+          </svg>
+        </div>
 
         <span id ="speed-log" class="speedlog"></span>
         <p id="pMain" class="mainText style1"></p>
@@ -55,7 +109,13 @@
   </body>
 
   <footer>
+  <% if(kinect){
+  %>
+      <script src="https://cdn.jsdelivr.net/gh/kinectron/kinectron@0.3.6/client/dist/kinectron-client.js"></script>
+  <%}
+  %>
     <script src="js/movement.js"></script>
+    <script src="js/intro.js"></script>
     <script src="js/main.js"></script>
   </footer>
 

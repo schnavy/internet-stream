@@ -18,21 +18,13 @@
 
 @font-face {
     font-family: 'Distro';
-    src: url('../fonts/distro/DistroBold.woff2') format('woff2'),
-      url('../fonts/distro/DistroBold.woff') format('woff');
+    src: url('../fonts/distro/DistroBlack.woff2') format('woff2'),
+      url('../fonts/distro/DistroBlack.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
   }
-
-@font-face {
-    font-family: 'Poster';
-    src: url('../fonts/Poster/POSTER-regular.woff2') format('woff2'),
-        url('../fonts/Poster/POSTER-regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+  
 
 @font-face {
     font-family: 'Arial Narrow';
@@ -42,17 +34,50 @@
     font-style: normal;
     font-display: swap;
 }
+@font-face {
+    font-family: 'Arial Narrow';
+    src: url('../fonts/Arial_Narrow/ArialNarrow-Italic.woff2') format('woff2'),
+        url('../fonts/Arial_Narrow/ArialNarrow-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fraunces';
+    font-display: swap;
+    font-weight: 100 900;
+    font-style: normal;
+    src: url('../fonts/Fraunces/Fraunces--latin_basic.woff2') format('woff2');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    font-display: swap;
+    font-style: italic;
+    font-weight: 100 900;
+    src: url('../fonts/Fraunces/Fraunces-Italic--latin_basic.woff2') format('woff2');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+  @font-face {
+    font-family: 'Cooper';
+    src: url('../fonts/Cooper/CooperBlack.woff2') format('woff2'),
+      url('../fonts/Cooper/CooperBlack.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
 
 #pMain {
     position: absolute;
-    width: 1000px;
-    max-width: 80vw;
+    max-width: 70vw;
     z-index: 100;
     /* word-break: break-all; */
 }
 
 .hStyle0 {
-    font-size: 3em;
+    font-size: 5em;
     font-family: 'Anton';
     font-weight: normal;
     line-height: 1em;
@@ -61,7 +86,7 @@
 }
 
 .hStyle1 {
-    font-size: 4em;
+    font-size: 5em;
     font-family: 'Apple Garamond';
     font-weight: normal;
     line-height: .83em;
@@ -77,8 +102,17 @@
     letter-spacing: -2px;
     color: blue;
 } */
+
+.hStyle2 {
+    font-size: 6em;
+    font-family: 'Cooper';
+    font-weight: bold;
+    line-height: 0.78em;
+    letter-spacing: 0px;
+    color: blue;
+}
 .hStyle3 {
-    font-size: 3em;
+    font-size: 2em;
     font-family: 'Distro';
     font-weight: bold;
     line-height: 1em;
@@ -87,14 +121,23 @@
 }
 
 .pStyle0 {
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-family: 'Arial Narrow';
     font-weight: normal;
     line-height: 1em;
-    letter-spacing: 0px;
+    /* letter-spacing: -1px; */
     color: yellow;
+    width: 900px;
 }
-
+.pStyle1 {
+    font-size: 1em;
+    font-family: 'Arial Narrow';
+    font-weight: normal;
+    line-height: 1em;
+    /* letter-spacing: 0px; */
+    color: yellow;
+    width: 800px;
+}
 
 .transparent {
     color: transparent !important;
