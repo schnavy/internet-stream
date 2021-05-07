@@ -46,23 +46,26 @@ let introTexte = {
     'losgelöst von Kontext und Bedeutung.', 'credit +', 'mehr Informationen +', 'Enter ↵'
   ],
   mehr: ['Hello ${user.name}, what‘s going on today?',
-    'sammelt täglich Bild- und Textelemente von', '189 Nachrichtenportalen', '50 zufälligen Wikipedia-Artikeln',
-    '700 aktuelle Twitter-Beiträgen', 'Diese werden zerstört, verändert, neu zusammengesetzt, instrumentalisiert',
-    'und bilden einen flüchtigen, nicht-greifbaren Strom der Dinge', 'eine Flut der Reize.', 'Es öffnet sich ein Bewegungspektrum, in dem',
+    'sammelt tagesaktuelle Bild- und Textelemente von', '254 Tweets* ','192 Nachrichtenportalen**', '*Schlagwörter anzeigen +', '**Liste der Webseiten anzeigen +','Diese Masse an Daten wird verarbeitet, zerstört, verändert, neu zusammengesetzt',
+    'und bildet einen flüchtigen, nicht-greifbaren Strom der Neuigkeiten', 'eine Flut der Reize.', 'Es entsteht ein Feed, ein Interface, eine Infrastruktur,','die ein begrenztes Bewegungspektrum öffnet, in dem',
     'die Handlung die Form der Inhalte bedingt.',
     'die Form der Inhalte die Handlung bedingt.',
-    'Ein System der Affirmation', 'nutzt diese Wechselwirkung zum Selbst- und Machterhalt.', 'Enter ↵'
+    'jede Handlung das System legitimiert.',
+    'Ein System der Affirmation', 'nutzt diese Mechanismen zum Selbst- und Machterhalt.', 'Enter ↵'
   ],
-  credit: ['Hello ${user.name}, what‘s going on today?', 'Eine Installation von David Wahrenburg', 'Sounddesign von Lasse Bornträger']
+  credit: ['Hello ${user.name}, what‘s going on today?', 'Eine Installation von David Wahrenburg', 'Sounddesign von Lasse Bornträger'],
+  usage: ['Cursor bewegen um Inhalt/Form zu verändern', '(click) oder (enter) — start', '(space) — pause', '(esc) oder (click) — stopp']
 }
 
+//["today", "currently", "right now", "at the moment"]
 let j = 0;
 let count = 0;
 let waitcount = 0;
 let newtext = ""
 let moreActive = false
 let creditActive = false
-let introSpeed = 100;
+let introSpeed = 0;
+let introPausen = 0;
 
 let data = {
   news: {
@@ -157,9 +160,9 @@ document.addEventListener(
     if (e.code === "Space") {
       streamIsPaused = !streamIsPaused;
     } else if (e.code === "Escape") {
-      toggleStream();
+      toggleStream("stop");
     } else if (e.code === "Enter") {
-      toggleStream();
+      toggleStream("start");
     }
   },
   false
@@ -239,18 +242,20 @@ function changeText(input = data.news.texte) {
   }
 }
 
-function toggleStream() {
-  if (streamIsActive) {
+function toggleStream(onlyStartorStop) {
+  if (streamIsActive && onlyStartorStop != "start") {
     body.classList.remove("crosshair");
     wrapper.style.display = "none";
     intro.style.display = "block";
-  } else {
+    streamIsActive = !streamIsActive;
+
+  } else if (onlyStartorStop != "stop") {
     body.classList.add("crosshair");
 
     wrapper.style.display = "flex";
     intro.style.display = "none"
+    streamIsActive = !streamIsActive;
   }
-  streamIsActive = !streamIsActive;
 }
 
 function streamDesktop() {
@@ -385,9 +390,7 @@ function getCategory() {
     let value = Object.keys(data)[r]
     return data[value];
   }
-  if (mouseX < document.documentElement.clientWidth / 3) {
-    return data.wiki;
-  } else if (mouseX < document.documentElement.clientWidth / 3 * 2) {
+if (mouseX < document.documentElement.clientWidth / 2) {
     return data.news;
   } else {
     return data.userGenerated;

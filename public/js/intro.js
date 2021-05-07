@@ -41,7 +41,7 @@ function typewriter(elemArray, txtArray) {
         j = 0;
         setTimeout(() => {
             typewriter(elemArray, txtArray)
-        }, 500)
+        }, introPausen)
     }
 }
 

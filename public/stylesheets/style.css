@@ -8,18 +8,19 @@ body {
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
   font-family: 'Arial Narrow';
-
+  position: absolute;
+  bottom: 0;
   font-weight: 300;
   color: blue;
   font-size: 120%;
   cursor: url(../images/big2.png) 15 10, pointer;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   box-sizing: border-box;
   overflow: hidden;
   /* display: grid;
   justify-content: center;
   align-content: center; */
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 h2 {
@@ -297,13 +298,14 @@ h2 span {
 
 }
 .description-wrapper{
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
   display: grid;
   justify-content: center;
   width: 100vw;
   /* padding-left: 150px; */
   padding-bottom: 150px;
+  padding-top: 150px;
 
 }
 .description {
