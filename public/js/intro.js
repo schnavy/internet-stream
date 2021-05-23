@@ -1,3 +1,5 @@
+waitToggle()
+
 function waitToggle() {
     if (waitcount > 3) {
         typewriter(introsps, introTexte.start)
@@ -29,7 +31,6 @@ function typewriter(elemArray, txtArray) {
         } else {
             elem.textContent = newtext;
         }
-        introaudio.play()
 
         j++;
         setTimeout(() => {

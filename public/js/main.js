@@ -14,10 +14,31 @@ let creditps = document.querySelectorAll(".description .more2")
 const moreBtn = document.querySelector(".moreInfo")
 const creditBtn = document.querySelector(".credit")
 var regexExp = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
-const audio = new Audio("../audio/click.mp3");
-audio.volume = 0.2;
-const introaudio = new Audio("../audio/robot.mp3");
-introaudio.volume = 0.2;
+
+var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+
+
+let sound = {
+  "basis": [],
+  "extra": [],
+}
+sound.basis[0] = new Audio("../audio/athmo/basis-0.mp3");
+sound.basis[1] = new Audio("../audio/athmo/basis-1.mp3");
+sound.basis[2] = new Audio("../audio/athmo/basis-2.mp3");
+sound.extra[0] = new Audio("../audio/athmo/extra-0.mp3");
+sound.extra[1] = new Audio("../audio/athmo/extra-1.mp3");
+sound.extra[2] = new Audio("../audio/athmo/extra-2.mp3");
+
+
+sound.basis.forEach((elem)=>{
+  elem.loop = true;
+})
+sound.extra.forEach((elem)=>{
+  elem.loop = true;
+})
+
+
+
 
 let speed, imgR, textR, scale, titlechanger, imgsource, source;
 let pStyleAnzahl = 1;
@@ -46,8 +67,8 @@ let introTexte = {
     'losgelöst von Kontext und Bedeutung.', 'credit +', 'mehr Informationen +', 'Enter ↵'
   ],
   mehr: ['Hello ${user.name}, what‘s going on today?',
-    'sammelt tagesaktuelle Bild- und Textelemente von', '254 Tweets* ','192 Nachrichtenportalen**', '*Schlagwörter anzeigen +', '**Liste der Webseiten anzeigen +','Diese Masse an Daten wird verarbeitet, zerstört, verändert, neu zusammengesetzt',
-    'und bildet einen flüchtigen, nicht-greifbaren Strom der Neuigkeiten', 'eine Flut der Reize.', 'Es entsteht ein Feed, ein Interface, eine Infrastruktur,','die ein begrenztes Bewegungspektrum öffnet, in dem',
+    'sammelt tagesaktuelle Bild- und Textelemente von', '254 Tweets* ', '192 Nachrichtenportalen**', '*Schlagwörter anzeigen +', '**Liste der Webseiten anzeigen +', 'Diese Masse an Daten wird verarbeitet, zerstört, verändert, neu zusammengesetzt',
+    'und bildet einen flüchtigen, nicht-greifbaren Strom der Neuigkeiten', 'eine Flut der Reize.', 'Es entsteht ein Feed, ein Interface, eine Infrastruktur,', 'die ein begrenztes Bewegungspektrum öffnet, in dem',
     'die Handlung die Form der Inhalte bedingt.',
     'die Form der Inhalte die Handlung bedingt.',
     'jede Handlung das System legitimiert.',
@@ -64,8 +85,8 @@ let waitcount = 0;
 let newtext = ""
 let moreActive = false
 let creditActive = false
-let introSpeed = 0;
-let introPausen = 0;
+let introSpeed = 100;
+let introPausen = 100;
 
 let data = {
   news: {
@@ -126,8 +147,24 @@ if (isDownloader) {
     changeText(textsource.texte);
   }, 300);
   wrapper.classList.add("downloadMode");
+} else if (kinect) {
+  wrapper.classList.add("kinectMode");
+  changeImg();
+  changeImg();
+  changeText();
+  streamKinect();
+
+  setInterval(() => {
+
+    if (mouseY < 0) {
+      mouseY = height
+    }
+    changeCircles()
+    moveBlurryCircles()
+    changeSound()
+  }, 100)
+
 } else {
-  waitToggle()
   changeImg();
   changeImg();
   changeText();
@@ -186,7 +223,6 @@ if (isMobileDevice() == false) {
     changeImg();
     changeText();
     toggleStream();
-    audio.play();
   });
 }
 
@@ -243,18 +279,35 @@ function changeText(input = data.news.texte) {
 }
 
 function toggleStream(onlyStartorStop) {
+  console.log("hhhh");
   if (streamIsActive && onlyStartorStop != "start") {
     body.classList.remove("crosshair");
     wrapper.style.display = "none";
-    intro.style.display = "block";
+    if (intro) {
+      intro.style.display = "block";
+    }
     streamIsActive = !streamIsActive;
-
+    sound.extra.forEach((elem) => {
+      elem.pause()
+    })
+    sound.basis.forEach((elem) => {
+      elem.pause()
+    })
   } else if (onlyStartorStop != "stop") {
     body.classList.add("crosshair");
 
     wrapper.style.display = "flex";
-    intro.style.display = "none"
+    if (intro) {
+      intro.style.display = "none"
+    }
     streamIsActive = !streamIsActive;
+
+    sound.extra.forEach((elem) => {
+      elem.play()
+    })
+    sound.basis.forEach((elem) => {
+      elem.play()
+    })
   }
 }
 
@@ -267,14 +320,29 @@ function streamDesktop() {
     logParameters()
     // changeFormlinien()
 
-    audio.play();
-
-
   }
   setTimeout(streamDesktop, speed);
 }
 
+function streamKinect() {
+  if (streamIsActive && !streamIsPaused) {
+    // if (mouseY < 0) {
+    //   mouseY = document.clientHeight
+    // }
+    source = getCategory()
+    speed = getSpeedFromMouseY();
+    changeImg(source.images);
+    changeText(source.texte);
+    // logParameters()
+    // changeFormlinien()
+
+  }
+  setTimeout(streamKinect, speed);
+}
+
 function changeCircles() {
+  if (!streamIsActive || streamIsPaused) return
+
   let r = wrapper.clientHeight - 4
 
   for (let i = 0; i < circles.length; i++) {
@@ -291,7 +359,7 @@ function changeCircles() {
 
 
 function moveBlurryCircles() {
-  if (!streamIsActive) return
+  if (!streamIsActive || streamIsPaused) return
   circle.style.top = mouseY + "px"
   circle.style.left = mouseX + "px"
   circle2.style.top = prevMouseY + "px"
@@ -390,7 +458,7 @@ function getCategory() {
     let value = Object.keys(data)[r]
     return data[value];
   }
-if (mouseX < document.documentElement.clientWidth / 2) {
+  if (mouseX < document.documentElement.clientWidth / 2) {
     return data.news;
   } else {
     return data.userGenerated;

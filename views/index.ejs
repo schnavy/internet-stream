@@ -12,6 +12,8 @@
       var txtdata = <%-JSON.stringify(textData) %>
       var isDownloader = <%-JSON.stringify(isDownloader) %>
       var kinect = <%-JSON.stringify(kinect) %>
+      var mitIntro = <%-JSON.stringify(mitIntro) %>
+
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -21,10 +23,8 @@
       <h2 style="margin-top: 10px"><span>Die</span>
       <!--<br/>Reiz<span>&#x2009;/&#x2009;</span>Flut-->
       </h2>
-
-
-      
     </div>
+  <% if(mitIntro){%>
     <div class="description-wrapper">
       <div class="description">
         <span class="intro indent0"></span><span class="intro indentBetween kursiv"></span><br/><br/>
@@ -63,10 +63,12 @@
         <p class="intro indent2 more2"></p>
         <p class="intro indent2 more2"></p>
       </div>
-
     </div>
+  <%}%>
     <!--<p id="clickInfo"></p>-->
     <div class="container">
+        <div class="testpunkt"></div>
+
       <div class="wrapper">
         <img class ="raster" src="images/raster2.png">
         <div class="circle"></div>
@@ -112,14 +114,15 @@
   </body>
 
   <footer>
-  <% if(kinect){
-  %>
+  <% if(kinect){%>
       <script src="https://cdn.jsdelivr.net/gh/kinectron/kinectron@0.3.6/client/dist/kinectron-client.js"></script>
-  <%}
-  %>
+  <%}%>
+
     <script src="js/movement.js"></script>
-    <script src="js/intro.js"></script>
     <script src="js/main.js"></script>
+    <% if(mitIntro){%>
+    <script src="js/intro.js"></script>
+  <%}%>
   </footer>
 
 </html>

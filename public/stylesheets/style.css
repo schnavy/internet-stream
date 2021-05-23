@@ -153,7 +153,7 @@ h2 span {
 } */
 
 .raster {
-  display: none;
+  display: block;
   position: absolute;
   width: 100%;
   object-fit: cover !important;
@@ -253,12 +253,25 @@ h2 span {
   border-radius: 0;
   z-index: 1000;
   font-size: 200% !important;
-
 }
+
+.kinectMode {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden !important;
+  background-color: black;
+  object-fit: cover;
+  border-radius: 0;
+  z-index: 1000;
+}
+
 
 .downloadMode .mainText {
   z-index: 1000;
   width: 70vw !important;
+}
+.downloadMode .circle,.downloadMode .blurrycircle  {
+  display: none;
 }
 
 .downloadMode .speedlog {
@@ -275,29 +288,42 @@ h2 span {
 }
 
 
-#circle, #circle2 {
+#circle,
+#circle2 {
   position: absolute;
   transform: translate(-50%, -50%) rotate(0);
   width: 1000px;
   height: 500px;
   border-radius: 1000px;
   background-color: black;
-  mix-blend-mode:overlay;
+  mix-blend-mode: overlay;
   left: 50%;
   top: 50%;
   z-index: 500;
   filter: blur(200px);
 }
-#circle{
+
+#circle {
   background-color: white;
-  mix-blend-mode:overlay;
+  mix-blend-mode: overlay;
 
   width: 400px;
   height: 300px;
   filter: blur(100px);
 
 }
-.description-wrapper{
+
+.testpunkt {
+  display: none;
+position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  background-color: red;
+  z-index: 2000;
+}
+
+.description-wrapper {
   /* position: absolute; */
   /* bottom: 0; */
   display: grid;
@@ -308,6 +334,7 @@ h2 span {
   padding-top: 150px;
 
 }
+
 .description {
   /* margin-top: 10vh; */
   /* margin-bottom: 10vh; */
@@ -349,7 +376,9 @@ h2 span {
   margin-left: 6em;
 }
 
-.moreInfo:hover, .enter:hover , .credit:hover{
+.moreInfo:hover,
+.enter:hover,
+.credit:hover {
   font-style: italic;
 }
 

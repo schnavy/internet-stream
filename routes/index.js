@@ -26,7 +26,8 @@ router.get("/", function (req, res) {
           textData: texts,
           title: "Reiz/Flut",
           isDownloader: false,
-          kinect: false
+          kinect: false,
+          mitIntro: true
         });
       });
     });
@@ -41,7 +42,8 @@ router.get("/", function (req, res) {
       textData: textJsonOBj,
       title: "Reiz/Flut",
       isDownloader: false,
-      kinect: false
+      kinect: false,
+      mitIntro: true
     });
   });
 
@@ -55,14 +57,14 @@ router.get("/download", function (req, res) {
     sort: {
       timecode: -1
     },
-    limit: 1000
+    limit: 2000
   }, (e, imgs) => {
     if (e) return next(e);
     textCol.find({}, {
       sort: {
         timecode: -1
       },
-      limit: 1000
+      limit: 2000
     }, (e, texts) => {
       if (e) return next(e);
       res.render("index", {
@@ -70,7 +72,8 @@ router.get("/download", function (req, res) {
         textData: texts,
         title: "Reiz/Flut",
         isDownloader: true,
-        kinect: false
+        kinect: false,
+        mitIntro: true
       });
     });
   });
