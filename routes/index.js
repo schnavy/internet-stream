@@ -10,7 +10,7 @@ router.get("/", function (req, res) {
     imgCol.find({}, {
       sort: {
         timecode: -1
-      },
+      },  
       limit: 1000
     }, (e, imgs) => {
       if (e) return next(e);
@@ -27,7 +27,8 @@ router.get("/", function (req, res) {
           title: "Reiz/Flut",
           isDownloader: false,
           kinect: false,
-          mitIntro: true
+          mitIntro: true,
+          fullscreen: false
         });
       });
     });
@@ -42,8 +43,9 @@ router.get("/", function (req, res) {
       textData: textJsonOBj,
       title: "Reiz/Flut",
       isDownloader: false,
-      kinect: false,
-      mitIntro: true
+      kinect: true,
+      mitIntro: false,
+      fullscreen: true
     });
   });
 
@@ -73,10 +75,25 @@ router.get("/download", function (req, res) {
         title: "Reiz/Flut",
         isDownloader: true,
         kinect: false,
-        mitIntro: true
+        mitIntro: true,
+        fullscreen: true
       });
     });
   });
 });
+
+
+
+router.get("/intro", function (req, res) {
+
+  res.render("intro", {
+    title: "Intropanels",
+    isDownloader: false,
+    kinect: false,
+    mitIntro: false
+  });
+});
+
+
 
 module.exports = router;

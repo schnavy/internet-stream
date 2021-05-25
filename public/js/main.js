@@ -7,8 +7,12 @@ const titleh2 = document.querySelector(".innerTitle h2 span");
 const speedLog = document.querySelector("#speed-log");
 const circles = document.querySelectorAll(".circle")
 const enter = document.querySelector(".enter")
+let intro2 = document.querySelector(".description2")
+
 let intro = document.querySelector(".description")
 let introsps = document.querySelectorAll(".description .intro")
+let introsps2 = document.querySelectorAll(".description2 .intro")
+
 let mehrps = document.querySelectorAll(".description .more")
 let creditps = document.querySelectorAll(".description .more2")
 const moreBtn = document.querySelector(".moreInfo")
@@ -16,6 +20,7 @@ const creditBtn = document.querySelector(".credit")
 var regexExp = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
 
 var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+
 
 
 let sound = {
@@ -30,17 +35,17 @@ sound.extra[1] = new Audio("../audio/athmo/extra-1.mp3");
 sound.extra[2] = new Audio("../audio/athmo/extra-2.mp3");
 
 
-sound.basis.forEach((elem)=>{
+sound.basis.forEach((elem) => {
   elem.loop = true;
 })
-sound.extra.forEach((elem)=>{
+sound.extra.forEach((elem) => {
   elem.loop = true;
 })
 
 
 
 
-let speed, imgR, textR, scale, titlechanger, imgsource, source;
+let speed, imgR, textR, scale, titlechanger, imgsource, source, blurrycircle;
 let pStyleAnzahl = 1;
 let hStyleAnzahl = 4;
 let titlewords = ["Die", "Flut", "der", "Reize", "/", "Der", "Reiz", "der", "Fluten", "/"]
@@ -67,14 +72,12 @@ let introTexte = {
     'losgelöst von Kontext und Bedeutung.', 'credit +', 'mehr Informationen +', 'Enter ↵'
   ],
   mehr: ['Hello ${user.name}, what‘s going on today?',
-    'sammelt tagesaktuelle Bild- und Textelemente von', '254 Tweets* ', '192 Nachrichtenportalen**', '*Schlagwörter anzeigen +', '**Liste der Webseiten anzeigen +', 'Diese Masse an Daten wird verarbeitet, zerstört, verändert, neu zusammengesetzt',
-    'und bildet einen flüchtigen, nicht-greifbaren Strom der Neuigkeiten', 'eine Flut der Reize.', 'Es entsteht ein Feed, ein Interface, eine Infrastruktur,', 'die ein begrenztes Bewegungspektrum öffnet, in dem',
-    'die Handlung die Form der Inhalte bedingt.',
-    'die Form der Inhalte die Handlung bedingt.',
-    'jede Handlung das System legitimiert.',
-    'Ein System der Affirmation', 'nutzt diese Mechanismen zum Selbst- und Machterhalt.', 'Enter ↵'
+    'sammelt tagesaktuelle Bild- und Textelemente von 1653 URL‘s,', 'bestehend aus', 'Social Media Posts', 'Wikipedia Artikeln', 'Nachrichtenportalen', 'Diese Masse an Daten wird verarbeitet, zerlegt, neu zusammengesetzt',
+    'und bildet einen flüchtigen, nicht-greifbaren Strom der Neuigkeiten', 'eine Flut der Reize.', 'Parametrisch', 'Algorithmisch', 'Intransparent organisieren sich Ton, Bild und Text zu einer', 'maximalen Konsumerfahrung.', 'Es entsteht ein Feed, ein Interface, eine Infrastruktur die ein Bewegungspektrum öffnet,',
+    'in dem Handlung und Inhalt in wechselseitige Beziehung treten.',
+    'in dem jede Handlung das System legitimiert.'
   ],
-  credit: ['Hello ${user.name}, what‘s going on today?', 'Eine Installation von David Wahrenburg', 'Sounddesign von Lasse Bornträger'],
+  credit: ['Installation: David Wahrenburg', 'Sound: Lasse Bornträger'],
   usage: ['Cursor bewegen um Inhalt/Form zu verändern', '(click) oder (enter) — start', '(space) — pause', '(esc) oder (click) — stopp']
 }
 
@@ -85,8 +88,8 @@ let waitcount = 0;
 let newtext = ""
 let moreActive = false
 let creditActive = false
-let introSpeed = 100;
-let introPausen = 100;
+let introSpeed = 0;
+let introPausen = 0;
 
 let data = {
   news: {
@@ -108,32 +111,35 @@ let PLimgs = {
   "userGenerated": [],
   "wiki": []
 }
+if (typeof (imgdata) != "undefined") {
 
-// txtdata = txtdata.filter((x) => x.category == "News");
-data.news.images = imgdata.filter((x) => x.category == "News");
-data.userGenerated.images = imgdata.filter((x) => x.category == "user generated");
-data.wiki.images = imgdata.filter((x) => x.category == "Wiki");
+  // txtdata = txtdata.filter((x) => x.category == "News");
+  data.news.images = imgdata.filter((x) => x.category == "News");
+  data.userGenerated.images = imgdata.filter((x) => x.category == "user generated");
+  data.wiki.images = imgdata.filter((x) => x.category == "Wiki");
 
-data.news.texte = txtdata.filter((x) => x.category == "News");
-data.userGenerated.texte = txtdata.filter((x) => x.category == "user generated");
-data.wiki.texte = txtdata.filter((x) => x.category == "Wiki");
+  data.news.texte = txtdata.filter((x) => x.category == "News");
+  data.userGenerated.texte = txtdata.filter((x) => x.category == "user generated");
+  data.wiki.texte = txtdata.filter((x) => x.category == "Wiki");
 
 
-// console.log(txtdata.filter((x) => x.category == "News"));
+  // console.log(txtdata.filter((x) => x.category == "News"));
 
-// console.log(imgdata);
-// console.log(txtdata);
-console.log(data);
+  // console.log(imgdata);
+  // console.log(txtdata);
+  console.log(data);
 
-//Preloader
-for (const cat in data) {
-  let elem = data[cat]
-  for (i = 0; i < elem.images.length; i++) {
-    PLimgs[cat][i] = new Image();
-    PLimgs[cat][i].src = elem.images[i].url;
+  //Preloader
+  for (const cat in data) {
+    let elem = data[cat]
+    for (i = 0; i < elem.images.length; i++) {
+      PLimgs[cat][i] = new Image();
+      PLimgs[cat][i].src = elem.images[i].url;
+    }
   }
+  window.onload = console.log("Preloader fertig!");
+
 }
-window.onload = console.log("Preloader fertig!");
 
 
 
@@ -159,17 +165,24 @@ if (isDownloader) {
     if (mouseY < 0) {
       mouseY = height
     }
-    changeCircles()
-    moveBlurryCircles()
     changeSound()
   }, 100)
 
-} else {
+} else if (typeof (imgdata) != "undefined") {
+  if (fullscreen) {
+    wrapper.classList.add("kinectMode");
+
+  }
+  blurrycircle = new BlurCirc();
+  blurrycircle.show()
   changeImg();
   changeImg();
   changeText();
   streamDesktop();
-  setInterval(moveBlurryCircles, 70);
+  setInterval(() => {
+    blurrycircle.move()
+  }, 70);
+
 }
 
 // titlechanger = setInterval((e) => {
@@ -187,7 +200,26 @@ if (isDownloader) {
 
 
 
+window.addEventListener("mousemove", (e) => {
+  if (!kinect) {
 
+    let cY = Math.floor(
+      map(mouseY, 100, width, 120, 80)
+    );
+    let cX = Math.floor(
+      map(mouseX, 0, height, -3, 3)
+    );
+    let r = cY - cX;
+    let g = cY;
+    let b = cY + cX;
+    body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+    if (streamIsActive && !streamIsPaused) {
+      blurrycircle.change()
+      changeSound()
+    }
+  }
+
+});
 
 
 
@@ -227,7 +259,6 @@ if (isMobileDevice() == false) {
 }
 
 function changeImg(input = data.news.images) {
-
   imgR = getRandomOf(input.length);
   scale = getScaleFromMouse();
 
@@ -236,18 +267,19 @@ function changeImg(input = data.news.images) {
     currImg.style.display = "block";
     otherImg.src = input[imgR].url;
     currImg.style.transform = "scale(" + scale + ")";
-    currImg.style.filter = "blur(" + Math.floor((12 - scale) / 2) + "px)"
+    // currImg.style.filter = "blur(" + Math.floor((12 - scale) / 2) + "px)"
   } else {
     otherImg.style.display = "block";
     currImg.style.display = "none";
     currImg.src = input[imgR].url;
     otherImg.style.transform = "scale(" + scale + ")";
-    otherImg.style.filter = "blur(" + Math.floor((12 - scale) / 2) + "px)"
+    // otherImg.style.filter = "blur(" + Math.floor((12 - scale) / 2) + "px)"
   }
   imgswitcher = !imgswitcher;
 }
 
 function changeText(input = data.news.texte) {
+  scale = getScaleFromMouse();
 
   textR = getRandomOf(input.length);
   currText.removeAttribute("style");
@@ -279,7 +311,6 @@ function changeText(input = data.news.texte) {
 }
 
 function toggleStream(onlyStartorStop) {
-  console.log("hhhh");
   if (streamIsActive && onlyStartorStop != "start") {
     body.classList.remove("crosshair");
     wrapper.style.display = "none";
@@ -318,8 +349,7 @@ function streamDesktop() {
     changeImg(source.images);
     changeText(source.texte);
     logParameters()
-    // changeFormlinien()
-
+    changeFormlinien()
   }
   setTimeout(streamDesktop, speed);
 }
@@ -340,40 +370,7 @@ function streamKinect() {
   setTimeout(streamKinect, speed);
 }
 
-function changeCircles() {
-  if (!streamIsActive || streamIsPaused) return
 
-  let r = wrapper.clientHeight - 4
-
-  for (let i = 0; i < circles.length; i++) {
-    const elem = circles[i];
-    elem.style.height = r + "px"
-    let w = r / (i + 1);
-    elem.style.width = w + "px"
-    elem.style.left = map(mouseX, 0, document.documentElement.clientWidth, 0, wrapper.clientWidth - w) + "px"
-
-    // elem.style.left = Math.floor(getRandomOf(document.documentElement.clientWidth-w )) + "px";
-    elem.style.top = "0px"
-  }
-}
-
-
-function moveBlurryCircles() {
-  if (!streamIsActive || streamIsPaused) return
-  circle.style.top = mouseY + "px"
-  circle.style.left = mouseX + "px"
-  circle2.style.top = prevMouseY + "px"
-  circle2.style.left = prevMouseX + "px"
-  if (radius % 10 == 0) {
-
-    // circle.style.transform = "translate(-50%, -50%) rotate(" + (radius + 100) + "deg)";
-    circle2.style.transform = "translate(-50%, -50%) rotate(" + (-radius) + "deg)";
-  }
-  radius += 5
-  if (radius == 360) {
-    radius = 0
-  }
-}
 
 let linienFormen = document.querySelectorAll(".svg-container")
 let linienQuote;
@@ -384,16 +381,16 @@ function changeFormlinien() {
   let h = wrapper.clientHeight;
   let w = wrapper.clientWidth;
   for (let i = 0; i < linienFormen.length; i++) {
-    linienQuote = map(mouseY, 0, h, 1, 8)
+    linienQuote = map(mouseY, 0, h, 1, 7)
     r = Math.floor(getRandomOf(linienQuote))
     const elem = linienFormen[i];
     if (r == 1) {
       elem.style.display = "block"
       elem.style.top = Math.floor(getRandomOf(h)) + "px"
       elem.style.left = Math.floor(getRandomOf(w)) + "px"
-      elem.style.width = (getRandomOf(800) + 200) + "px"
-      elem.style.transform = "rotate(" + Math.floor(getRandomOf(360)) + "deg) scaleX(" + Math.floor(getRandomOf(10)) + ")"
-      elem.style.filter = "blur(" + Math.floor(getRandomOf(7)) + "px)"
+      elem.style.width = (getRandomOf(1000) + 200) + "px"
+      elem.style.transform = "rotate(" + Math.floor(getRandomOf(360)) + "deg) scaleX(" + Math.floor(getRandomOf(15)) + ")"
+      elem.style.filter = "blur(" + Math.floor(getRandomOf(15)) + "px)"
       elem.firstElementChild.firstElementChild.style.stroke = swcolors[getRandomOf(swcolors.length)]
     } else if (r > 2) {
       elem.style.display = "none"
@@ -432,19 +429,19 @@ function isMobileDevice() {
   }
 }
 
-function map(value, x1, y1, x2, y2) {
-  return ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
-}
+
 
 function getScaleFromMouse() {
   return Math.max(
-    map(mouseY, 200, document.documentElement.clientHeight - 200, 10, 1),
+    map(mouseY, 200, document.documentElement.clientHeight - 200, 10, 2),
     1
   );
 }
 
 function getSpeedFromMouseY() {
-  return map(mouseY, 200, document.documentElement.clientHeight, 200, 2200);
+  console.log(Math.floor(Math.max(map(mouseY, 200, document.documentElement.clientHeight, 100, 2000), 100)));
+  return Math.floor(Math.max(map(mouseY, 200, document.documentElement.clientHeight, 100, 2000), 100))
+
 }
 
 function getRandomOf(x) {
@@ -458,13 +455,11 @@ function getCategory() {
     let value = Object.keys(data)[r]
     return data[value];
   }
-  if (mouseX < document.documentElement.clientWidth / 2) {
+  if (mouseX < document.documentElement.clientWidth / 3) {
+    return data.wiki;
+  } else if (mouseX < document.documentElement.clientWidth / 3 * 2) {
     return data.news;
   } else {
     return data.userGenerated;
   }
-}
-
-function map(value, x1, y1, x2, y2) {
-  return ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 }

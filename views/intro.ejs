@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/typo.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+        <script>
+
+      var isDownloader = <%-JSON.stringify(isDownloader) %>
+      var kinect = <%-JSON.stringify(kinect) %>
+      var mitIntro = <%-JSON.stringify(mitIntro) %>
+      var viewTitle = <%-JSON.stringify(title) %>
+
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+    <div class="introcontainer">
+    <div class="description-wrapper">
+     <div class="description2">
+       <% include partials/introfelder %>
+
+      </div>
+      <div class="description">
+        <% include partials/introfelder %>
+
+      </div>
+  
+    </div>
+    </div>
+  </body>
+
+  <footer>
+      <script src="js/movement.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/intro.js"></script>
+
+  </footer>
+
+</html>

@@ -1,4 +1,60 @@
-waitToggle()
+if (viewTitle == "Intropanels") {
+    const descriptionWrapper = document.querySelector(".description-wrapper")
+    descriptionWrapper.classList.add("intropanels")
+    intropanels()
+} else if (mitIntro) {
+    waitToggle()
+}
+
+function intropanels() {
+
+    typewriter(introsps, introTexte.start, () => {
+        typewriter(introsps2, introTexte.start, () => {
+            typewriter(mehrps, introTexte.mehr, () => {
+                typewriter(creditps, introTexte.credit)
+            })
+        })
+    })
+    setInterval(() => {
+        let r = getRandomOf(5)
+
+        if (r == 0) {
+            typewriter(introsps, introTexte.start)
+        } else if (r == 1) {
+            typewriter(introsps2, introTexte.start)
+        } else if (r == 2) {
+            typewriter(mehrps, introTexte.mehr)
+        } else if (r == 3) {
+            typewriter(creditps, introTexte.credit)
+        } else if (r == 4) {
+            typewriter(introsps, introTexte.start, () => {
+                typewriter(introsps2, introTexte.start, () => {
+                    typewriter(mehrps, introTexte.mehr, () => {
+                        typewriter(creditps, introTexte.credit)
+                    })
+                })
+            })
+        } else if (r == 3) {
+            typewriterRemove(introsps2)
+        } else {
+            typewriter(mehrps, introTexte.start)
+            typewriter(introsps, introTexte.credit)
+            typewriter(mehrps, introTexte.start)
+            typewriter(introsps2, introTexte.start)
+            setTimeout(() => {
+                typewriter(introsps, introTexte.start, () => {
+                    typewriter(introsps2, introTexte.start, () => {
+                        typewriter(mehrps, introTexte.mehr, () => {
+                            typewriter(creditps, introTexte.credit)
+                        })
+                    })
+                })
+
+            }, 200)
+
+        }
+    }, 20000)
+}
 
 function waitToggle() {
     if (waitcount > 3) {
@@ -16,9 +72,10 @@ function waitToggle() {
 }
 
 
-function typewriter(elemArray, txtArray) {
+function typewriter(elemArray, txtArray, callback) {
     if (count >= txtArray.length) {
         count = 0
+        callback()
         return
     }
     let elem = elemArray[count];
@@ -34,14 +91,14 @@ function typewriter(elemArray, txtArray) {
 
         j++;
         setTimeout(() => {
-            typewriter(elemArray, txtArray)
+            typewriter(elemArray, txtArray, callback)
         }, (getRandomOf(introSpeed)));
     } else {
         newtext = ""
         count++;
         j = 0;
         setTimeout(() => {
-            typewriter(elemArray, txtArray)
+            typewriter(elemArray, txtArray, callback)
         }, introPausen)
     }
 }
