@@ -13,14 +13,14 @@ router.get("/", function (req, res) {
       },  
       limit: 1000
     }, (e, imgs) => {
-      if (e) return next(e);
+      if (e) return console.log(e);
       textCol.find({}, {
         sort: {
           timecode: -1
         },
         limit: 1000
       }, (e, texts) => {
-        if (e) return next(e);
+        if (e) return console.log(e);
         res.render("index", {
           imageData: imgs,
           textData: texts,
@@ -43,7 +43,7 @@ router.get("/", function (req, res) {
       textData: textJsonOBj,
       title: "Reiz/Flut",
       isDownloader: false,
-      kinect: true,
+      kinect: false,
       mitIntro: false,
       fullscreen: true
     });
@@ -61,14 +61,14 @@ router.get("/download", function (req, res) {
     },
     limit: 2000
   }, (e, imgs) => {
-    if (e) return next(e);
+    if (e) return console.log(e);
     textCol.find({}, {
       sort: {
         timecode: -1
       },
       limit: 2000
     }, (e, texts) => {
-      if (e) return next(e);
+      if (e) return console.log(e);
       res.render("index", {
         imageData: imgs,
         textData: texts,

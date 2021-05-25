@@ -7,7 +7,8 @@ let mouseX = 400;
 let mouseY = 400;
 let prevMouseX = mouseX;
 let prevMouseY = mouseY;
-
+let userActive = false
+let test = false
 
 if (kinect) {
 
@@ -17,9 +18,12 @@ if (kinect) {
 
 
     for (let i = 0; i < 6; i++) {
-        testpunkte[i] = document.createElement("div")
-        testpunkte[i].classList.add("testpunkt")
-        container.appendChild(testpunkte[i])
+        if (test) {
+
+            testpunkte[i] = document.createElement("div")
+            testpunkte[i].classList.add("testpunkt")
+            container.appendChild(testpunkte[i])
+        }
         blurrycircles[i] = new BlurCirc();
 
     }
@@ -31,8 +35,11 @@ if (kinect) {
 
 
     function action(body) {
+        console.log(body);
+        personenCounter = 0
         body.bodies.forEach(person => {
             if (person.tracked) {
+                personenCounter++
                 // console.log({"person" : person.bodyIndex, "depth": person.joints[0].cameraZ, "X:": person.joints[0].cameraX});
 
                 let depth = person.joints[0].cameraZ;
@@ -44,16 +51,20 @@ if (kinect) {
                     prevMouseY = mouseY
                     prevMouseX = mouseX
                 }
+                if (test) {
 
-                testpunkte[person.bodyIndex].style.display = "block"
-                testpunkte[person.bodyIndex].style.top = (mouseY - 50) + "px"
-                testpunkte[person.bodyIndex].style.left = (mouseX - 50) + "px"
+                    testpunkte[person.bodyIndex].style.display = "block"
+                    testpunkte[person.bodyIndex].style.top = (mouseY - 50) + "px"
+                    testpunkte[person.bodyIndex].style.left = (mouseX - 50) + "px"
+                }
                 blurrycircles[person.bodyIndex].show()
                 blurrycircles[person.bodyIndex].change()
                 blurrycircles[person.bodyIndex].move()
 
             } else {
-                testpunkte[person.bodyIndex].style.display = "none";
+                if (test) {
+                    testpunkte[person.bodyIndex].style.display = "none";
+                }
                 blurrycircles[person.bodyIndex].hide()
             }
 
@@ -78,14 +89,17 @@ window.addEventListener("mousemove", (e) => {
 
 function changeSound() {
     if (!streamIsActive || streamIsPaused) return
+
     sound.basis[0].volume = mapPostoVol(width / 2, height / 2, true, 0.6)
-    sound.basis[1].volume = mapPostoVol(width / 6, height / 2, true, 0.8)
+    sound.basis[1].volume = mapPostoVol(width / 6, height / 2, true, 0.6)
     sound.basis[2].volume = mapPostoVol(width / 6 * 5, height / 2, true, 0.5)
 
     sound.extra[0].volume = mapPostoVol([width / 3, height / 6 * 5], height / 4, false, 1)
     sound.extra[1].volume = mapPostoVol([width / 3 * 2, height / 3], height / 4, false, 0.9)
     sound.extra[2].volume = mapPostoVol([width / 2, height / 6], height / 2, false, 0.7)
-
+    sound.basis.forEach(elem => {
+        elem.volume *= map(mouseY, 0, height, 0.2, 1)
+    })
 }
 
 
