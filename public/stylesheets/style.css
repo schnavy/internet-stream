@@ -5,6 +5,7 @@
 
 body {
   background-color: #666;
+  background-color: black;
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
   font-family: 'Arial Narrow';
@@ -139,7 +140,7 @@ h2 span {
   text-align: center;
   /* mix-blend-mode: difference; */
   object-fit: cover !important;
-  /* filter: blur(5px); */
+  filter: blur(2px);
 }
 
 /* #glitch {
@@ -174,7 +175,7 @@ h2 span {
   left: 10px;
   bottom: 10px;
   color: black;
-  font-size: .8em;
+  font-size: .5em;
   opacity: 1;
 }
 
@@ -284,10 +285,17 @@ h2 span {
 
 }
 
-.downloadMode .raster, .kinectMode .raster, .kinectMode .speedlog {
+.downloadMode .raster{
   display: none;
 }
+.kinectMode .raster{
+  display: none;
 
+}
+.kinectMode .speedlog {
+  display: block;
+
+}
 
 #circle,
 #circle2 {

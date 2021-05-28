@@ -11,14 +11,14 @@ router.get("/", function (req, res) {
       sort: {
         timecode: -1
       },  
-      limit: 1000
+      limit: 2000
     }, (e, imgs) => {
       if (e) return console.log(e);
       textCol.find({}, {
         sort: {
           timecode: -1
         },
-        limit: 1000
+        limit: 2000
       }, (e, texts) => {
         if (e) return console.log(e);
         res.render("index", {
@@ -26,9 +26,9 @@ router.get("/", function (req, res) {
           textData: texts,
           title: "Reiz/Flut",
           isDownloader: false,
-          kinect: false,
-          mitIntro: true,
-          fullscreen: false
+          kinect: true,
+          mitIntro: false,
+          fullscreen: true
         });
       });
     });

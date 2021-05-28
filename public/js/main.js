@@ -336,7 +336,8 @@ function toggleStream(onlyStartorStop) {
     sound.extra.forEach((elem) => {
       setTimeout(() => {
         elem.play()
-      }, getRandomOf(10000))
+        console.log("startet");
+      }, getRandomOf(20000))
 
     })
     sound.basis.forEach((elem) => {
@@ -366,8 +367,8 @@ function streamKinect() {
     speed = getSpeedFromMouseY();
     changeImg(source.images);
     changeText(source.texte);
-    // logParameters()
-    // changeFormlinien()
+    logParameters()
+    changeFormlinien()
 
   }
   setTimeout(streamKinect, speed);

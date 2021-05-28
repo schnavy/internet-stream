@@ -35,7 +35,7 @@ if (kinect) {
 
 
     function action(body) {
-        console.log(body);
+        // console.log(body);
         personenCounter = 0
         body.bodies.forEach(person => {
             if (person.tracked) {
